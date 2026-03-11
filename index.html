@@ -3,411 +3,259 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Simulado DETRAN Pro — Prepare-se para a prova real</title>
-<meta name="description" content="600+ questões reais do DETRAN-SP. Simulado gratuito com cronômetro, flashcards, ranking e estatísticas. Passe na primeira tentativa!">
-<meta name="keywords" content="simulado detran, prova detran sp, questões habilitação, cnh, banco de questões detran">
-<meta property="og:title" content="Simulado DETRAN Pro">
-<meta property="og:description" content="600+ questões reais. Passe na primeira tentativa!">
+<title>Simulado DETRAN Pro — 110+ Questões + 47 Placas</title>
+<meta name="description" content="110+ questões reais do DETRAN. Todas as placas de trânsito com explicações detalhadas. Simulado grátis com ranking, flashcards e estatísticas.">
 <meta name="theme-color" content="#E63946">
-<!-- PWA Manifest inline -->
-<link rel="manifest" href="data:application/json,{%22name%22:%22Simulado%20DETRAN%20Pro%22,%22short_name%22:%22DETRAN%20Pro%22,%22start_url%22:%22/%22,%22display%22:%22standalone%22,%22background_color%22:%22%2307101f%22,%22theme_color%22:%22%23E63946%22,%22icons%22:[{%22src%22:%22data:image/svg+xml,%3Csvg%20xmlns%3D%27http://www.w3.org/2000/svg%27%20viewBox%3D%270%200%20100%20100%27%3E%3Ctext%20y%3D%27.9em%27%20font-size%3D%2790%27%3E%F0%9F%9A%A6%3C/text%3E%3C/svg%3E%22,%22sizes%22:%22any%22,%22type%22:%22image/svg+xml%22}]}">
+<link rel="manifest" href="data:application/json,%7B%22name%22%3A%22Simulado%20DETRAN%20Pro%22%2C%22short_name%22%3A%22DETRAN%20Pro%22%2C%22start_url%22%3A%22%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%2307101f%22%2C%22theme_color%22%3A%22%23E63946%22%7D">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
-<!-- Google AdSense — substitua ca-pub-XXXXXXXXXXXXXXXX pelo seu ID -->
-<!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
 <style>
-:root{
-  --red:#E63946;--dark:#07101f;--card:#0d1b2e;--card2:#101f35;
-  --border:#1b2d45;--text:#dde3f0;--muted:#4e6080;
-  --green:#22c55e;--yellow:#f59e0b;--blue:#3b82f6;--white:#fff;
-  --premium:#f59e0b;
-}
+:root{--red:#E63946;--dark:#07101f;--card:#0d1b2e;--card2:#101f35;--border:#1b2d45;--text:#dde3f0;--muted:#4e6080;--green:#22c55e;--yellow:#f59e0b;--blue:#3b82f6;--white:#fff;}
 *{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
 body{font-family:'Barlow',sans-serif;background:var(--dark);color:var(--text);min-height:100vh;}
 .hidden{display:none!important;}
-
-/* ── ANIMAÇÕES ── */
 @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
-@keyframes slideIn{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:translateX(0)}}
 @keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-5px)}80%{transform:translateX(5px)}}
-@keyframes correctPop{0%{transform:scale(1)}40%{transform:scale(1.04)}100%{transform:scale(1)}}
+@keyframes correctPop{0%{transform:scale(1)}40%{transform:scale(1.06)}100%{transform:scale(1)}}
 @keyframes confettiFall{0%{transform:translateY(-20px) rotate(0deg);opacity:1}100%{transform:translateY(120vh) rotate(720deg);opacity:0}}
-@keyframes streakBounce{0%,100%{transform:scale(1)}50%{transform:scale(1.3)}}
-@keyframes modalIn{from{opacity:0;transform:translateY(30px) scale(.95)}to{opacity:1;transform:translateY(0) scale(1)}}
 @keyframes goldShine{0%{background-position:200% center}100%{background-position:-200% center}}
-@keyframes rankSlide{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
-
+@keyframes modalIn{from{opacity:0;transform:translateY(24px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes placaIn{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:scale(1)}}
+/* INSTALL BAR */
+.install-bar{background:var(--card);border-bottom:1px solid var(--border);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px;}
 /* HEADER */
-.hdr{background:linear-gradient(135deg,#a00d18,#E63946 55%,#a00d18);
-  padding:13px 20px;display:flex;align-items:center;justify-content:space-between;
-  position:sticky;top:0;z-index:200;box-shadow:0 3px 20px rgba(230,57,70,.4);}
-.logo{font-family:'Barlow Condensed',sans-serif;font-size:21px;font-weight:900;letter-spacing:2px;display:flex;align-items:center;gap:7px;cursor:pointer;}
-.hdr-right{display:flex;align-items:center;gap:9px;}
-.badge{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.25);
-  padding:3px 11px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.5px;}
-#timer{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;
-  letter-spacing:3px;background:rgba(0,0,0,.35);padding:4px 12px;
-  border-radius:7px;border:1px solid rgba(255,255,255,.15);min-width:78px;text-align:center;}
+.hdr{background:linear-gradient(135deg,#8b0a14,#E63946 55%,#8b0a14);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;box-shadow:0 3px 20px rgba(230,57,70,.4);}
+.logo{font-family:'Barlow Condensed',sans-serif;font-size:19px;font-weight:900;letter-spacing:2px;display:flex;align-items:center;gap:7px;cursor:pointer;}
+.hdr-right{display:flex;align-items:center;gap:8px;}
+.badge{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.25);padding:3px 10px;border-radius:20px;font-size:10px;font-weight:700;}
+#timer{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;letter-spacing:3px;background:rgba(0,0,0,.35);padding:4px 10px;border-radius:7px;border:1px solid rgba(255,255,255,.15);min-width:72px;text-align:center;}
 #timer.urg{color:#ff3535;animation:pulse 1s infinite;}
-
-/* PREMIUM BADGE */
-.premium-hdr{background:linear-gradient(90deg,#f59e0b,#fcd34d,#f59e0b);
-  background-size:200% auto;animation:goldShine 3s linear infinite;
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  font-weight:900;font-size:12px;letter-spacing:1px;cursor:pointer;}
-
+.premium-hdr{background:linear-gradient(90deg,#f59e0b,#fcd34d,#f59e0b);background-size:200% auto;animation:goldShine 3s linear infinite;-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:900;font-size:11px;cursor:pointer;}
 /* TABS */
 .tabs{display:flex;border-bottom:1px solid var(--border);background:var(--card);overflow-x:auto;scrollbar-width:none;}
 .tabs::-webkit-scrollbar{display:none;}
-.tab{padding:11px 16px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;
-  letter-spacing:1px;text-transform:uppercase;color:var(--muted);cursor:pointer;
-  border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;}
+.tab{padding:10px 14px;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;}
 .tab:hover{color:var(--text);}
 .tab.ativo{color:var(--red);border-bottom-color:var(--red);}
-
-.main{max-width:860px;margin:0 auto;padding:22px 14px 90px;}
-
-/* ── TELA INÍCIO ── */
-#pg-inicio{animation:fadeUp .5s ease;}
-.hero{text-align:center;padding:36px 10px 28px;}
-.hero-ico{font-size:60px;display:block;margin-bottom:12px;filter:drop-shadow(0 0 24px rgba(230,57,70,.55));}
-.hero h1{font-family:'Barlow Condensed',sans-serif;font-size:42px;font-weight:900;
-  text-transform:uppercase;letter-spacing:3px;line-height:1.1;margin-bottom:7px;}
+.main{max-width:880px;margin:0 auto;padding:20px 12px 100px;}
+/* HERO */
+.hero{text-align:center;padding:30px 10px 22px;}
+.hero-ico{font-size:52px;display:block;margin-bottom:10px;filter:drop-shadow(0 0 24px rgba(230,57,70,.55));}
+.hero h1{font-family:'Barlow Condensed',sans-serif;font-size:36px;font-weight:900;text-transform:uppercase;letter-spacing:3px;line-height:1.1;margin-bottom:6px;}
 .hero h1 em{color:var(--red);font-style:normal;}
-.hero p{color:var(--muted);font-size:15px;max-width:420px;margin:0 auto 26px;}
-.stats{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:24px;}
-.sbox{background:var(--card);border:1px solid var(--border);border-radius:10px;
-  padding:14px 20px;text-align:center;min-width:105px;}
-.sbox .n{font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:900;color:var(--red);line-height:1;}
-.sbox .l{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:2px;}
-
-/* MODO SELECTOR */
-.modo-row{display:flex;gap:8px;justify-content:center;margin-bottom:22px;flex-wrap:wrap;}
-.modo-card{background:var(--card);border:2px solid var(--border);border-radius:11px;
-  padding:14px 18px;cursor:pointer;transition:all .2s;text-align:center;min-width:150px;max-width:190px;}
+.hero p{color:var(--muted);font-size:14px;max-width:420px;margin:0 auto 20px;}
+.stats{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:20px;}
+.sbox{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:11px 16px;text-align:center;min-width:88px;}
+.sbox .n{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;color:var(--red);line-height:1;}
+.sbox .l{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:2px;}
+.sec-lbl{margin-bottom:7px;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-align:center;}
+/* MODO */
+.modo-row{display:flex;gap:7px;justify-content:center;margin-bottom:18px;flex-wrap:wrap;}
+.modo-card{background:var(--card);border:2px solid var(--border);border-radius:11px;padding:12px 14px;cursor:pointer;transition:all .2s;text-align:center;min-width:130px;flex:1;max-width:175px;}
 .modo-card:hover,.modo-card.on{border-color:var(--red);background:rgba(230,57,70,.09);}
-.modo-card .mi{font-size:26px;margin-bottom:6px;}
-.modo-card .mn{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;
-  letter-spacing:1px;text-transform:uppercase;color:var(--text);}
-.modo-card .md{font-size:11px;color:var(--muted);margin-top:3px;line-height:1.4;}
-
+.modo-card .mi{font-size:22px;margin-bottom:4px;}
+.modo-card .mn{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;}
+.modo-card .md{font-size:10px;color:var(--muted);margin-top:2px;}
 /* CAT GRID */
-.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin-bottom:22px;}
-.cat-btn{background:var(--card);border:1.5px solid var(--border);border-radius:10px;
-  padding:12px 8px;cursor:pointer;transition:all .18s;text-align:center;}
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(115px,1fr));gap:7px;margin-bottom:18px;}
+.cat-btn{background:var(--card);border:1.5px solid var(--border);border-radius:10px;padding:10px 7px;cursor:pointer;transition:all .18s;text-align:center;}
 .cat-btn:hover,.cat-btn.on{border-color:var(--red);background:rgba(230,57,70,.08);}
-.cat-btn .ci{font-size:22px;margin-bottom:4px;}
-.cat-btn .cn{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;
-  letter-spacing:1px;text-transform:uppercase;}
-.cat-btn .cq{font-size:10px;color:var(--muted);margin-top:2px;}
-
+.cat-btn .ci{font-size:18px;margin-bottom:3px;}
+.cat-btn .cn{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;}
+.cat-btn .cq{font-size:9px;color:var(--muted);margin-top:2px;}
 /* QTDE */
-.qtde-row{display:flex;gap:8px;justify-content:center;margin-bottom:22px;}
-.qtde-btn{background:var(--card);border:1.5px solid var(--border);border-radius:8px;
-  padding:9px 22px;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;
-  cursor:pointer;transition:all .2s;color:var(--muted);}
+.qtde-row{display:flex;gap:7px;justify-content:center;margin-bottom:18px;flex-wrap:wrap;}
+.qtde-btn{background:var(--card);border:1.5px solid var(--border);border-radius:8px;padding:8px 16px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;color:var(--muted);}
 .qtde-btn:hover,.qtde-btn.on{border-color:var(--red);color:var(--white);background:rgba(230,57,70,.09);}
-
-.btns-row{display:flex;gap:9px;justify-content:center;flex-wrap:wrap;}
-.btn-main{background:linear-gradient(135deg,var(--red),#a00d18);color:#fff;border:none;
-  padding:13px 40px;font-family:'Barlow Condensed',sans-serif;font-size:19px;font-weight:700;
-  letter-spacing:2px;text-transform:uppercase;border-radius:50px;cursor:pointer;
-  box-shadow:0 5px 25px rgba(230,57,70,.45);transition:all .2s;}
-.btn-main:hover{transform:translateY(-2px);box-shadow:0 9px 34px rgba(230,57,70,.65);}
-.btn-sec{background:var(--card);color:var(--text);border:1.5px solid var(--border);
-  padding:12px 28px;font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:600;
-  letter-spacing:1px;text-transform:uppercase;border-radius:50px;cursor:pointer;transition:all .2s;}
+.btns-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+.btn-main{background:linear-gradient(135deg,var(--red),#8b0a14);color:#fff;border:none;padding:12px 34px;font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border-radius:50px;cursor:pointer;box-shadow:0 5px 25px rgba(230,57,70,.45);transition:all .2s;}
+.btn-main:hover{transform:translateY(-2px);}
+.btn-sec{background:var(--card);color:var(--text);border:1.5px solid var(--border);padding:11px 22px;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:600;letter-spacing:1px;text-transform:uppercase;border-radius:50px;cursor:pointer;transition:all .2s;}
 .btn-sec:hover{background:var(--border);}
-
-/* STREAK */
-.streak-banner{display:flex;align-items:center;gap:10px;background:rgba(245,158,11,.1);
-  border:1px solid rgba(245,158,11,.3);border-radius:10px;padding:10px 16px;margin-bottom:16px;}
-.streak-num{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;
-  color:var(--yellow);animation:streakBounce .4s ease;}
-.streak-lbl{font-size:13px;color:var(--yellow);}
-
-/* ── PROGRESSO ── */
-.prog-wrap{background:var(--card);border:1px solid var(--border);border-radius:10px;
-  padding:12px 15px;margin-bottom:16px;display:flex;align-items:center;gap:11px;}
-.pb-out{flex:1;background:var(--border);border-radius:8px;height:8px;overflow:hidden;}
+/* AD */
+.ad-banner{background:rgba(255,255,255,.03);border:1px dashed var(--border);border-radius:10px;padding:10px;text-align:center;margin:12px 0;}
+body.premium .ad-banner{display:none!important;}
+/* PROVA */
+.streak-banner{display:flex;align-items:center;gap:9px;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);border-radius:10px;padding:9px 14px;margin-bottom:12px;}
+.streak-num{font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:900;color:var(--yellow);}
+.prog-wrap{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px 13px;margin-bottom:12px;display:flex;align-items:center;gap:9px;}
+.pb-out{flex:1;background:var(--border);border-radius:8px;height:7px;overflow:hidden;}
 .pb-in{height:100%;background:linear-gradient(90deg,var(--red),#ff7878);border-radius:8px;transition:width .4s ease;}
-.pb-txt{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:var(--muted);white-space:nowrap;}
-
-/* MODO BADGE */
-.modo-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(230,57,70,.15);
-  border:1px solid rgba(230,57,70,.3);border-radius:20px;padding:4px 12px;
-  font-size:11px;font-weight:700;color:var(--red);letter-spacing:1px;text-transform:uppercase;margin-bottom:14px;}
-
-/* ── QUESTÃO ── */
-.qcard{background:var(--card);border:1px solid var(--border);border-radius:13px;
-  padding:20px;margin-bottom:11px;animation:fadeUp .3s ease;}
-.qnum{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;
-  color:var(--red);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;}
-.qtxt{font-size:15px;font-weight:600;line-height:1.5;color:var(--white);margin-bottom:13px;}
-.qimg{margin-bottom:12px;text-align:center;}
-.qimg img{max-height:150px;max-width:100%;border-radius:7px;border:1px solid var(--border);
-  background:#060d1a;object-fit:contain;padding:8px;}
-.opcoes{display:flex;flex-direction:column;gap:7px;}
-.op{display:flex;align-items:center;gap:9px;padding:10px 12px;border-radius:8px;
-  border:1.5px solid var(--border);cursor:pointer;transition:all .15s;
-  font-size:14px;font-weight:500;color:#adbbd4;}
+.pb-txt{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:var(--muted);}
+.modo-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(230,57,70,.15);border:1px solid rgba(230,57,70,.3);border-radius:20px;padding:3px 10px;font-size:10px;font-weight:700;color:var(--red);letter-spacing:1px;text-transform:uppercase;margin-bottom:11px;}
+.qcard{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:9px;animation:fadeUp .3s ease;}
+.qnum{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;color:var(--red);letter-spacing:2px;text-transform:uppercase;margin-bottom:3px;}
+.qtxt{font-size:14px;font-weight:600;line-height:1.5;color:var(--white);margin-bottom:11px;}
+.opcoes{display:flex;flex-direction:column;gap:6px;}
+.op{display:flex;align-items:center;gap:8px;padding:10px 11px;border-radius:8px;border:1.5px solid var(--border);cursor:pointer;transition:all .15s;font-size:13px;font-weight:500;color:#adbbd4;}
 .op:hover{border-color:rgba(230,57,70,.5);background:rgba(230,57,70,.06);color:var(--white);}
 .op input{display:none;}
-.op-l{width:24px;height:24px;border-radius:50%;background:var(--border);
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;
-  flex-shrink:0;color:var(--muted);transition:all .15s;}
+.op-l{width:22px;height:22px;border-radius:50%;background:var(--border);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;flex-shrink:0;color:var(--muted);transition:all .15s;}
 .op.sel{border-color:var(--red);background:rgba(230,57,70,.12);color:var(--white);}
 .op.sel .op-l{background:var(--red);color:#fff;}
-/* Modo estudo */
 .op.correta-show{border-color:var(--green)!important;background:rgba(34,197,94,.1)!important;color:var(--white)!important;animation:correctPop .4s ease;}
 .op.correta-show .op-l{background:var(--green)!important;color:#fff!important;}
 .op.errada-show{border-color:var(--red)!important;background:rgba(230,57,70,.12)!important;animation:shake .4s ease;}
 .op.bloqueada{pointer-events:none;}
-.explicacao{margin-top:10px;padding:10px 13px;border-radius:8px;
-  background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);
-  font-size:13px;color:#93c5fd;line-height:1.5;animation:slideIn .3s ease;}
-.explicacao strong{color:var(--blue);}
-
-/* ACERTO / ERRO feedback visual */
-.feedback-overlay{position:fixed;inset:0;pointer-events:none;z-index:500;}
-.feedback-overlay.acerto::after{content:'✓';font-size:120px;position:absolute;top:50%;left:50%;
-  transform:translate(-50%,-50%) scale(0);color:var(--green);opacity:.7;
-  animation:correctPop .5s ease forwards;}
-
-/* AÇÕES */
-.acoes{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:20px;}
-.btn-fin{background:linear-gradient(135deg,var(--green),#138a3a);color:#fff;border:none;
-  padding:12px 34px;font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;
-  letter-spacing:1.5px;text-transform:uppercase;border-radius:50px;cursor:pointer;
-  box-shadow:0 4px 16px rgba(34,197,94,.35);transition:all .2s;}
-.btn-fin:hover{transform:translateY(-1px);}
-.btn-n{background:var(--card);color:var(--text);border:1.5px solid var(--border);
-  padding:11px 25px;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:600;
-  letter-spacing:1px;text-transform:uppercase;border-radius:50px;cursor:pointer;transition:all .2s;}
+.explicacao{margin-top:9px;padding:9px 11px;border-radius:8px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);font-size:12px;color:#93c5fd;line-height:1.5;animation:fadeUp .3s ease;}
+.acoes{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin-top:16px;}
+.btn-fin{background:linear-gradient(135deg,var(--green),#138a3a);color:#fff;border:none;padding:10px 26px;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;border-radius:50px;cursor:pointer;transition:all .2s;}
+.btn-n{background:var(--card);color:var(--text);border:1.5px solid var(--border);padding:9px 20px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;letter-spacing:1px;text-transform:uppercase;border-radius:50px;cursor:pointer;transition:all .2s;}
 .btn-n:hover{background:var(--border);}
-
-/* ── RESULTADO ── */
-.res-topo{text-align:center;padding:30px 10px 20px;}
-.res-ico{font-size:60px;display:block;margin-bottom:10px;}
-.res-titulo{font-family:'Barlow Condensed',sans-serif;font-size:40px;font-weight:900;
-  text-transform:uppercase;letter-spacing:3px;}
+/* RESULTADO */
+.res-topo{text-align:center;padding:24px 10px 16px;}
+.res-ico{font-size:52px;display:block;margin-bottom:8px;}
+.res-titulo{font-family:'Barlow Condensed',sans-serif;font-size:36px;font-weight:900;text-transform:uppercase;letter-spacing:3px;}
 .res-titulo.ap{color:var(--green);}
 .res-titulo.rp{color:var(--red);}
-.res-sub{color:var(--muted);font-size:14px;margin-top:5px;}
-.score-row{display:flex;justify-content:center;gap:10px;margin:18px 0;flex-wrap:wrap;}
-.sc{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 26px;text-align:center;min-width:115px;}
-.sc .n{font-family:'Barlow Condensed',sans-serif;font-size:40px;font-weight:900;line-height:1;}
-.sc .n.v{color:var(--green);}
-.sc .n.r{color:var(--red);}
-.sc .n.a{color:var(--yellow);}
-.sc .l{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:4px;}
-.circ-wrap{display:flex;justify-content:center;margin:16px 0;}
-.circ{position:relative;width:110px;height:110px;}
-.circ svg{transform:rotate(-90deg);}
-.circ-bg{fill:none;stroke:var(--border);stroke-width:10;}
-.circ-fg{fill:none;stroke-width:10;stroke-linecap:round;transition:stroke-dashoffset 1s ease;}
-.circ-txt{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-  font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:900;text-align:center;line-height:1;}
-.circ-sub{font-size:10px;color:var(--muted);display:block;}
-.lista-res{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:18px;}
-.lr-head{padding:11px 17px;font-family:'Barlow Condensed',sans-serif;font-size:12px;
-  font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);}
-.ri{padding:11px 17px;border-bottom:1px solid var(--border);font-size:13px;line-height:1.5;display:flex;gap:8px;align-items:flex-start;}
+.score-row{display:flex;justify-content:center;gap:8px;margin:14px 0;flex-wrap:wrap;}
+.sc{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 18px;text-align:center;min-width:90px;}
+.sc .n{font-family:'Barlow Condensed',sans-serif;font-size:34px;font-weight:900;line-height:1;}
+.sc .n.v{color:var(--green)}.sc .n.r{color:var(--red)}.sc .n.a{color:var(--yellow);}
+.sc .l{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:2px;}
+.lista-res{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:14px;}
+.lr-head{padding:9px 13px;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);}
+.ri{padding:10px 13px;border-bottom:1px solid var(--border);font-size:12px;line-height:1.5;display:flex;gap:8px;align-items:flex-start;}
 .ri:last-child{border-bottom:none;}
 .ri.ok{background:rgba(34,197,94,.04);}
 .ri.err{background:rgba(230,57,70,.04);}
-.ri .ic{font-size:14px;flex-shrink:0;margin-top:2px;}
-.ri .pq{color:var(--text);font-weight:600;font-size:13px;}
-.ri .rc{color:var(--green);font-size:12px;margin-top:2px;}
-.ri .re{color:var(--red);font-size:12px;margin-top:2px;}
-.ri .exp{color:#7ba8d4;font-size:11px;margin-top:3px;line-height:1.4;}
-
-/* COMPARTILHAR */
-.share-row{display:flex;gap:8px;justify-content:center;margin:16px 0;flex-wrap:wrap;}
-.btn-share{background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.3);color:#93c5fd;
-  padding:9px 22px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;
-  letter-spacing:1px;border-radius:50px;cursor:pointer;transition:all .2s;}
-.btn-share:hover{background:rgba(59,130,246,.3);}
-
-/* ── RANKING ── */
-#pg-ranking{animation:fadeUp .4s ease;}
-.rank-header{text-align:center;margin-bottom:20px;}
-.rank-form{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:20px;}
-.rank-input{width:100%;background:var(--dark);border:1.5px solid var(--border);color:var(--text);
-  padding:10px 14px;border-radius:8px;font-family:'Barlow',sans-serif;font-size:15px;margin-bottom:12px;}
-.rank-input:focus{outline:none;border-color:var(--red);}
-.rank-list{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
-.rank-head{padding:11px 17px;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;
-  letter-spacing:2px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);}
-.rank-item{padding:12px 17px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;
-  font-size:13px;animation:rankSlide .3s ease;}
-.rank-item:last-child{border-bottom:none;}
-.rank-pos{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;width:30px;text-align:center;}
-.rank-pos.gold{color:#fcd34d;}
-.rank-pos.silver{color:#94a3b8;}
-.rank-pos.bronze{color:#cd7c2a;}
-.rank-nome{flex:1;font-weight:600;}
-.rank-score{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:var(--green);}
-.rank-sub{font-size:10px;color:var(--muted);}
-.rank-loading{text-align:center;padding:30px;color:var(--muted);}
-
-/* ── ESTATÍSTICAS ── */
-#pg-stats{animation:fadeUp .4s ease;}
-.stats-top{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-bottom:22px;}
-.stat-card{background:var(--card);border:1px solid var(--border);border-radius:11px;padding:16px;text-align:center;}
-.stat-card .sn{font-family:'Barlow Condensed',sans-serif;font-size:36px;font-weight:900;line-height:1;}
-.stat-card .sn.v{color:var(--green);}
-.stat-card .sn.r{color:var(--red);}
-.stat-card .sn.a{color:var(--yellow);}
-.stat-card .sn.b{color:var(--blue);}
-.stat-card .sl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:3px;}
-.hist-list{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:18px;}
-.hist-head{padding:11px 17px;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;
-  letter-spacing:2px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);}
-.hist-item{padding:11px 17px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;font-size:13px;}
-.hist-item:last-child{border-bottom:none;}
-.hist-item .hd{color:var(--muted);font-size:11px;}
-.hist-item .hs{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;}
-.hist-item .hs.ap{color:var(--green);}
-.hist-item .hs.rp{color:var(--red);}
-.bar-cat{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:18px;}
-.bar-cat-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;
-  letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;}
-.bar-row{margin-bottom:10px;}
-.bar-row .br-lbl{font-size:12px;font-weight:600;color:var(--text);margin-bottom:4px;display:flex;justify-content:space-between;}
-.bar-outer{background:var(--border);border-radius:6px;height:7px;overflow:hidden;}
-.bar-inner{height:100%;border-radius:6px;transition:width .8s ease;}
-
-/* ── FLASHCARDS ── */
-#pg-flash{animation:fadeUp .4s ease;}
-.flash-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
-.flash-nav-btn{background:var(--card);border:1.5px solid var(--border);border-radius:8px;
-  padding:8px 18px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;color:var(--text);}
+.ri .ic{font-size:12px;flex-shrink:0;margin-top:2px;}
+.ri .pq{color:var(--text);font-weight:600;font-size:11px;}
+.ri .rc{color:var(--green);font-size:10px;margin-top:1px;}
+.ri .re{color:var(--red);font-size:10px;margin-top:1px;}
+.ri .exp{color:#7ba8d4;font-size:10px;margin-top:2px;}
+/* FLASHCARDS */
+.flash-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+.flash-nav-btn{background:var(--card);border:1.5px solid var(--border);border-radius:8px;padding:7px 14px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;color:var(--text);}
 .flash-nav-btn:hover{background:var(--border);}
-.flash-counter{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;color:var(--muted);}
-.flashcard{background:var(--card);border:1.5px solid var(--border);border-radius:14px;
-  min-height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  padding:30px 24px;text-align:center;cursor:pointer;transition:all .3s;position:relative;overflow:hidden;}
+.flash-counter{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:var(--muted);}
+.flashcard{background:var(--card);border:1.5px solid var(--border);border-radius:14px;min-height:190px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:26px 20px;text-align:center;cursor:pointer;transition:all .3s;}
 .flashcard:hover{border-color:rgba(230,57,70,.4);}
-.flashcard .fc-hint{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;
-  letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;}
-.flashcard .fc-q{font-size:17px;font-weight:600;color:var(--white);line-height:1.5;}
-.flashcard .fc-a{font-size:16px;font-weight:700;color:var(--green);line-height:1.5;display:none;animation:fadeUp .3s ease;}
+.flashcard .fc-hint{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:11px;}
+.flashcard .fc-q{font-size:15px;font-weight:600;color:var(--white);line-height:1.5;}
+.flashcard .fc-a{font-size:14px;font-weight:700;color:var(--green);line-height:1.5;display:none;animation:fadeUp .3s ease;}
 .flashcard.virado .fc-q{display:none;}
 .flashcard.virado .fc-a{display:block;}
 .flashcard.virado{border-color:var(--green);background:rgba(34,197,94,.05);}
-.flash-cats{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px;}
-.flash-cat-btn{padding:6px 14px;border-radius:20px;border:1.5px solid var(--border);
-  background:transparent;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer;transition:all .2s;}
+.flash-cats{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;}
+.flash-cat-btn{padding:5px 11px;border-radius:20px;border:1.5px solid var(--border);background:transparent;font-size:11px;font-weight:600;color:var(--muted);cursor:pointer;transition:all .2s;}
 .flash-cat-btn:hover,.flash-cat-btn.on{border-color:var(--red);color:var(--white);background:rgba(230,57,70,.1);}
-
-/* ── GALERIA ── */
-#pg-galeria{animation:fadeUp .4s ease;}
-.gal-section{margin-bottom:26px;}
-.gal-title{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:900;
-  letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:12px;padding-bottom:7px;border-bottom:1px solid var(--border);}
-.gal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;}
-.placa-card{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;transition:all .2s;}
-.placa-card:hover{border-color:var(--red);transform:translateY(-2px);}
-.placa-card img{width:100%;height:100px;object-fit:contain;background:#060d1a;padding:8px;}
-.placa-card .pn{padding:7px 9px;font-size:11px;font-weight:600;text-align:center;color:var(--text);border-top:1px solid var(--border);line-height:1.3;}
-.placa-card .pt{font-size:10px;color:var(--muted);margin-top:1px;}
-
-/* ── REFERÊNCIA ── */
-#pg-ref{animation:fadeUp .4s ease;}
-.tab-ref{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:18px;}
-.tab-tit{padding:12px 17px;font-family:'Barlow Condensed',sans-serif;font-size:12px;
-  font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);}
+/* GALERIA */
+.gal-search{width:100%;background:var(--card);border:1.5px solid var(--border);color:var(--text);padding:9px 13px;border-radius:10px;font-family:'Barlow',sans-serif;font-size:13px;margin-bottom:14px;}
+.gal-search:focus{outline:none;border-color:var(--red);}
+.gal-section{margin-bottom:22px;}
+.gal-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:9px;padding-bottom:5px;border-bottom:1px solid var(--border);}
+.gal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;}
+.placa-card{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;transition:all .2s;cursor:pointer;}
+.placa-card:hover{border-color:var(--red);transform:translateY(-3px);box-shadow:0 8px 22px rgba(230,57,70,.2);}
+.placa-card svg{width:100%;height:80px;display:block;background:#060d1a;padding:7px;}
+.placa-card .pn{padding:6px 7px;font-size:10px;font-weight:600;text-align:center;color:var(--text);border-top:1px solid var(--border);line-height:1.3;}
+.placa-card .pt-lbl{font-size:9px;margin-top:1px;text-align:center;padding-bottom:5px;}
+.pt-reg{color:#ff7878;}.pt-adv{color:#fcd34d;}.pt-ind{color:#93c5fd;}.pt-sem{color:#4ade80;}.pt-esp{color:#c084fc;}
+/* MODAL PLACA */
+.mp-svg{text-align:center;margin-bottom:14px;}
+.mp-svg svg{height:110px;display:inline-block;background:#060d1a;padding:10px;border-radius:10px;border:1px solid var(--border);}
+.mp-code{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+.mp-nome{font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:900;color:var(--white);margin-bottom:8px;line-height:1.1;}
+.mp-tipo{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;font-size:10px;font-weight:700;margin-bottom:12px;}
+.mp-tipo.reg{background:rgba(230,57,70,.2);color:#ff7878;border:1px solid rgba(230,57,70,.3);}
+.mp-tipo.adv{background:rgba(245,158,11,.2);color:#fcd34d;border:1px solid rgba(245,158,11,.3);}
+.mp-tipo.ind{background:rgba(59,130,246,.2);color:#93c5fd;border:1px solid rgba(59,130,246,.3);}
+.mp-tipo.sem{background:rgba(34,197,94,.2);color:#4ade80;border:1px solid rgba(34,197,94,.3);}
+.mp-tipo.esp{background:rgba(192,132,252,.2);color:#c084fc;border:1px solid rgba(192,132,252,.3);}
+.mp-desc{font-size:13px;line-height:1.6;color:var(--text);margin-bottom:11px;}
+.mp-box{border-radius:8px;padding:9px 11px;font-size:12px;margin-bottom:8px;}
+.mp-box.warn{background:rgba(230,57,70,.08);border:1px solid rgba(230,57,70,.2);color:#f87171;}
+.mp-box.info{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);color:#93c5fd;}
+.mp-box strong{display:block;font-size:9px;text-transform:uppercase;letter-spacing:1px;margin-bottom:3px;font-weight:700;}
+.mp-box.warn strong{color:var(--red);}
+.mp-box.info strong{color:var(--blue);}
+/* STATS */
+.stats-top{display:grid;grid-template-columns:repeat(auto-fill,minmax(125px,1fr));gap:8px;margin-bottom:18px;}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:11px;padding:12px;text-align:center;}
+.stat-card .sn{font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:900;line-height:1;}
+.stat-card .sn.v{color:var(--green);}.sn.r{color:var(--red);}.sn.a{color:var(--yellow);}.sn.b{color:var(--blue);}
+.stat-card .sl{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:3px;}
+.hist-list{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:14px;}
+.hist-head{padding:9px 13px;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);}
+.hist-item{padding:9px 13px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;font-size:11px;}
+.hist-item:last-child{border-bottom:none;}
+.hist-item .hd{color:var(--muted);font-size:9px;}
+.hist-item .hs{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;}
+.hs.ap{color:var(--green);}.hs.rp{color:var(--red);}
+.bar-cat{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:13px;margin-bottom:14px;}
+.bar-cat-title{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:11px;}
+.bar-row{margin-bottom:8px;}
+.bar-row .br-lbl{font-size:10px;font-weight:600;color:var(--text);margin-bottom:3px;display:flex;justify-content:space-between;}
+.bar-outer{background:var(--border);border-radius:6px;height:6px;overflow:hidden;}
+.bar-inner{height:100%;border-radius:6px;transition:width .8s ease;}
+/* RANKING */
+.rank-list{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.rank-head{padding:9px 13px;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);}
+.rank-item{padding:10px 13px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;font-size:11px;}
+.rank-item:last-child{border-bottom:none;}
+.rank-pos{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:900;width:26px;text-align:center;}
+.rank-pos.gold{color:#fcd34d;}.rank-pos.silver{color:#94a3b8;}.rank-pos.bronze{color:#cd7c2a;}
+.rank-nome{flex:1;font-weight:600;}
+.rank-score{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;color:var(--green);}
+.nick-wrap{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:11px;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.nick-wrap input{flex:1;background:transparent;border:none;color:var(--text);font-family:'Barlow',sans-serif;font-size:13px;outline:none;}
+/* REF */
+.tab-ref{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:14px;}
+.tab-tit{padding:9px 13px;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);}
 table{width:100%;border-collapse:collapse;}
-th{padding:9px 14px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;
-  letter-spacing:1px;color:var(--muted);border-bottom:1px solid var(--border);}
-td{padding:8px 14px;font-size:12px;border-bottom:1px solid var(--border);}
+th{padding:7px 11px;text-align:left;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--muted);border-bottom:1px solid var(--border);}
+td{padding:6px 11px;font-size:11px;border-bottom:1px solid var(--border);}
 tr:last-child td{border-bottom:none;}
 tr:hover td{background:rgba(255,255,255,.02);}
-.tag{padding:1px 7px;border-radius:9px;font-size:10px;font-weight:700;}
-.tl{background:rgba(59,130,246,.2);color:#93c5fd;}
-.tm{background:rgba(245,158,11,.2);color:#fcd34d;}
-.tg{background:rgba(234,88,12,.2);color:#fb923c;}
-.tgv{background:rgba(230,57,70,.2);color:#f87171;}
-
-/* ── MODAL ── */
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:900;
-  display:flex;align-items:center;justify-content:center;padding:20px;animation:fadeIn .2s ease;}
+.tag{padding:1px 5px;border-radius:9px;font-size:9px;font-weight:700;}
+.tl{background:rgba(59,130,246,.2);color:#93c5fd;}.tm{background:rgba(245,158,11,.2);color:#fcd34d;}
+.tg{background:rgba(234,88,12,.2);color:#fb923c;}.tgv{background:rgba(230,57,70,.2);color:#f87171;}
+/* MODAIS */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:900;display:flex;align-items:center;justify-content:center;padding:14px;animation:fadeIn .2s ease;}
 .modal-overlay.hidden{display:none!important;}
-.modal-box{background:var(--card);border:1px solid var(--border);border-radius:16px;
-  padding:32px 28px;max-width:420px;width:100%;text-align:center;animation:modalIn .3s ease;}
-.modal-ico{font-size:52px;display:block;margin-bottom:14px;}
-.modal-title{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;
-  letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;}
-.modal-sub{color:var(--muted);font-size:14px;margin-bottom:24px;line-height:1.5;}
-.modal-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
-
-/* ── PREMIUM MODAL ── */
+.modal-box{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px 20px;max-width:460px;width:100%;animation:modalIn .3s ease;max-height:90vh;overflow-y:auto;position:relative;}
+.modal-close{position:absolute;top:12px;right:12px;background:rgba(255,255,255,.1);border:none;color:var(--text);width:26px;height:26px;border-radius:50%;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;}
+.modal-close:hover{background:rgba(255,255,255,.2);}
+.modal-ico{font-size:44px;display:block;margin-bottom:10px;text-align:center;}
+.modal-title{font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:900;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;text-align:center;}
+.modal-sub{color:var(--muted);font-size:12px;margin-bottom:18px;line-height:1.5;text-align:center;}
+.modal-btns{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;}
 .premium-box{background:linear-gradient(135deg,#1a1000,#2a1800);border:1px solid rgba(245,158,11,.3);}
-.premium-title{background:linear-gradient(90deg,#f59e0b,#fcd34d,#f59e0b);background-size:200% auto;
-  animation:goldShine 3s linear infinite;-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.premium-feature{display:flex;align-items:center;gap:8px;padding:8px 0;font-size:14px;
-  border-bottom:1px solid rgba(245,158,11,.1);}
+.premium-title{background:linear-gradient(90deg,#f59e0b,#fcd34d,#f59e0b);background-size:200% auto;animation:goldShine 3s linear infinite;-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.premium-feature{display:flex;align-items:center;gap:7px;padding:7px 0;font-size:12px;border-bottom:1px solid rgba(245,158,11,.1);}
 .premium-feature:last-child{border-bottom:none;}
-.pf-ico{font-size:18px;}
-
 /* TOAST */
-.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
-  background:#1a2d45;border:1px solid var(--border);border-radius:10px;
-  padding:10px 20px;font-size:13px;font-weight:600;z-index:999;
-  animation:fadeUp .3s ease;pointer-events:none;}
-
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#1a2d45;border:1px solid var(--border);border-radius:10px;padding:8px 16px;font-size:11px;font-weight:600;z-index:9999;animation:fadeUp .3s ease;pointer-events:none;white-space:nowrap;}
 /* CONFETTI */
-.confetti-piece{position:fixed;top:-10px;width:10px;height:10px;border-radius:2px;
-  pointer-events:none;z-index:1000;animation:confettiFall linear forwards;}
-
-/* ANÚNCIO BANNER */
-.ad-banner{background:rgba(255,255,255,.03);border:1px dashed var(--border);border-radius:10px;
-  padding:12px;text-align:center;margin:16px 0;font-size:11px;color:var(--muted);}
-.ad-banner ins{display:block;}
-/* Ocultar anúncio para premium */
-body.premium .ad-banner{display:none!important;}
-
-/* INSTALL PWA */
-.install-bar{background:linear-gradient(135deg,var(--card),var(--card2));
-  border-bottom:1px solid var(--border);padding:10px 20px;
-  display:flex;align-items:center;justify-content:space-between;gap:10px;}
-.install-bar.hidden{display:none!important;}
-.install-txt{font-size:13px;font-weight:600;}
-.install-btn{background:var(--red);color:#fff;border:none;padding:6px 16px;
-  border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;}
-
-/* MODO ERROS VAZIO */
-.erros-vazio{text-align:center;padding:50px 20px;color:var(--muted);}
-.erros-vazio .ev-ico{font-size:48px;display:block;margin-bottom:12px;}
-
-/* APELIDO INPUT (ranking) */
-.nick-wrap{background:var(--card);border:1px solid var(--border);border-radius:10px;
-  padding:14px;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
-.nick-wrap input{flex:1;background:transparent;border:none;color:var(--text);
-  font-family:'Barlow',sans-serif;font-size:15px;outline:none;}
-.nick-wrap .nick-lbl{font-size:12px;color:var(--muted);white-space:nowrap;}
-
-@media(max-width:480px){
-  .hero h1{font-size:32px;}
-  .btn-main{padding:12px 28px;font-size:16px;}
+.confetti-piece{position:fixed;top:-10px;pointer-events:none;z-index:1000;animation:confettiFall linear forwards;}
+/* RESPONSIVE */
+@media(max-width:600px){
+  .hero h1{font-size:28px;}
+  .btn-main{padding:11px 22px;font-size:15px;}
+  .gal-grid{grid-template-columns:repeat(auto-fill,minmax(95px,1fr));}
+  .modal-box{padding:18px 14px;}
+  .tab{padding:9px 9px;font-size:11px;}
+  .mp-svg svg{height:90px;}
+}
+@media(max-width:360px){
+  .hero h1{font-size:24px;}
+  .modo-card{min-width:110px;}
 }
 </style>
 </head>
 <body>
 
-<!-- INSTALL PWA BAR -->
 <div class="install-bar hidden" id="install-bar">
-  <span class="install-txt">📱 Instalar como app no celular</span>
-  <button class="install-btn" id="install-btn">Instalar</button>
-  <button onclick="document.getElementById('install-bar').classList.add('hidden')"
-    style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:18px;">×</button>
+  <span style="font-size:13px;font-weight:600;">📱 Instalar app no celular</span>
+  <button style="background:var(--red);color:#fff;border:none;padding:6px 14px;border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;" id="install-btn">Instalar</button>
+  <button onclick="document.getElementById('install-bar').classList.add('hidden')" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:17px;">×</button>
 </div>
 
 <div class="hdr">
-  <div class="logo" onclick="mostrarPg('pg-inicio');document.querySelectorAll('.tab').forEach(t=>t.classList.remove('ativo'));document.querySelectorAll('.tab')[0].classList.add('ativo')">🚦 Simulado DETRAN Pro</div>
+  <div class="logo" onclick="irInicio()">🚦 DETRAN Pro</div>
   <div class="hdr-right">
     <span class="premium-hdr hidden" id="premium-badge" onclick="mostrarModalPremium()">⭐ PREMIUM</span>
     <div class="badge" id="badge-cat">GERAL</div>
@@ -417,239 +265,148 @@ body.premium .ad-banner{display:none!important;}
 
 <div class="tabs">
   <div class="tab ativo" onclick="irPara('pg-inicio',this)">🏠 Início</div>
-  <div class="tab" onclick="irPara('pg-flash',this)">🃏 Flashcards</div>
-  <div class="tab" onclick="irPara('pg-galeria',this)">🖼️ Placas</div>
-  <div class="tab" onclick="irPara('pg-stats',this)">📊 Estatísticas</div>
-  <div class="tab" onclick="irPara('pg-ranking',this)">🏆 Ranking</div>
-  <div class="tab" onclick="irPara('pg-ref',this)">📚 Referência</div>
+  <div class="tab" onclick="irPara('pg-flash',this)">🃏 Flash</div>
+  <div class="tab" onclick="irPara('pg-galeria',this)">🚦 Placas</div>
+  <div class="tab" onclick="irPara('pg-stats',this)">📊 Stats</div>
+  <div class="tab" onclick="irPara('pg-ranking',this)">🏆 Rank</div>
+  <div class="tab" onclick="irPara('pg-ref',this)">📚 Ref</div>
 </div>
 
 <div class="main">
 
-<!-- ─── INÍCIO ─── -->
-<div id="pg-inicio">
+<div id="pg-inicio" style="animation:fadeUp .5s ease;">
   <div class="hero">
     <span class="hero-ico">🚗</span>
     <h1>Simulado <em>DETRAN</em> Pro</h1>
-    <p>600+ questões reais do banco do DETRAN-SP. Quatro modos de estudo.</p>
+    <p>110+ questões reais · 47 placas explicadas · Passe na 1ª tentativa</p>
     <div class="stats">
-      <div class="sbox"><div class="n">600+</div><div class="l">Questões</div></div>
-      <div class="sbox"><div class="n">4</div><div class="l">Modos</div></div>
+      <div class="sbox"><div class="n">110+</div><div class="l">Questões</div></div>
+      <div class="sbox"><div class="n">47</div><div class="l">Placas</div></div>
       <div class="sbox"><div class="n">70%</div><div class="l">Para passar</div></div>
-      <div class="sbox"><div class="n">30min</div><div class="l">Cronômetro</div></div>
+      <div class="sbox"><div class="n">6</div><div class="l">Categorias</div></div>
     </div>
   </div>
-
-  <!-- Anúncio topo da home (AdSense) -->
-  <div class="ad-banner" id="ad-home-top">
-    <!-- Cole seu bloco AdSense aqui após aprovação -->
-    <div style="height:90px;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--muted);">
-      📢 Espaço publicitário — <a href="#" onclick="mostrarModalPremium();return false" style="color:var(--yellow);margin-left:4px">Remover anúncios ⭐</a>
-    </div>
-  </div>
-
-  <div style="margin-bottom:8px;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-align:center;">Modo de estudo</div>
+  <div class="ad-banner"><div style="height:60px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--muted);">📢 Espaço publicitário — <a href="#" onclick="mostrarModalPremium();return false" style="color:var(--yellow);margin-left:4px">Remover ⭐</a></div></div>
+  <div class="sec-lbl">Modo de estudo</div>
   <div class="modo-row">
-    <div class="modo-card on" id="mc-simulado" onclick="selecionarModo('simulado',this)">
-      <div class="mi">📝</div><div class="mn">Simulado</div>
-      <div class="md">Igual à prova real. Resultado no final.</div>
-    </div>
-    <div class="modo-card" id="mc-estudo" onclick="selecionarModo('estudo',this)">
-      <div class="mi">💡</div><div class="mn">Modo Estudo</div>
-      <div class="md">Resposta certa após cada questão.</div>
-    </div>
-    <div class="modo-card" id="mc-erros" onclick="selecionarModo('erros',this)">
-      <div class="mi">🎯</div><div class="mn">Só Erros</div>
-      <div class="md">Repete somente o que você errou.</div>
-    </div>
+    <div class="modo-card on" onclick="selecionarModo('simulado',this)"><div class="mi">📝</div><div class="mn">Simulado</div><div class="md">Igual à prova real</div></div>
+    <div class="modo-card" onclick="selecionarModo('estudo',this)"><div class="mi">💡</div><div class="mn">Estudo</div><div class="md">Resposta imediata</div></div>
+    <div class="modo-card" onclick="selecionarModo('erros',this)"><div class="mi">🎯</div><div class="mn">Só Erros</div><div class="md">Revise os erros</div></div>
   </div>
-
-  <div style="margin-bottom:8px;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-align:center;">Categoria</div>
+  <div class="sec-lbl">Categoria</div>
   <div class="cat-grid" id="cat-grid"></div>
-
-  <div style="margin-bottom:8px;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-align:center;">Questões por prova</div>
+  <div class="sec-lbl">Questões por prova</div>
   <div class="qtde-row">
     <div class="qtde-btn" onclick="selecionarQtde(10,this)">10 rápidas</div>
     <div class="qtde-btn" onclick="selecionarQtde(20,this)">20 treino</div>
     <div class="qtde-btn on" onclick="selecionarQtde(30,this)">30 oficial</div>
     <div class="qtde-btn" onclick="selecionarQtde(50,this)">50 intensivo</div>
   </div>
-
   <div class="btns-row">
-    <button class="btn-main" onclick="iniciar()">▶ Iniciar</button>
+    <button class="btn-main" onclick="iniciar()">▶ Iniciar Prova</button>
     <button class="btn-sec" onclick="mostrarModalPremium()">⭐ Premium</button>
   </div>
 </div>
 
-<!-- ─── PROVA ─── -->
 <div id="pg-prova" class="hidden">
-  <div class="prog-wrap">
-    <div class="pb-out"><div class="pb-in" id="pb" style="width:0%"></div></div>
-    <div class="pb-txt" id="pb-txt">0/30</div>
-  </div>
+  <div class="prog-wrap"><div class="pb-out"><div class="pb-in" id="pb" style="width:0%"></div></div><div class="pb-txt" id="pb-txt">0/30</div></div>
   <div id="streak-wrap"></div>
   <div id="modo-badge-wrap"></div>
-
-  <!-- Anúncio durante prova (a cada 10 questões) -->
-  <div class="ad-banner hidden" id="ad-prova" style="margin-bottom:14px;">
-    <div style="height:60px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--muted);">
-      📢 Anúncio — <a href="#" onclick="mostrarModalPremium();return false" style="color:var(--yellow);margin-left:4px">Premium sem anúncios ⭐</a>
-    </div>
-  </div>
-
+  <div class="ad-banner hidden" id="ad-prova"><div style="height:44px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--muted);">📢 Anúncio — <a href="#" onclick="mostrarModalPremium();return false" style="color:var(--yellow);margin-left:4px">Premium ⭐</a></div></div>
   <div id="qcontainer"></div>
   <div class="acoes">
-    <button class="btn-fin" onclick="finalizar()" id="btn-finalizar">✓ Finalizar Prova</button>
-    <button class="btn-n" onclick="iniciar()">↻ Nova Prova</button>
-    <button class="btn-n" onclick="mostrarPg('pg-inicio')">← Início</button>
+    <button class="btn-fin" onclick="finalizar()">✓ Finalizar</button>
+    <button class="btn-n" onclick="iniciar()">↻ Nova</button>
+    <button class="btn-n" onclick="irInicio()">← Início</button>
   </div>
 </div>
 
-<!-- ─── RESULTADO ─── -->
 <div id="pg-resultado" class="hidden"></div>
 
-<!-- ─── FLASHCARDS ─── -->
-<div id="pg-flash" class="hidden">
-  <div style="margin-bottom:14px;">
-    <div style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:900;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">🃏 Flashcards</div>
-    <div style="color:var(--muted);font-size:13px;margin-bottom:14px;">Clique no cartão para revelar a resposta.</div>
-    <div class="flash-cats" id="flash-cats"></div>
-  </div>
+<div id="pg-flash" class="hidden" style="animation:fadeUp .4s ease;">
+  <div style="font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:900;letter-spacing:2px;text-transform:uppercase;margin-bottom:7px;">🃏 Flashcards</div>
+  <div style="color:var(--muted);font-size:12px;margin-bottom:11px;">Clique no cartão para revelar a resposta.</div>
+  <div class="flash-cats" id="flash-cats"></div>
   <div class="flash-nav">
     <button class="flash-nav-btn" onclick="flashAnterior()">← Anterior</button>
     <div class="flash-counter" id="flash-counter">1 / 0</div>
     <button class="flash-nav-btn" onclick="flashProximo()">Próximo →</button>
   </div>
   <div class="flashcard" id="flashcard" onclick="virarFlash()">
-    <div class="fc-hint">Toque para revelar a resposta</div>
+    <div class="fc-hint">Toque para revelar</div>
     <div class="fc-q" id="fc-q">Carregando...</div>
     <div class="fc-a" id="fc-a"></div>
   </div>
-  <div style="text-align:center;margin-top:14px;">
-    <button class="btn-sec" onclick="embaralharFlash()">🔀 Embaralhar</button>
-  </div>
+  <div style="text-align:center;margin-top:11px;"><button class="btn-sec" onclick="embaralharFlash()">🔀 Embaralhar</button></div>
 </div>
 
-<!-- ─── GALERIA ─── -->
-<div id="pg-galeria" class="hidden">
-  <div class="gal-section"><div class="gal-title">🛑 Regulamentação</div><div class="gal-grid" id="gal-reg"></div></div>
-  <div class="gal-section"><div class="gal-title">⚠️ Advertência</div><div class="gal-grid" id="gal-adv"></div></div>
-  <div class="gal-section"><div class="gal-title">🔵 Indicação</div><div class="gal-grid" id="gal-ind"></div></div>
-  <div class="gal-section"><div class="gal-title">🚦 Semáforos</div><div class="gal-grid" id="gal-sem"></div></div>
+<div id="pg-galeria" class="hidden" style="animation:fadeUp .4s ease;">
+  <div style="font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:900;letter-spacing:2px;text-transform:uppercase;margin-bottom:9px;">🚦 Galeria de Placas</div>
+  <div style="color:var(--muted);font-size:12px;margin-bottom:11px;">Clique em qualquer placa para ver detalhes completos.</div>
+  <input class="gal-search" type="text" placeholder="🔍 Buscar placa..." id="gal-search" oninput="filtrarGaleria(this.value)">
+  <div id="galeria-container"></div>
 </div>
 
-<!-- ─── ESTATÍSTICAS ─── -->
-<div id="pg-stats" class="hidden">
-  <div style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;letter-spacing:2px;text-transform:uppercase;margin-bottom:18px;">📊 Suas Estatísticas</div>
+<div id="pg-stats" class="hidden" style="animation:fadeUp .4s ease;">
+  <div style="font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:900;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;">📊 Suas Estatísticas</div>
   <div class="stats-top" id="stats-top"></div>
-  <div class="bar-cat" id="bar-cat-wrap">
-    <div class="bar-cat-title">Desempenho por categoria</div>
-    <div id="bar-cats"></div>
-  </div>
-  <div class="hist-list">
-    <div class="hist-head">Histórico de provas</div>
-    <div id="hist-items"></div>
-  </div>
-  <div style="text-align:center;margin-top:10px;">
-    <button class="btn-sec" onclick="limparStats()">🗑️ Limpar histórico</button>
-  </div>
+  <div class="bar-cat"><div class="bar-cat-title">Desempenho por categoria</div><div id="bar-cats"></div></div>
+  <div class="hist-list"><div class="hist-head">Histórico de provas</div><div id="hist-items"></div></div>
+  <div style="text-align:center;margin-top:10px;"><button class="btn-sec" onclick="limparStats()">🗑️ Limpar histórico</button></div>
 </div>
 
-<!-- ─── RANKING ─── -->
-<div id="pg-ranking" class="hidden">
-  <div class="rank-header">
-    <div style="font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:900;letter-spacing:3px;text-transform:uppercase;margin-bottom:6px;">🏆 Ranking Global</div>
-    <div style="color:var(--muted);font-size:13px;">Melhores pontuações de todos os usuários</div>
-  </div>
-
+<div id="pg-ranking" class="hidden" style="animation:fadeUp .4s ease;">
+  <div style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;letter-spacing:3px;text-transform:uppercase;margin-bottom:5px;">🏆 Ranking Global</div>
+  <div style="color:var(--muted);font-size:12px;margin-bottom:12px;">Melhores pontuações de todos os usuários</div>
   <div class="nick-wrap">
-    <span class="nick-lbl">Seu apelido:</span>
+    <span style="font-size:11px;color:var(--muted);white-space:nowrap;">Apelido:</span>
     <input type="text" id="nick-input" placeholder="Ex: João Silva" maxlength="20" oninput="salvarNick()">
-    <span style="font-size:12px;color:var(--muted)" id="nick-status"></span>
   </div>
-
-  <div class="ad-banner">
-    <div style="height:60px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--muted);">
-      📢 Anúncio — <a href="#" onclick="mostrarModalPremium();return false" style="color:var(--yellow);margin-left:4px">Premium sem anúncios ⭐</a>
-    </div>
-  </div>
-
-  <div class="rank-list">
-    <div class="rank-head">Top 20 — Melhores pontuações</div>
-    <div id="rank-items"><div class="rank-loading">⏳ Carregando ranking...</div></div>
-  </div>
-
-  <div style="margin-top:14px;text-align:center;font-size:11px;color:var(--muted);">
-    ℹ️ Sua melhor pontuação é enviada automaticamente ao finalizar uma prova.<br>
-    Configure o Supabase para ativar o ranking online.
-  </div>
+  <div class="ad-banner"><div style="height:44px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--muted);">📢 Anúncio — <a href="#" onclick="mostrarModalPremium();return false" style="color:var(--yellow);margin-left:4px">Premium ⭐</a></div></div>
+  <div class="rank-list"><div class="rank-head">Top 20 — Melhores pontuações</div><div id="rank-items"></div></div>
+  <div style="margin-top:10px;text-align:center;font-size:10px;color:var(--muted);">ℹ️ Configure Supabase para ranking online real.</div>
 </div>
 
-<!-- ─── REFERÊNCIA ─── -->
-<div id="pg-ref" class="hidden">
-  <div class="tab-ref">
-    <div class="tab-tit">🏷️ Categorias de CNH</div>
-    <table>
-      <tr><th>Cat.</th><th>Veículos</th></tr>
-      <tr><td><b>A</b></td><td>Motocicletas, motonetas e ciclomotores</td></tr>
-      <tr><td><b>B</b></td><td>Automóveis e utilitários até 3.500 kg / até 8 passageiros</td></tr>
-      <tr><td><b>C</b></td><td>Veículos de carga acima de 3.500 kg</td></tr>
-      <tr><td><b>D</b></td><td>Ônibus e micro-ônibus (mais de 8 passageiros)</td></tr>
-      <tr><td><b>E</b></td><td>Combinações com reboque acima de 6.000 kg</td></tr>
-    </table>
-  </div>
-  <div class="tab-ref">
-    <div class="tab-tit">⚠️ Tabela de Infrações</div>
-    <table>
-      <tr><th>Gravidade</th><th>Pontos</th><th>Multa</th><th>Exemplos clássicos</th></tr>
-      <tr><td><span class="tag tl">Leve</span></td><td>3</td><td>R$ 88,38</td><td>Sem luz dianteira na chuva, buzina desnecessária</td></tr>
-      <tr><td><span class="tag tm">Média</span></td><td>4</td><td>R$ 130,16</td><td>Parar sobre faixa de pedestre, sem documento</td></tr>
-      <tr><td><span class="tag tg">Grave</span></td><td>5</td><td>R$ 195,23</td><td>Sem cinto, avanço de sinal, excesso até 20%</td></tr>
-      <tr><td><span class="tag tgv">Gravíssima</span></td><td>7</td><td>R$ 293,47+</td><td>Celular, álcool, sem CNH, racha, contramão</td></tr>
-    </table>
-  </div>
-  <div class="tab-ref">
-    <div class="tab-tit">🚗 Velocidades Máximas (CTB)</div>
-    <table>
-      <tr><th>Tipo de via</th><th>Automóvel</th><th>Moto</th><th>Caminhão/Ônibus</th></tr>
-      <tr><td>Rodovia pista dupla</td><td>110 km/h</td><td>110 km/h</td><td>90 km/h</td></tr>
-      <tr><td>Rodovia pista simples</td><td>100 km/h</td><td>100 km/h</td><td>90 km/h</td></tr>
-      <tr><td>Via arterial urbana</td><td>60 km/h</td><td>60 km/h</td><td>60 km/h</td></tr>
-      <tr><td>Via coletora urbana</td><td>40 km/h</td><td>40 km/h</td><td>40 km/h</td></tr>
-      <tr><td>Via local urbana</td><td>30 km/h</td><td>30 km/h</td><td>30 km/h</td></tr>
-      <tr><td>Área escolar/hospital</td><td>30 km/h</td><td>30 km/h</td><td>30 km/h</td></tr>
-    </table>
-  </div>
-  <div class="tab-ref">
-    <div class="tab-tit">🍺 Álcool ao Volante — Tolerância Zero</div>
-    <table>
-      <tr><th>Situação</th><th>Penalidade</th></tr>
-      <tr><td>0,05 a 0,33 mg/L</td><td>Gravíssima + R$ 2.934,70 + suspensão 12 meses</td></tr>
-      <tr><td>Acima de 0,33 mg/L</td><td>Crime + multa + suspensão + prisão</td></tr>
-      <tr><td>Recusar bafômetro</td><td>Mesma pena de quem está alcoolizado</td></tr>
-    </table>
-  </div>
-  <div class="tab-ref">
-    <div class="tab-tit">🚦 Formas e Cores das Placas</div>
-    <table>
-      <tr><th>Forma/Cor</th><th>Tipo</th><th>Exemplos</th></tr>
-      <tr><td>🛑 Octógono vermelho</td><td>PARE obrigatório</td><td>Parada total obrigatória</td></tr>
-      <tr><td>🔴 Círculo vermelho</td><td>Regulamentação (R)</td><td>Velocidade máx., proibições</td></tr>
-      <tr><td>🔶 Triângulo amarelo</td><td>Advertência (A)</td><td>Curva, cruzamento, lombada</td></tr>
-      <tr><td>🔵 Retângulo azul</td><td>Indicação (I)</td><td>Serviços, distâncias</td></tr>
-      <tr><td>🟢 Retângulo verde</td><td>Indicação (rodovias)</td><td>Destinos, km</td></tr>
-    </table>
-  </div>
+<div id="pg-ref" class="hidden" style="animation:fadeUp .4s ease;">
+  <div class="tab-ref"><div class="tab-tit">🏷️ Categorias de CNH</div><table>
+    <tr><th>Cat.</th><th>Veículos autorizados</th></tr>
+    <tr><td><b>A</b></td><td>Motocicletas, motonetas e ciclomotores</td></tr>
+    <tr><td><b>B</b></td><td>Automóveis e utilitários até 3.500 kg / até 8 passageiros</td></tr>
+    <tr><td><b>C</b></td><td>Veículos de carga acima de 3.500 kg</td></tr>
+    <tr><td><b>D</b></td><td>Ônibus e micro-ônibus (mais de 8 passageiros)</td></tr>
+    <tr><td><b>E</b></td><td>Combinações com reboque acima de 6.000 kg</td></tr>
+  </table></div>
+  <div class="tab-ref"><div class="tab-tit">⚠️ Tabela de Infrações</div><table>
+    <tr><th>Gravidade</th><th>Pontos</th><th>Multa base</th><th>Exemplos</th></tr>
+    <tr><td><span class="tag tl">Leve</span></td><td>3</td><td>R$ 88,38</td><td>Buzina desnecessária</td></tr>
+    <tr><td><span class="tag tm">Média</span></td><td>4</td><td>R$ 130,16</td><td>Parar sobre faixa de pedestre</td></tr>
+    <tr><td><span class="tag tg">Grave</span></td><td>5</td><td>R$ 195,23</td><td>Sem cinto, avançar amarelo</td></tr>
+    <tr><td><span class="tag tgv">Gravíssima</span></td><td>7</td><td>R$ 293,47+</td><td>Celular, vermelho, bêbado, racha</td></tr>
+  </table></div>
+  <div class="tab-ref"><div class="tab-tit">🚗 Limites de Velocidade (CTB)</div><table>
+    <tr><th>Tipo de via</th><th>Carro</th><th>Moto</th><th>Caminhão</th></tr>
+    <tr><td>Rodovia pista dupla</td><td>110</td><td>110</td><td>90</td></tr>
+    <tr><td>Rodovia pista simples</td><td>100</td><td>100</td><td>90</td></tr>
+    <tr><td>Via arterial urbana</td><td>60</td><td>60</td><td>60</td></tr>
+    <tr><td>Via coletora urbana</td><td>40</td><td>40</td><td>40</td></tr>
+    <tr><td>Via local urbana</td><td>30</td><td>30</td><td>30</td></tr>
+  </table></div>
+  <div class="tab-ref"><div class="tab-tit">🍺 Álcool — Tolerância Zero</div><table>
+    <tr><th>Concentração (mg/L)</th><th>Penalidade</th></tr>
+    <tr><td>0,05 a 0,33</td><td>Gravíssima + R$ 2.934,70 + suspensão 12 meses</td></tr>
+    <tr><td>Acima de 0,33</td><td>Crime + multa + suspensão + detenção</td></tr>
+    <tr><td>Recusa ao bafômetro</td><td>Mesma pena de quem está alcoolizado</td></tr>
+  </table></div>
 </div>
 
-</div><!-- fim .main -->
+</div>
 
-<!-- ─── MODAL TEMPO ESGOTADO ─── -->
+<!-- MODAIS -->
 <div class="modal-overlay hidden" id="modal-tempo">
-  <div class="modal-box">
+  <div class="modal-box" style="text-align:center;">
     <span class="modal-ico">⏱️</span>
-    <div class="modal-title" style="color:var(--red)">Tempo Esgotado!</div>
-    <div class="modal-sub">O tempo acabou. Veja seu resultado abaixo.</div>
+    <div class="modal-title" style="color:var(--red);">Tempo Esgotado!</div>
+    <div class="modal-sub">O tempo acabou. Veja seu resultado.</div>
     <div class="modal-btns">
       <button class="btn-main" onclick="document.getElementById('modal-tempo').classList.add('hidden');finalizar()">Ver resultado</button>
       <button class="btn-sec" onclick="document.getElementById('modal-tempo').classList.add('hidden');iniciar()">Nova prova</button>
@@ -657,587 +414,289 @@ body.premium .ad-banner{display:none!important;}
   </div>
 </div>
 
-<!-- ─── MODAL PREMIUM ─── -->
 <div class="modal-overlay hidden" id="modal-premium">
   <div class="modal-box premium-box">
+    <button class="modal-close" onclick="document.getElementById('modal-premium').classList.add('hidden')">×</button>
     <span class="modal-ico">⭐</span>
     <div class="modal-title premium-title">Premium</div>
-    <div class="modal-sub">Aproveite ao máximo sem interrupções</div>
-    <div style="margin-bottom:20px;">
-      <div class="premium-feature"><span class="pf-ico">🚫</span><span>Sem anúncios em todo o app</span></div>
-      <div class="premium-feature"><span class="pf-ico">🏆</span><span>Destaque no ranking global</span></div>
-      <div class="premium-feature"><span class="pf-ico">📊</span><span>Estatísticas avançadas</span></div>
-      <div class="premium-feature"><span class="pf-ico">🔓</span><span>Acesso a todos os modos</span></div>
+    <div class="modal-sub">Sem anúncios, mais recursos</div>
+    <div style="margin-bottom:16px;text-align:left;">
+      <div class="premium-feature">🚫 Sem anúncios em todo o app</div>
+      <div class="premium-feature">🏆 Destaque no ranking global</div>
+      <div class="premium-feature">📊 Estatísticas avançadas</div>
+      <div class="premium-feature">🔓 Todos os modos liberados</div>
     </div>
-    <div style="font-size:28px;font-weight:900;font-family:'Barlow Condensed',sans-serif;color:var(--yellow);margin-bottom:6px;">R$ 9,90 / mês</div>
-    <div style="font-size:12px;color:var(--muted);margin-bottom:20px;">ou R$ 79,90/ano — economize 33%</div>
+    <div style="font-size:24px;font-weight:900;font-family:'Barlow Condensed',sans-serif;color:var(--yellow);margin-bottom:4px;text-align:center;">R$ 9,90 / mês</div>
+    <div style="font-size:10px;color:var(--muted);margin-bottom:16px;text-align:center;">ou R$ 79,90/ano — economize 33%</div>
     <div class="modal-btns">
       <button class="btn-main" onclick="ativarPremiumDemo()">⭐ Experimentar grátis</button>
       <button class="btn-sec" onclick="document.getElementById('modal-premium').classList.add('hidden')">Agora não</button>
     </div>
-    <div style="font-size:10px;color:var(--muted);margin-top:14px;">* Integre com Stripe ou Mercado Pago para cobranças reais</div>
   </div>
 </div>
 
-<!-- ─── MODAL RANKING SUBMIT ─── -->
-<div class="modal-overlay hidden" id="modal-rank-submit">
-  <div class="modal-box">
-    <span class="modal-ico">🏆</span>
-    <div class="modal-title">Enviar ao Ranking?</div>
-    <div class="modal-sub" id="rank-submit-msg">Sua pontuação será enviada ao ranking global.</div>
-    <div style="margin-bottom:16px;">
-      <input type="text" id="rank-nick-input" placeholder="Seu apelido (ex: João)" maxlength="20"
-        style="width:100%;background:var(--dark);border:1.5px solid var(--border);color:var(--text);padding:10px 14px;border-radius:8px;font-family:'Barlow',sans-serif;font-size:15px;text-align:center;">
-    </div>
-    <div class="modal-btns">
-      <button class="btn-main" onclick="enviarRanking()">📤 Enviar pontuação</button>
-      <button class="btn-sec" onclick="document.getElementById('modal-rank-submit').classList.add('hidden')">Pular</button>
-    </div>
+<div class="modal-overlay hidden" id="modal-placa">
+  <div class="modal-box" style="text-align:left;max-width:460px;">
+    <button class="modal-close" onclick="document.getElementById('modal-placa').classList.add('hidden')">×</button>
+    <div id="modal-placa-content"></div>
   </div>
 </div>
 
 <script>
-// ════════════════════════════════════════════════════════════════
-// SUPABASE CONFIG — preencha após criar sua conta
-// ════════════════════════════════════════════════════════════════
-const SUPABASE_URL = ""; // ex: https://abcxyz.supabase.co
-const SUPABASE_KEY = ""; // sua anon key pública
-const SUPABASE_HABILITADO = SUPABASE_URL !== "";
+const SUPABASE_URL="";
+const SUPABASE_KEY="";
 
-// ════════════════════════════════════════════════════════════════
-// GALERIA DE PLACAS
-// ════════════════════════════════════════════════════════════════
-const galerias = {
-  reg:[
-    {n:"PARE",t:"Regulamentação",i:"data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20100%20100%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpolygon%20points%3D%2250%2C3%2079%2C14%2097%2C40%2097%2C60%2079%2C86%2050%2C97%2021%2C86%203%2C60%203%2C40%2021%2C14%22%20fill%3D%22%23CC0000%22%20stroke%3D%22white%22%20stroke-width%3D%223%22/%3E%3Ctext%20x%3D%2250%22%20y%3D%2258%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%20font-size%3D%2222%22%20font-weight%3D%22bold%22%20font-family%3D%22Arial%22%3EPARE%3C/text%3E%3C/svg%3E"},
-    {n:"Dê a Preferência",t:"Regulamentação",i:"data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20100%20100%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpolygon%20points%3D%2250%2C97%203%2C10%2097%2C10%22%20fill%3D%22white%22%20stroke%3D%22%23CC0000%22%20stroke-width%3D%226%22/%3E%3Ctext%20x%3D%2250%22%20y%3D%2275%22%20text-anchor%3D%22middle%22%20fill%3D%22%23CC0000%22%20font-size%3D%2213%22%20font-weight%3D%22bold%22%20font-family%3D%22Arial%22%3ED%C3%8A%20A%3C/text%3E%3Ctext%20x%3D%2250%22%20y%3D%2290%22%20text-anchor%3D%22middle%22%20fill%3D%22%23CC0000%22%20font-size%3D%2211%22%20font-family%3D%22Arial%22%3EPREFER%C3%8ANCIA%3C/text%3E%3C/svg%3E"},
-    {n:"Proibido Ultrapassar",t:"Regulamentação",i:"data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20100%20100%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2246%22%20fill%3D%22white%22%20stroke%3D%22%23CC0000%22%20stroke-width%3D%226%22/%3E%3Ccircle%20cx%3D%2235%22%20cy%3D%2250%22%20r%3D%2214%22%20fill%3D%22%23666%22/%3E%3Ccircle%20cx%3D%2257%22%20cy%3D%2250%22%20r%3D%2214%22%20fill%3D%22%23aaa%22/%3E%3Cline%20x1%3D%2218%22%20y1%3D%2218%22%20x2%3D%2282%22%20y2%3D%2282%22%20stroke%3D%22%23CC0000%22%20stroke-width%3D%228%22/%3E%3C/svg%3E"},
-    {n:"Vel. Máxima 60",t:"Regulamentação",i:"data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20100%20100%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2246%22%20fill%3D%22white%22%20stroke%3D%22%23CC0000%22%20stroke-width%3D%228%22/%3E%3Ctext%20x%3D%2250%22%20y%3D%2263%22%20text-anchor%3D%22middle%22%20fill%3D%22%23CC0000%22%20font-size%3D%2238%22%20font-weight%3D%22bold%22%20font-family%3D%22Arial%22%3E60%3C/text%3E%3C/svg%3E"},
-    {n:"Sentido Proibido",t:"Regulamentação",i:"data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20100%20100%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2246%22%20fill%3D%22%23CC0000%22%20stroke%3D%22white%22%20stroke-width%3D%223%22/%3E%3Crect%20x%3D%2218%22%20y%3D%2240%22%20width%3D%2264%22%20height%3D%2220%22%20fill%3D%22white%22/%3E%3C/svg%3E"},
-    {n:"Proibido Estacionar",t:"Regulamentação",i:"data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20100%20100%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2246%22%20fill%3D%22white%22%20stroke%3D%22%23CC0000%22%20stroke-width%3D%226%22/%3E%3Ctext%20x%3D%2250%22%20y%3D%2262%22%20text-anchor%3D%22middle%22%20fill%3D%22%23333%22%20font-size%3D%2242%22%20font-weight%3D%22bold%22%20font-family%3D%22Arial%22%3EP%3C/text%3E%3Cline%20x1%3D%2218%22%20y1%3D%2218%22%20x2%3D%2282%22%20y2%3D%2282%22%20stroke%3D%22%23CC0000%22%20stroke-width%3D%228%22/%3E%3C/svg%3E"},
-  ],
-  adv:[
-    {n:"Curva à Esquerda",t:"Advertência",i:"data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20100%20100%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpolygon%20points%3D%2250%2C5%2095%2C92%205%2C92%22%20fill%3D%22%23F5C518%22%20stroke%3D%22%23333%22%20stroke-width%3D%224%22/%3E%3Cpath%20d%3D%22M55%2C80%20L55%2C50%20Q55%2C32%2038%2C32%20L32%2C32%20L32%2C26%20L23%2C38%20L32%2C50%20L32%2C44%20Q48%2C44%2048%2C58%20L48%2C80%20Z%22%20fill%3D%22%23333%22/%3E%3C/svg%3E"},
-    {n:"Curva à Direita",t:"Advertência",i:"data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20100%20100%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpolygon%20points%3D%2250%2C5%2095%2C92%205%2C92%22%20fill%3D%22%23F5C518%22%20stroke%3D%22%23333%22%20stroke-width%3D%224%22/%3E%3Cpath%20d%3D%22M45%2C80%20L45%2C50%20Q45%2C32%2062%2C32%20L68%2C32%20L68%2C26%20L77%2C38%20L68%2C50%20L68%2C44%20Q52%2C44%2052%2C58%20L52%2C80%20Z%22%20fill%3D%22%23333%22/%3E%3C/svg%3E"},
-    {n:"Cruzamento",t:"Advertência",i:"data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20100%20100%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpolygon%20points%3D%2250%2C5%2095%2C92%205%2C92%22%20fill%3D%22%23F5C518%22%20stroke%3D%22%23333%22%20stroke-width%3D%224%22/%3E%3Crect%20x%3D%2244%22%20y%3D%2230%22%20width%3D%2212%22%20height%3D%2252%22%20fill%3D%22%23333%22/%3E%3Crect%20x%3D%2225%22%20y%3D%2252%22%20width%3D%2250%22%20height%3D%2212%22%20fill%3D%22%23333%22/%3E%3C/svg%3E"},
-    {n:"Lombada",t:"Advertência",i:"data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20100%20100%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpolygon%20points%3D%2250%2C5%2095%2C92%205%2C92%22%20fill%3D%22%23F5C518%22%20stroke%3D%22%23333%22%20stroke-width%3D%224%22/%3E%3Cellipse%20cx%3D%2250%22%20cy%3D%2266%22%20rx%3D%2228%22%20ry%3D%2213%22%20fill%3D%22%23333%22/%3E%3Crect%20x%3D%2222%22%20y%3D%2274%22%20width%3D%2256%22%20height%3D%227%22%20fill%3D%22%23333%22/%3E%3C/svg%3E"},
-    {n:"Área Escolar",t:"Advertência",i:"data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20100%20100%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpolygon%20points%3D%2250%2C5%2095%2C92%205%2C92%22%20fill%3D%22%23F5C518%22%20stroke%3D%22%23333%22%20stroke-width%3D%224%22/%3E%3Ctext%20x%3D%2250%22%20y%3D%2284%22%20text-anchor%3D%22middle%22%20font-size%3D%2244%22%20font-family%3D%22Arial%22%3E%F0%9F%A7%92%3C/text%3E%3C/svg%3E"},
-  ],
-  ind:[
-    {n:"Posto de Saúde",t:"Indicação",i:"data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20100%20100%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Crect%20x%3D%223%22%20y%3D%223%22%20width%3D%2294%22%20height%3D%2294%22%20rx%3D%228%22%20fill%3D%22%231565C0%22/%3E%3Crect%20x%3D%2238%22%20y%3D%2218%22%20width%3D%2224%22%20height%3D%2264%22%20fill%3D%22white%22/%3E%3Crect%20x%3D%2218%22%20y%3D%2238%22%20width%3D%2264%22%20height%3D%2224%22%20fill%3D%22white%22/%3E%3C/svg%3E"},
-    {n:"Posto Combustível",t:"Indicação",i:"data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20100%20100%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Crect%20x%3D%223%22%20y%3D%223%22%20width%3D%2294%22%20height%3D%2294%22%20rx%3D%228%22%20fill%3D%22%231565C0%22/%3E%3Ctext%20x%3D%2250%22%20y%3D%2272%22%20text-anchor%3D%22middle%22%20font-size%3D%2256%22%20font-family%3D%22Arial%22%3E%E2%9B%BD%3C/text%3E%3C/svg%3E"},
-    {n:"Estacionamento",t:"Indicação",i:"data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20100%20100%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Crect%20x%3D%223%22%20y%3D%223%22%20width%3D%2294%22%20height%3D%2294%22%20rx%3D%228%22%20fill%3D%22%231565C0%22/%3E%3Ctext%20x%3D%2250%22%20y%3D%2274%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%20font-size%3D%2270%22%20font-weight%3D%22bold%22%20font-family%3D%22Arial%22%3EP%3C/text%3E%3C/svg%3E"},
-    {n:"Passagem Pedestre",t:"Indicação",i:"data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20100%20100%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Crect%20x%3D%223%22%20y%3D%223%22%20width%3D%2294%22%20height%3D%2294%22%20rx%3D%228%22%20fill%3D%22%231565C0%22/%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2222%22%20r%3D%2210%22%20fill%3D%22white%22/%3E%3Cpath%20d%3D%22M50%2C35%20L50%2C65%20M50%2C50%20L35%2C60%20M50%2C50%20L65%2C60%20M50%2C65%20L38%2C82%20M50%2C65%20L62%2C82%22%20stroke%3D%22white%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22/%3E%3C/svg%3E"},
-  ],
-  sem:[
-    {n:"Verde — Siga",t:"Semáforo",i:"data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2060%20130%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Crect%20x%3D%225%22%20y%3D%225%22%20width%3D%2250%22%20height%3D%22120%22%20rx%3D%2210%22%20fill%3D%22%231a1a1a%22%20stroke%3D%22%23444%22%20stroke-width%3D%222%22/%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2228%22%20r%3D%2216%22%20fill%3D%22%232a2a2a%22/%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2265%22%20r%3D%2216%22%20fill%3D%22%232a2a2a%22/%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%22102%22%20r%3D%2216%22%20fill%3D%22%2322c55e%22/%3E%3C/svg%3E"},
-    {n:"Amarelo — Atenção",t:"Semáforo",i:"data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2060%20130%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Crect%20x%3D%225%22%20y%3D%225%22%20width%3D%2250%22%20height%3D%22120%22%20rx%3D%2210%22%20fill%3D%22%231a1a1a%22%20stroke%3D%22%23444%22%20stroke-width%3D%222%22/%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2228%22%20r%3D%2216%22%20fill%3D%22%232a2a2a%22/%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2265%22%20r%3D%2216%22%20fill%3D%22%23f59e0b%22/%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%22102%22%20r%3D%2216%22%20fill%3D%22%232a2a2a%22/%3E%3C/svg%3E"},
-    {n:"Vermelho — Pare",t:"Semáforo",i:"data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2060%20130%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Crect%20x%3D%225%22%20y%3D%225%22%20width%3D%2250%22%20height%3D%22120%22%20rx%3D%2210%22%20fill%3D%22%231a1a1a%22%20stroke%3D%22%23444%22%20stroke-width%3D%222%22/%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2228%22%20r%3D%2216%22%20fill%3D%22%23E63946%22/%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2265%22%20r%3D%2216%22%20fill%3D%22%232a2a2a%22/%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%22102%22%20r%3D%2216%22%20fill%3D%22%232a2a2a%22/%3E%3C/svg%3E"},
-  ]
-};
-['reg','adv','ind','sem'].forEach(k=>{
-  const el=document.getElementById('gal-'+k);
-  galerias[k].forEach(p=>{
-    el.innerHTML+=`<div class="placa-card"><img src="${p.i}" alt="${p.n}" loading="lazy">
-    <div class="pn">${p.n}<div class="pt">${p.t}</div></div></div>`;
-  });
-});
+const PLACAS=[{"id":"R-1","n":"PARE","t":"reg","i":"<svg viewBox=\"0 0 100 100\"><polygon points=\"50,3 79,14 97,40 97,60 79,86 50,97 21,86 3,60 3,40 21,14\" fill=\"#CC0000\" stroke=\"white\" stroke-width=\"3\"/><text x=\"50\" y=\"58\" text-anchor=\"middle\" fill=\"white\" font-size=\"22\" font-weight=\"bold\" font-family=\"Arial\">PARE</text></svg>","desc":"Parada obrigatória antes da linha de retenção. O veículo deve parar completamente.","punicao":"Gravíssima (7 pontos) — multa R$ 293,47.","dica":"Mesmo sem veículos, a parada é obrigatória. Veículo deve estar completamente parado."},{"id":"R-2","n":"Sentido Proibido","t":"reg","i":"<svg viewBox=\"0 0 100 100\"><circle cx=\"50\" cy=\"50\" r=\"46\" fill=\"#CC0000\" stroke=\"white\" stroke-width=\"3\"/><rect x=\"18\" y=\"40\" width=\"64\" height=\"20\" fill=\"white\"/></svg>","desc":"Proibida a entrada e circulação de qualquer veículo no sentido indicado.","punicao":"Gravíssima (7 pontos) — multa R$ 293,47.","dica":"Fundo vermelho com faixa branca horizontal."},{"id":"R-3","n":"Dê a Preferência","t":"reg","i":"<svg viewBox=\"0 0 100 100\"><polygon points=\"50,97 3,10 97,10\" fill=\"white\" stroke=\"#CC0000\" stroke-width=\"6\"/><text x=\"50\" y=\"55\" text-anchor=\"middle\" fill=\"#CC0000\" font-size=\"11\" font-weight=\"bold\" font-family=\"Arial\">DÊ A PREF.</text></svg>","desc":"O condutor deve ceder passagem aos veículos da via preferencial.","punicao":"Infração grave (5 pontos) se não ceder a preferência.","dica":"Triângulo invertido com borda vermelha. Reduza e esteja pronto para parar."},{"id":"R-4","n":"Proibido Ultrapassar","t":"reg","i":"<svg viewBox=\"0 0 100 100\"><circle cx=\"50\" cy=\"50\" r=\"46\" fill=\"white\" stroke=\"#CC0000\" stroke-width=\"6\"/><circle cx=\"35\" cy=\"50\" r=\"14\" fill=\"#666\"/><circle cx=\"57\" cy=\"50\" r=\"14\" fill=\"#aaa\"/><line x1=\"18\" y1=\"18\" x2=\"82\" y2=\"82\" stroke=\"#CC0000\" stroke-width=\"8\"/></svg>","desc":"Proibida a ultrapassagem de qualquer veículo automotor no trecho.","punicao":"Grave (5 pontos) — multa R$ 195,23.","dica":"Dois carros com linha diagonal. A proibição termina na próxima placa ou cruzamento."},{"id":"R-5","n":"Proibido Estacionar","t":"reg","i":"<svg viewBox=\"0 0 100 100\"><circle cx=\"50\" cy=\"50\" r=\"46\" fill=\"white\" stroke=\"#CC0000\" stroke-width=\"6\"/><text x=\"50\" y=\"62\" text-anchor=\"middle\" fill=\"#333\" font-size=\"42\" font-weight=\"bold\" font-family=\"Arial\">P</text><line x1=\"18\" y1=\"18\" x2=\"82\" y2=\"82\" stroke=\"#CC0000\" stroke-width=\"8\"/></svg>","desc":"Proibido estacionar. Parar brevemente para embarque/desembarque é permitido.","punicao":"Grave (5 pontos) + remoção do veículo.","dica":"Um risco = proibido ESTACIONAR mas pode PARAR rapidamente."},{"id":"R-6","n":"Proibido Parar e Estacionar","t":"reg","i":"<svg viewBox=\"0 0 100 100\"><circle cx=\"50\" cy=\"50\" r=\"46\" fill=\"white\" stroke=\"#CC0000\" stroke-width=\"6\"/><text x=\"50\" y=\"62\" text-anchor=\"middle\" fill=\"#333\" font-size=\"42\" font-weight=\"bold\" font-family=\"Arial\">P</text><line x1=\"15\" y1=\"15\" x2=\"85\" y2=\"85\" stroke=\"#CC0000\" stroke-width=\"8\"/><line x1=\"85\" y1=\"15\" x2=\"15\" y2=\"85\" stroke=\"#CC0000\" stroke-width=\"8\"/></svg>","desc":"Proibido tanto parar quanto estacionar. Nenhuma imobilização permitida.","punicao":"Gravíssima (7 pontos) + remoção imediata.","dica":"Dois riscos em X = mais restritiva. Nem parada rápida é permitida."},{"id":"R-7","n":"Velocidade Máxima 60","t":"reg","i":"<svg viewBox=\"0 0 100 100\"><circle cx=\"50\" cy=\"50\" r=\"46\" fill=\"white\" stroke=\"#CC0000\" stroke-width=\"8\"/><text x=\"50\" y=\"63\" text-anchor=\"middle\" fill=\"#CC0000\" font-size=\"38\" font-weight=\"bold\" font-family=\"Arial\">60</text></svg>","desc":"Velocidade máxima permitida no trecho: 60 km/h.","punicao":"Exceder em até 20%: grave. Entre 20-50%: gravíssima. Acima de 50%: multa triplicada.","dica":"Círculo borda vermelha com número. Número indica o limite máximo."},{"id":"R-8","n":"Velocidade Mínima 40","t":"reg","i":"<svg viewBox=\"0 0 100 100\"><circle cx=\"50\" cy=\"50\" r=\"46\" fill=\"#1565C0\" stroke=\"white\" stroke-width=\"4\"/><circle cx=\"50\" cy=\"50\" r=\"36\" fill=\"none\" stroke=\"white\" stroke-width=\"4\"/><text x=\"50\" y=\"63\" text-anchor=\"middle\" fill=\"white\" font-size=\"32\" font-weight=\"bold\" font-family=\"Arial\">40</text></svg>","desc":"Velocidade mínima obrigatória de 40 km/h. Não pode circular abaixo.","punicao":"Média (4 pontos) por trafegar abaixo da velocidade mínima.","dica":"Círculo azul com número branco — diferente da máxima (fundo branco, borda vermelha)."},{"id":"R-9","n":"Proibido Virar à Esquerda","t":"reg","i":"<svg viewBox=\"0 0 100 100\"><circle cx=\"50\" cy=\"50\" r=\"46\" fill=\"white\" stroke=\"#CC0000\" stroke-width=\"6\"/><path d=\"M68,62 C68,40 38,30 28,46 L28,38 L18,50 L28,62 L28,54 C36,42 60,48 60,67 Z\" fill=\"#444\"/><line x1=\"18\" y1=\"18\" x2=\"82\" y2=\"82\" stroke=\"#CC0000\" stroke-width=\"8\"/></svg>","desc":"Proibida a conversão à esquerda no cruzamento indicado.","punicao":"Grave (5 pontos).","dica":"Seta para esquerda com risco vermelho. Pode ir em frente ou virar à direita."},{"id":"R-10","n":"Proibido Virar à Direita","t":"reg","i":"<svg viewBox=\"0 0 100 100\"><circle cx=\"50\" cy=\"50\" r=\"46\" fill=\"white\" stroke=\"#CC0000\" stroke-width=\"6\"/><path d=\"M32,62 C32,40 62,30 72,46 L72,38 L82,50 L72,62 L72,54 C64,42 40,48 40,67 Z\" fill=\"#444\"/><line x1=\"18\" y1=\"18\" x2=\"82\" y2=\"82\" stroke=\"#CC0000\" stroke-width=\"8\"/></svg>","desc":"Proibida a conversão à direita no cruzamento indicado.","punicao":"Grave (5 pontos).","dica":"Seta para direita com risco vermelho."},{"id":"R-11","n":"Proibido Retornar","t":"reg","i":"<svg viewBox=\"0 0 100 100\"><circle cx=\"50\" cy=\"50\" r=\"46\" fill=\"white\" stroke=\"#CC0000\" stroke-width=\"6\"/><path d=\"M22,65 L22,42 Q22,18 50,18 L70,18 L70,26 L50,26 Q30,26 30,42 L30,65 Z M60,10 L80,26 L60,42 Z\" fill=\"#444\"/><line x1=\"18\" y1=\"18\" x2=\"82\" y2=\"82\" stroke=\"#CC0000\" stroke-width=\"8\"/></svg>","desc":"Proibido fazer retorno no local indicado.","punicao":"Grave (5 pontos).","dica":"Seta de retorno com risco. Busque o próximo ponto de retorno permitido."},{"id":"R-12","n":"Peso Máx. 5t","t":"reg","i":"<svg viewBox=\"0 0 100 100\"><circle cx=\"50\" cy=\"50\" r=\"46\" fill=\"white\" stroke=\"#CC0000\" stroke-width=\"6\"/><text x=\"50\" y=\"48\" text-anchor=\"middle\" fill=\"#CC0000\" font-size=\"24\" font-weight=\"bold\" font-family=\"Arial\">5t</text><text x=\"50\" y=\"68\" text-anchor=\"middle\" fill=\"#888\" font-size=\"13\" font-family=\"Arial\">MÁXIMO</text></svg>","desc":"Proibido circular com peso bruto total acima de 5 toneladas.","punicao":"Grave (5 pontos) para veículo acima do peso permitido.","dica":"Aplicada em pontes, viadutos e vias com restrição de carga."},{"id":"R-13","n":"Proibido Caminhões","t":"reg","i":"<svg viewBox=\"0 0 100 100\"><circle cx=\"50\" cy=\"50\" r=\"46\" fill=\"white\" stroke=\"#CC0000\" stroke-width=\"6\"/><rect x=\"18\" y=\"42\" width=\"42\" height=\"22\" rx=\"2\" fill=\"#555\"/><rect x=\"60\" y=\"48\" width=\"20\" height=\"16\" rx=\"2\" fill=\"#555\"/><circle cx=\"28\" cy=\"67\" r=\"6\" fill=\"#333\"/><circle cx=\"70\" cy=\"67\" r=\"6\" fill=\"#333\"/><line x1=\"18\" y1=\"18\" x2=\"82\" y2=\"82\" stroke=\"#CC0000\" stroke-width=\"8\"/></svg>","desc":"Proibida a circulação de caminhões e veículos de carga no trecho.","punicao":"Grave (5 pontos).","dica":"Geralmente em vias urbanas com restrição para veículos pesados."},{"id":"R-14","n":"Via Exclusiva Ônibus","t":"reg","i":"<svg viewBox=\"0 0 100 100\"><circle cx=\"50\" cy=\"50\" r=\"46\" fill=\"white\" stroke=\"#1565C0\" stroke-width=\"6\"/><rect x=\"22\" y=\"35\" width=\"56\" height=\"30\" rx=\"5\" fill=\"#1565C0\"/><circle cx=\"35\" cy=\"68\" r=\"7\" fill=\"#333\"/><circle cx=\"65\" cy=\"68\" r=\"7\" fill=\"#333\"/><rect x=\"28\" y=\"28\" width=\"44\" height=\"8\" rx=\"2\" fill=\"#1565C0\"/></svg>","desc":"Via de uso exclusivo para ônibus do transporte coletivo.","punicao":"Grave (5 pontos) para veículos não autorizados.","dica":"Motos também são proibidas, salvo quando indicado em contrário."},{"id":"A-1","n":"Curva à Esquerda","t":"adv","i":"<svg viewBox=\"0 0 100 100\"><polygon points=\"50,5 95,92 5,92\" fill=\"#F5C518\" stroke=\"#333\" stroke-width=\"4\"/><path d=\"M55,80 L55,52 Q55,32 38,32 L30,32 L30,26 L20,38 L30,50 L30,44 Q47,44 47,56 L47,80 Z\" fill=\"#333\"/></svg>","desc":"Curva acentuada à esquerda à frente. Reduza a velocidade com antecedência.","punicao":"Excesso de velocidade em curvas = grave.","dica":"Reduza ANTES da curva, não durante. Em pista molhada, reduza ainda mais."},{"id":"A-2","n":"Curva à Direita","t":"adv","i":"<svg viewBox=\"0 0 100 100\"><polygon points=\"50,5 95,92 5,92\" fill=\"#F5C518\" stroke=\"#333\" stroke-width=\"4\"/><path d=\"M45,80 L45,52 Q45,32 62,32 L70,32 L70,26 L80,38 L70,50 L70,44 Q53,44 53,56 L53,80 Z\" fill=\"#333\"/></svg>","desc":"Curva acentuada à direita à frente. Reduza a velocidade com antecedência.","punicao":"Excesso de velocidade em curvas = grave.","dica":"Não freie na curva — isso pode causar derrapagem."},{"id":"A-3","n":"Semáforo à Frente","t":"adv","i":"<svg viewBox=\"0 0 100 100\"><polygon points=\"50,5 95,92 5,92\" fill=\"#F5C518\" stroke=\"#333\" stroke-width=\"4\"/><rect x=\"40\" y=\"22\" width=\"20\" height=\"55\" rx=\"5\" fill=\"#1a1a1a\"/><circle cx=\"50\" cy=\"34\" r=\"7\" fill=\"#E63946\"/><circle cx=\"50\" cy=\"50\" r=\"7\" fill=\"#f59e0b\"/><circle cx=\"50\" cy=\"66\" r=\"7\" fill=\"#22c55e\"/></svg>","desc":"Há um semáforo à frente. Prepare-se para possível parada.","punicao":"Avançar vermelho = gravíssima (7 pontos).","dica":"Reduza ao se aproximar. Nunca tente 'pegar o verde' acelerando."},{"id":"A-4","n":"Lombada","t":"adv","i":"<svg viewBox=\"0 0 100 100\"><polygon points=\"50,5 95,92 5,92\" fill=\"#F5C518\" stroke=\"#333\" stroke-width=\"4\"/><ellipse cx=\"50\" cy=\"65\" rx=\"28\" ry=\"13\" fill=\"#333\"/><rect x=\"22\" y=\"73\" width=\"56\" height=\"7\" fill=\"#333\"/></svg>","desc":"Lombada (elevação) na pista à frente. Reduza a velocidade.","punicao":"Danos por excesso de velocidade são responsabilidade do condutor.","dica":"Reduza para no máximo 30 km/h. Veículos altos devem reduzir ainda mais."},{"id":"A-5","n":"Cruzamento","t":"adv","i":"<svg viewBox=\"0 0 100 100\"><polygon points=\"50,5 95,92 5,92\" fill=\"#F5C518\" stroke=\"#333\" stroke-width=\"4\"/><rect x=\"44\" y=\"30\" width=\"12\" height=\"52\" fill=\"#333\"/><rect x=\"25\" y=\"50\" width=\"50\" height=\"12\" fill=\"#333\"/></svg>","desc":"Cruzamento à frente. Reduza e esteja pronto para ceder preferência.","punicao":"Grave se não respeitar a preferência.","dica":"Sem sinalização: preferência é de quem vem pela direita."},{"id":"A-6","n":"Pista Escorregadia","t":"adv","i":"<svg viewBox=\"0 0 100 100\"><polygon points=\"50,5 95,92 5,92\" fill=\"#F5C518\" stroke=\"#333\" stroke-width=\"4\"/><circle cx=\"58\" cy=\"36\" r=\"9\" fill=\"#333\"/><path d=\"M33,82 Q48,55 65,62 Q75,66 72,78\" fill=\"none\" stroke=\"#333\" stroke-width=\"6\" stroke-linecap=\"round\"/></svg>","desc":"Pista escorregadia à frente (molhada, óleo, areia).","punicao":"Acidentes por excesso de velocidade = responsabilidade do condutor.","dica":"Reduza, aumente distância de segurança e evite freadas bruscas."},{"id":"A-7","n":"Passagem de Nível","t":"adv","i":"<svg viewBox=\"0 0 100 100\"><polygon points=\"50,5 95,92 5,92\" fill=\"#F5C518\" stroke=\"#333\" stroke-width=\"4\"/><rect x=\"30\" y=\"52\" width=\"40\" height=\"12\" fill=\"#333\"/><rect x=\"44\" y=\"30\" width=\"12\" height=\"35\" fill=\"#333\"/><rect x=\"36\" y=\"50\" width=\"28\" height=\"4\" fill=\"#E63946\"/></svg>","desc":"Cruzamento com linha férrea à frente. Pare, olhe e ouça antes de cruzar.","punicao":"Não parar = grave (5 pontos).","dica":"SEMPRE pare, olhe nos dois sentidos. Nunca arrisque cruzar com trem se aproximando."},{"id":"A-8","n":"Área Escolar","t":"adv","i":"<svg viewBox=\"0 0 100 100\"><polygon points=\"50,5 95,92 5,92\" fill=\"#F5C518\" stroke=\"#333\" stroke-width=\"4\"/><circle cx=\"50\" cy=\"40\" r=\"9\" fill=\"#333\"/><path d=\"M50,52 L50,72 M50,62 L40,70 M50,62 L60,70 M50,72 L42,86 M50,72 L58,86\" stroke=\"#333\" stroke-width=\"5\" fill=\"none\" stroke-linecap=\"round\"/></svg>","desc":"Área escolar. Vel. máxima 30 km/h. Atenção a crianças.","punicao":"Excesso de velocidade em área escolar tem penalidade agravada.","dica":"Horários críticos: entrada e saída de escola. Crianças agem de forma imprevisível."},{"id":"A-9","n":"Animais na Pista","t":"adv","i":"<svg viewBox=\"0 0 100 100\"><polygon points=\"50,5 95,92 5,92\" fill=\"#F5C518\" stroke=\"#333\" stroke-width=\"4\"/><ellipse cx=\"48\" cy=\"60\" rx=\"22\" ry=\"14\" fill=\"#333\"/><circle cx=\"36\" cy=\"44\" r=\"9\" fill=\"#333\"/><rect x=\"30\" y=\"62\" width=\"6\" height=\"16\" fill=\"#333\" rx=\"2\"/><rect x=\"42\" y=\"62\" width=\"6\" height=\"16\" fill=\"#333\" rx=\"2\"/><rect x=\"55\" y=\"62\" width=\"6\" height=\"16\" fill=\"#333\" rx=\"2\"/><line x1=\"70\" y1=\"55\" x2=\"85\" y2=\"48\" stroke=\"#333\" stroke-width=\"4\"/></svg>","desc":"Risco de animais na pista à frente. Reduza e fique atento.","punicao":"Danos causados a animais podem ser responsabilidade do condutor.","dica":"Atenção ao amanhecer e ao entardecer. Se ver animal, pare e espere ele sair."},{"id":"A-10","n":"Obras na Pista","t":"adv","i":"<svg viewBox=\"0 0 100 100\"><polygon points=\"50,5 95,92 5,92\" fill=\"#F5C518\" stroke=\"#333\" stroke-width=\"4\"/><rect x=\"36\" y=\"34\" width=\"28\" height=\"4\" rx=\"2\" fill=\"#333\"/><rect x=\"44\" y=\"38\" width=\"12\" height=\"35\" fill=\"#333\"/><rect x=\"30\" y=\"74\" width=\"40\" height=\"8\" rx=\"2\" fill=\"#333\"/></svg>","desc":"Obras na via à frente. Pista pode estar estreitada com trabalhadores.","punicao":"Excesso de velocidade em obras = gravíssima (7 pontos).","dica":"Velocidade em obras geralmente limitada a 30 km/h. Respeite os trabalhadores."},{"id":"A-11","n":"Ponte Estreita","t":"adv","i":"<svg viewBox=\"0 0 100 100\"><polygon points=\"50,5 95,92 5,92\" fill=\"#F5C518\" stroke=\"#333\" stroke-width=\"4\"/><rect x=\"30\" y=\"45\" width=\"40\" height=\"30\" fill=\"none\" stroke=\"#333\" stroke-width=\"5\"/><line x1=\"30\" y1=\"75\" x2=\"70\" y2=\"75\" stroke=\"#333\" stroke-width=\"5\"/><line x1=\"30\" y1=\"45\" x2=\"30\" y2=\"75\" stroke=\"#333\" stroke-width=\"5\"/><line x1=\"70\" y1=\"45\" x2=\"70\" y2=\"75\" stroke=\"#333\" stroke-width=\"5\"/></svg>","desc":"Ponte estreita à frente. Largura da pista reduzida.","punicao":"Grave se causar obstrução ou acidente.","dica":"Dê preferência a quem já estiver na ponte. Sinalize em baixa visibilidade."},{"id":"A-12","n":"Mergulho","t":"adv","i":"<svg viewBox=\"0 0 100 100\"><polygon points=\"50,5 95,92 5,92\" fill=\"#F5C518\" stroke=\"#333\" stroke-width=\"4\"/><path d=\"M22,38 L50,70 L78,38\" fill=\"none\" stroke=\"#333\" stroke-width=\"6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>","desc":"Depressão (mergulho) na pista à frente. Perigo de perder contato com solo.","punicao":"Grave por excesso de velocidade.","dica":"Reduza bastante. A suspensão pode falhar causando perda de controle."},{"id":"I-1","n":"Posto de Saúde","t":"ind","i":"<svg viewBox=\"0 0 100 100\"><rect x=\"3\" y=\"3\" width=\"94\" height=\"94\" rx=\"8\" fill=\"#1565C0\"/><rect x=\"38\" y=\"18\" width=\"24\" height=\"64\" fill=\"white\"/><rect x=\"18\" y=\"38\" width=\"64\" height=\"24\" fill=\"white\"/></svg>","desc":"Indica posto de saúde, hospital ou serviço médico de emergência próximo.","punicao":"Proibido estacionar em frente a serviços de emergência.","dica":"Em caso de acidente, siga esta placa para encontrar atendimento médico."},{"id":"I-2","n":"Posto de Combustível","t":"ind","i":"<svg viewBox=\"0 0 100 100\"><rect x=\"3\" y=\"3\" width=\"94\" height=\"94\" rx=\"8\" fill=\"#1565C0\"/><rect x=\"28\" y=\"20\" width=\"30\" height=\"40\" rx=\"3\" fill=\"white\"/><rect x=\"28\" y=\"20\" width=\"30\" height=\"10\" rx=\"3\" fill=\"#aaa\"/><rect x=\"60\" y=\"30\" width=\"14\" height=\"22\" rx=\"2\" fill=\"white\"/><rect x=\"62\" y=\"52\" width=\"4\" height=\"14\" rx=\"2\" fill=\"#aaa\"/></svg>","desc":"Indica existência de posto de combustível nas proximidades.","punicao":"Sem penalidade específica.","dica":"Em rodovias, abasteça com antecedência antes de trechos longos sem postos."},{"id":"I-3","n":"Estacionamento","t":"ind","i":"<svg viewBox=\"0 0 100 100\"><rect x=\"3\" y=\"3\" width=\"94\" height=\"94\" rx=\"8\" fill=\"#1565C0\"/><text x=\"50\" y=\"74\" text-anchor=\"middle\" fill=\"white\" font-size=\"70\" font-weight=\"bold\" font-family=\"Arial\">P</text></svg>","desc":"Indica área de estacionamento permitido nas proximidades.","punicao":"Respeite as condições do estacionamento (horário, vagas especiais).","dica":"Verifique se há restrições de horário ou tipo de veículo."},{"id":"I-4","n":"Faixa de Pedestres","t":"ind","i":"<svg viewBox=\"0 0 100 100\"><rect x=\"3\" y=\"3\" width=\"94\" height=\"94\" rx=\"8\" fill=\"#1565C0\"/><circle cx=\"50\" cy=\"22\" r=\"10\" fill=\"white\"/><path d=\"M50,35 L50,65 M50,50 L35,60 M50,50 L65,60 M50,65 L38,82 M50,65 L62,82\" stroke=\"white\" stroke-width=\"6\" stroke-linecap=\"round\" fill=\"none\"/></svg>","desc":"Indica faixa de travessia de pedestres. Ceda passagem.","punicao":"Não dar preferência ao pedestre na faixa = grave (5 pontos).","dica":"O pedestre tem preferência absoluta. Pare ANTES da faixa, não sobre ela."},{"id":"I-5","n":"Telefone Emergência","t":"ind","i":"<svg viewBox=\"0 0 100 100\"><rect x=\"3\" y=\"3\" width=\"94\" height=\"94\" rx=\"8\" fill=\"#1565C0\"/><rect x=\"28\" y=\"22\" width=\"44\" height=\"56\" rx=\"6\" fill=\"white\"/><rect x=\"34\" y=\"30\" width=\"32\" height=\"28\" rx=\"3\" fill=\"#1565C0\"/><circle cx=\"50\" cy=\"68\" r=\"6\" fill=\"#1565C0\"/></svg>","desc":"Indica telefone de emergência em rodovias para comunicar acidentes.","punicao":"Sem penalidade específica.","dica":"Em caso de acidente em rodovias, use para acionar socorro."},{"id":"I-6","n":"Serviço Mecânico","t":"ind","i":"<svg viewBox=\"0 0 100 100\"><rect x=\"3\" y=\"3\" width=\"94\" height=\"94\" rx=\"8\" fill=\"#1565C0\"/><path d=\"M35,65 L50,30 L65,65 M42,52 L58,52\" stroke=\"white\" stroke-width=\"6\" fill=\"none\" stroke-linecap=\"round\"/><circle cx=\"50\" cy=\"72\" r=\"8\" fill=\"none\" stroke=\"white\" stroke-width=\"5\"/></svg>","desc":"Indica oficina mecânica ou serviço de assistência a veículos próximo.","punicao":"Sem penalidade específica.","dica":"Em caso de pane, siga esta indicação para encontrar assistência."},{"id":"I-7","n":"Hotel / Pousada","t":"ind","i":"<svg viewBox=\"0 0 100 100\"><rect x=\"3\" y=\"3\" width=\"94\" height=\"94\" rx=\"8\" fill=\"#1565C0\"/><rect x=\"20\" y=\"40\" width=\"60\" height=\"45\" rx=\"3\" fill=\"white\"/><polygon points=\"50,15 82,40 18,40\" fill=\"white\"/><rect x=\"38\" y=\"60\" width=\"14\" height=\"25\" rx=\"2\" fill=\"#1565C0\"/><rect x=\"58\" y=\"55\" width=\"16\" height=\"14\" rx=\"2\" fill=\"#1565C0\"/></svg>","desc":"Indica hotel, pousada ou local de hospedagem próximo.","punicao":"Sem penalidade específica.","dica":"Em viagens longas, programe paradas para descanso a cada 4 horas."},{"id":"I-8","n":"Restaurante","t":"ind","i":"<svg viewBox=\"0 0 100 100\"><rect x=\"3\" y=\"3\" width=\"94\" height=\"94\" rx=\"8\" fill=\"#1565C0\"/><rect x=\"34\" y=\"22\" width=\"6\" height=\"35\" rx=\"3\" fill=\"white\"/><rect x=\"46\" y=\"22\" width=\"6\" height=\"35\" rx=\"3\" fill=\"white\"/><rect x=\"58\" y=\"22\" width=\"6\" height=\"28\" rx=\"3\" fill=\"white\"/><rect x=\"58\" y=\"40\" width=\"14\" height=\"6\" rx=\"2\" fill=\"white\"/><ellipse cx=\"63\" cy=\"36\" rx=\"8\" ry=\"8\" fill=\"none\" stroke=\"white\" stroke-width=\"4\"/><rect x=\"22\" y=\"64\" width=\"56\" height=\"6\" rx=\"3\" fill=\"white\"/></svg>","desc":"Indica restaurante ou local para alimentação próximo.","punicao":"Sem penalidade específica.","dica":"Comer enquanto dirige é infração grave. Pare para as refeições."},{"id":"I-9","n":"Camping","t":"ind","i":"<svg viewBox=\"0 0 100 100\"><rect x=\"3\" y=\"3\" width=\"94\" height=\"94\" rx=\"8\" fill=\"#1565C0\"/><polygon points=\"50,20 78,70 22,70\" fill=\"none\" stroke=\"white\" stroke-width=\"5\"/><line x1=\"50\" y1=\"20\" x2=\"50\" y2=\"70\" stroke=\"white\" stroke-width=\"3\"/><line x1=\"22\" y1=\"70\" x2=\"78\" y2=\"70\" stroke=\"white\" stroke-width=\"5\"/></svg>","desc":"Indica área de camping nas proximidades.","punicao":"Camping em beiras de estrada é proibido. Use áreas sinalizadas.","dica":"Use apenas áreas de camping autorizadas e sinalizadas."},{"id":"I-10","n":"Área de Lazer","t":"ind","i":"<svg viewBox=\"0 0 100 100\"><rect x=\"3\" y=\"3\" width=\"94\" height=\"94\" rx=\"8\" fill=\"#1565C0\"/><circle cx=\"50\" cy=\"45\" r=\"22\" fill=\"none\" stroke=\"white\" stroke-width=\"5\"/><rect x=\"46\" y=\"62\" width=\"8\" height=\"22\" rx=\"2\" fill=\"white\"/><rect x=\"34\" y=\"76\" width=\"32\" height=\"6\" rx=\"3\" fill=\"white\"/></svg>","desc":"Indica área de lazer, parque ou local de descanso próximo.","punicao":"Sem penalidade específica.","dica":"A cada 2 horas de viagem, pare para descansar."},{"id":"S-1","n":"Sinal Verde — Siga","t":"sem","i":"<svg viewBox=\"0 0 60 130\"><rect x=\"5\" y=\"5\" width=\"50\" height=\"120\" rx=\"10\" fill=\"#1a1a1a\" stroke=\"#444\" stroke-width=\"2\"/><circle cx=\"30\" cy=\"28\" r=\"16\" fill=\"#2a2a2a\"/><circle cx=\"30\" cy=\"65\" r=\"16\" fill=\"#2a2a2a\"/><circle cx=\"30\" cy=\"102\" r=\"16\" fill=\"#22c55e\"/></svg>","desc":"Sinal verde: via livre. O condutor pode prosseguir respeitando as demais normas.","punicao":"Sem penalidade para quem segue corretamente.","dica":"Verde não significa 'acelere'. Observe pedestres e veículos antes de prosseguir."},{"id":"S-2","n":"Sinal Amarelo — Atenção","t":"sem","i":"<svg viewBox=\"0 0 60 130\"><rect x=\"5\" y=\"5\" width=\"50\" height=\"120\" rx=\"10\" fill=\"#1a1a1a\" stroke=\"#444\" stroke-width=\"2\"/><circle cx=\"30\" cy=\"28\" r=\"16\" fill=\"#2a2a2a\"/><circle cx=\"30\" cy=\"65\" r=\"16\" fill=\"#f59e0b\"/><circle cx=\"30\" cy=\"102\" r=\"16\" fill=\"#2a2a2a\"/></svg>","desc":"Sinal amarelo: atenção. Sinal prestes a fechar. Pare com segurança se possível.","punicao":"Avançar o amarelo quando possível parar = infração.","dica":"Amarelo NÃO significa 'acelere'. Se puder parar com segurança, pare."},{"id":"S-3","n":"Sinal Vermelho — Pare","t":"sem","i":"<svg viewBox=\"0 0 60 130\"><rect x=\"5\" y=\"5\" width=\"50\" height=\"120\" rx=\"10\" fill=\"#1a1a1a\" stroke=\"#444\" stroke-width=\"2\"/><circle cx=\"30\" cy=\"28\" r=\"16\" fill=\"#E63946\"/><circle cx=\"30\" cy=\"65\" r=\"16\" fill=\"#2a2a2a\"/><circle cx=\"30\" cy=\"102\" r=\"16\" fill=\"#2a2a2a\"/></svg>","desc":"Sinal vermelho: parada obrigatória antes da linha de retenção.","punicao":"Avançar vermelho = gravíssima (7 pontos) — multa R$ 293,47.","dica":"Pare ANTES da faixa de pedestres. Aguarde o verde para prosseguir."},{"id":"S-4","n":"Amarelo Piscante","t":"sem","i":"<svg viewBox=\"0 0 60 130\"><rect x=\"5\" y=\"5\" width=\"50\" height=\"120\" rx=\"10\" fill=\"#1a1a1a\" stroke=\"#444\" stroke-width=\"2\"/><circle cx=\"30\" cy=\"28\" r=\"16\" fill=\"#2a2a2a\"/><circle cx=\"30\" cy=\"65\" r=\"16\" fill=\"#f59e0b\" opacity=\"0.6\"/><circle cx=\"30\" cy=\"102\" r=\"16\" fill=\"#2a2a2a\"/><text x=\"30\" y=\"70\" text-anchor=\"middle\" fill=\"white\" font-size=\"14\" font-weight=\"bold\">!</text></svg>","desc":"Amarelo piscante: atenção redobrada. Cruzamento sem preferência definida.","punicao":"Grave se não reduzir velocidade e causar acidente.","dica":"No amarelo piscante: preferência é de quem vem pela direita."},{"id":"S-5","n":"Vermelho Piscante","t":"sem","i":"<svg viewBox=\"0 0 60 130\"><rect x=\"5\" y=\"5\" width=\"50\" height=\"120\" rx=\"10\" fill=\"#1a1a1a\" stroke=\"#444\" stroke-width=\"2\"/><circle cx=\"30\" cy=\"28\" r=\"16\" fill=\"#E63946\" opacity=\"0.6\"/><circle cx=\"30\" cy=\"65\" r=\"16\" fill=\"#2a2a2a\"/><circle cx=\"30\" cy=\"102\" r=\"16\" fill=\"#2a2a2a\"/><text x=\"30\" y=\"33\" text-anchor=\"middle\" fill=\"white\" font-size=\"14\" font-weight=\"bold\">!</text></svg>","desc":"Vermelho piscante: parada obrigatória — equivale à placa PARE.","punicao":"Gravíssima (7 pontos) se não parar.","dica":"Vermelho piscante tem o mesmo efeito do PARE. Parada total obrigatória."},{"id":"E-1","n":"Faixa Exclusiva Ônibus","t":"esp","i":"<svg viewBox=\"0 0 100 100\"><rect x=\"3\" y=\"3\" width=\"94\" height=\"94\" rx=\"8\" fill=\"#1565C0\"/><text x=\"50\" y=\"38\" text-anchor=\"middle\" fill=\"white\" font-size=\"11\" font-weight=\"bold\" font-family=\"Arial\">FAIXA</text><text x=\"50\" y=\"54\" text-anchor=\"middle\" fill=\"white\" font-size=\"11\" font-weight=\"bold\" font-family=\"Arial\">EXCLUSIVA</text><text x=\"50\" y=\"70\" text-anchor=\"middle\" fill=\"white\" font-size=\"11\" font-family=\"Arial\">ÔNIBUS</text></svg>","desc":"Faixa reservada exclusivamente para ônibus do transporte coletivo.","punicao":"Grave (5 pontos) para veículos não autorizados.","dica":"Motos também são proibidas na faixa exclusiva de ônibus."},{"id":"E-2","n":"Pedágio","t":"esp","i":"<svg viewBox=\"0 0 100 100\"><rect x=\"3\" y=\"3\" width=\"94\" height=\"94\" rx=\"8\" fill=\"#1A4FA0\"/><text x=\"50\" y=\"44\" text-anchor=\"middle\" fill=\"white\" font-size=\"16\" font-weight=\"bold\" font-family=\"Arial\">PEDÁGIO</text><text x=\"50\" y=\"68\" text-anchor=\"middle\" fill=\"#fcd34d\" font-size=\"30\" font-family=\"Arial\">$</text></svg>","desc":"Posto de pedágio à frente. Prepare-se para parar e pagar.","punicao":"Não pagar o pedágio = infração grave.","dica":"Com tag eletrônica, use a faixa específica e respeite a velocidade permitida."},{"id":"E-3","n":"Ciclofaixa","t":"esp","i":"<svg viewBox=\"0 0 100 100\"><rect x=\"3\" y=\"3\" width=\"94\" height=\"94\" rx=\"8\" fill=\"#166534\"/><circle cx=\"50\" cy=\"58\" r=\"22\" fill=\"none\" stroke=\"white\" stroke-width=\"5\"/><circle cx=\"50\" cy=\"30\" r=\"9\" fill=\"white\"/><path d=\"M40,58 L50,40 L60,58\" fill=\"white\"/></svg>","desc":"Faixa exclusiva para bicicletas. Veículos motorizados proibidos.","punicao":"Gravíssima (7 pontos) para veículo motorizado na ciclofaixa.","dica":"Ao cruzar ciclofaixa, ceda passagem ao ciclista."},{"id":"E-4","n":"Zona Escolar","t":"esp","i":"<svg viewBox=\"0 0 100 100\"><rect x=\"3\" y=\"3\" width=\"94\" height=\"94\" rx=\"5\" fill=\"#F5C518\"/><text x=\"50\" y=\"35\" text-anchor=\"middle\" fill=\"#333\" font-size=\"13\" font-weight=\"bold\" font-family=\"Arial\">ZONA</text><text x=\"50\" y=\"52\" text-anchor=\"middle\" fill=\"#333\" font-size=\"13\" font-weight=\"bold\" font-family=\"Arial\">ESCOLAR</text><text x=\"50\" y=\"76\" text-anchor=\"middle\" fill=\"#CC0000\" font-size=\"16\" font-weight=\"bold\" font-family=\"Arial\">30 km/h</text></svg>","desc":"Área escolar com velocidade máxima de 30 km/h. Atenção especial a crianças.","punicao":"Excesso de velocidade em zona escolar tem penalidade agravada.","dica":"Crianças podem aparecer de forma imprevisível. Atenção total."},{"id":"E-5","n":"Proibido Buzinar","t":"esp","i":"<svg viewBox=\"0 0 100 100\"><circle cx=\"50\" cy=\"50\" r=\"46\" fill=\"white\" stroke=\"#CC0000\" stroke-width=\"6\"/><path d=\"M25,45 L40,45 L55,30 L55,70 L40,55 L25,55 Z\" fill=\"#555\"/><path d=\"M58,38 Q70,50 58,62\" fill=\"none\" stroke=\"#555\" stroke-width=\"4\"/><path d=\"M62,33 Q78,50 62,67\" fill=\"none\" stroke=\"#555\" stroke-width=\"4\"/><line x1=\"18\" y1=\"18\" x2=\"82\" y2=\"82\" stroke=\"#CC0000\" stroke-width=\"8\"/></svg>","desc":"Proibido o uso da buzina no local (área hospitalar, residencial).","punicao":"Leve (3 pontos) pelo uso indevido da buzina.","dica":"Buzina só para perigo iminente. Use com moderação."},{"id":"E-6","n":"Desvio Obrigatório","t":"esp","i":"<svg viewBox=\"0 0 100 100\"><circle cx=\"50\" cy=\"50\" r=\"46\" fill=\"#1565C0\" stroke=\"white\" stroke-width=\"4\"/><path d=\"M30,50 L50,30 L70,50 L56,50 L56,70 L44,70 L44,50 Z\" fill=\"white\"/></svg>","desc":"Desvio obrigatório. O condutor deve seguir pelo caminho alternativo indicado.","punicao":"Grave (5 pontos) se não obedecer.","dica":"Siga a seta indicada. Pode ser por obras, acidente ou restrição temporária."}];
+const BANCO=[{"p":"O que significa a placa octogonal vermelha com a palavra PARE?","o":["Reduza a velocidade","Parada obrigatória antes da linha de retenção","Dê a preferência","Proibido avançar"],"c":1,"cat":"sinalizacao","ex":"R-1: exige parada total do veículo, independentemente de outros veículos."},{"p":"A placa com triângulo invertido com borda vermelha significa:","o":["Proibição","Dê a Preferência","Pare obrigatório","Velocidade mínima"],"c":1,"cat":"sinalizacao","ex":"R-3: ceder passagem aos veículos da via preferencial."},{"p":"Placas de regulamentação têm geralmente formato:","o":["Triangular amarelo","Retangular azul","Circular com borda vermelha ou octogonal","Losangular verde"],"c":2,"cat":"sinalizacao","ex":"Grupo R: circulares com borda vermelha ou octogonal (PARE)."},{"p":"Placas de advertência têm formato:","o":["Circular","Triangular com fundo amarelo","Retangular azul","Octogonal"],"c":1,"cat":"sinalizacao","ex":"Grupo A: triângulo equilátero amarelo com bordas pretas."},{"p":"Linha contínua amarela no centro da pista significa:","o":["Pode ultrapassar","Proibido ultrapassar em ambos os sentidos","Apenas um sentido pode ultrapassar","Reduzir velocidade"],"c":1,"cat":"sinalizacao","ex":"Linha contínua amarela: proibição de ultrapassagem nos dois sentidos."},{"p":"Linha tracejada branca entre faixas de rolamento indica:","o":["Proibido mudar de faixa","Faixa de pedestre","Pode mudar de faixa com cautela","Área de obras"],"c":2,"cat":"sinalizacao","ex":"Linha tracejada branca: mudança de faixa permitida com segurança."},{"p":"Semáforo com luz amarela piscante indica:","o":["Pode seguir normalmente","Atenção — cruzamento sem preferência definida","Pare obrigatório","Semáforo com defeito — ignore"],"c":1,"cat":"sinalizacao","ex":"Amarelo piscante: reduza a velocidade. Preferência é de quem vem pela direita."},{"p":"O sinal verde do semáforo indica:","o":["Acelere para passar logo","Via livre — pode prosseguir","Atenção, vai fechar","Preferência para pedestres"],"c":1,"cat":"sinalizacao","ex":"Verde: via livre. Observe pedestres e demais veículos antes de prosseguir."},{"p":"Faixa de zebra (listras brancas) na pista indica:","o":["Área de obras","Faixa de pedestre — ceder preferência","Proibido parar","Limite de velocidade"],"c":1,"cat":"sinalizacao","ex":"Faixa de travessia de pedestres: ceda passagem ao pedestre que estiver atravessando."},{"p":"Placas azuis retangulares indicam geralmente:","o":["Proibição","Advertência de perigo","Informação e serviços","Obras temporárias"],"c":2,"cat":"sinalizacao","ex":"Grupo I (Indicação): localidades, serviços, distâncias e orientações."},{"p":"Uma placa com círculo azul e número branco indica:","o":["Velocidade máxima","Velocidade mínima obrigatória","Distância em km","Peso máximo"],"c":1,"cat":"sinalizacao","ex":"Velocidade mínima (R-8): círculo azul, o condutor não pode ir abaixo desse limite."},{"p":"Dupla linha contínua amarela no centro da pista indica:","o":["Ultrapassagem permitida nos dois sentidos","Ultrapassagem proibida nos dois sentidos","Só caminhões não podem ultrapassar","Área de obras"],"c":1,"cat":"sinalizacao","ex":"Dupla linha contínua amarela: proibição absoluta de ultrapassagem."},{"p":"Linha tracejada amarela no centro da pista indica:","o":["Proibido ultrapassar","Proibido mudar de faixa","Pode ultrapassar quando seguro","Faixa de pedestres"],"c":2,"cat":"sinalizacao","ex":"Linha tracejada amarela: ultrapassagem permitida quando há visibilidade e segurança."},{"p":"A placa de velocidade máxima tem fundo:","o":["Azul","Vermelho","Branco com borda vermelha","Amarelo"],"c":2,"cat":"sinalizacao","ex":"Velocidade máxima: círculo branco com borda vermelha e número no centro."},{"p":"O semáforo vermelho piscante equivale a:","o":["Sinal amarelo","Placa PARE — parada obrigatória","Pode seguir com cuidado","Sinal de obra"],"c":1,"cat":"sinalizacao","ex":"Vermelho piscante = parada total obrigatória, equivale à placa R-1 (PARE)."},{"p":"Placas de cor laranja geralmente indicam:","o":["Serviços","Restrições permanentes","Obras e situações temporárias","Parques e áreas verdes"],"c":2,"cat":"sinalizacao","ex":"Laranja: sinalização temporária de obras. Deve ser obedecida mesmo em caráter temporário."},{"p":"A linha de retenção (linha branca contínua transversal) indica:","o":["Faixa de pedestre","Local de parada obrigatória","Início de estacionamento","Fim de via"],"c":1,"cat":"sinalizacao","ex":"Linha de retenção: o condutor deve parar antes desta linha nos semáforos e placas PARE."},{"p":"A marca vibrátil na pista serve para:","o":["Decoração","Alertar visualmente e tatilmente sobre perigos ou limites","Demarcar faixas de ciclistas","Indicar chuva"],"c":1,"cat":"sinalizacao","ex":"Tachões e saliências vibrátorias alertam o condutor através de vibração e som."},{"p":"A placa que indica 'início de proibição de ultrapassagem' tem:","o":["Dois carros com seta","Linha reta com X","Dois carros com linha diagonal vermelha","Apenas um carro"],"c":2,"cat":"sinalizacao","ex":"R-4a: dois automóveis (um cinza e um escuro) com linha diagonal vermelha."},{"p":"Quando há duas placas contraditórias, prevalece:","o":["A mais antiga","A mais restritiva","A de maior tamanho","A mais recente"],"c":1,"cat":"sinalizacao","ex":"Em caso de conflito, deve-se obedecer à sinalização mais restritiva para segurança."},{"p":"Em cruzamento sem sinalização, a preferência é de:","o":["Quem vem pela esquerda","Quem vem pela direita","O veículo maior","Quem chegar primeiro"],"c":1,"cat":"legislacao","ex":"CTB Art. 29, III: em cruzamento sem sinalização, preferência para quem vem pela direita."},{"p":"Dentro de uma rotatória, a preferência é de:","o":["Quem está entrando","Quem já circula no interior","Veículos maiores","Quem acelerar primeiro"],"c":1,"cat":"legislacao","ex":"CTB Art. 29, III: nas rotatórias, preferência sempre de quem já está circulando."},{"p":"A velocidade máxima em rodovias de pista dupla é:","o":["90 km/h","100 km/h","110 km/h","120 km/h"],"c":2,"cat":"legislacao","ex":"CTB Art. 61: rodovias pista dupla — 110 km/h para automóveis e motos."},{"p":"A velocidade máxima em vias arteriais urbanas é:","o":["40 km/h","50 km/h","60 km/h","80 km/h"],"c":2,"cat":"legislacao","ex":"CTB Art. 61: vias arteriais urbanas — limite de 60 km/h."},{"p":"A CNH de condutor com menos de 50 anos tem validade de:","o":["5 anos","10 anos","15 anos","Vitalícia"],"c":1,"cat":"legislacao","ex":"CTB Art. 159: validade de 10 anos para condutores com menos de 50 anos."},{"p":"A CNH de condutor acima de 70 anos tem validade de:","o":["5 anos","3 anos","2 anos","1 ano"],"c":1,"cat":"legislacao","ex":"CTB Art. 159: validade de 3 anos para condutores acima de 70 anos."},{"p":"Para obter a CNH categoria B, o candidato deve ter no mínimo:","o":["16 anos","17 anos","18 anos","21 anos"],"c":2,"cat":"legislacao","ex":"CTB Art. 140: mínimo de 18 anos completos para habilitação categoria B."},{"p":"A prova teórica do DETRAN tem quantas questões?","o":["20","25","30","40"],"c":2,"cat":"legislacao","ex":"A prova teórica possui 30 questões. São necessárias 21 corretas (70%) para aprovação."},{"p":"A Permissão Para Dirigir (PPD) tem validade de:","o":["6 meses","1 ano","2 anos","3 anos"],"c":1,"cat":"legislacao","ex":"CTB Art. 148: a PPD tem validade de 1 ano."},{"p":"O CTB se aplica:","o":["Só em rodovias federais","Só em áreas urbanas","Em todo o território nacional","Só em estados que aderiram"],"c":2,"cat":"legislacao","ex":"CTB Art. 1º: normas do CTB se aplicam em todo o território nacional."},{"p":"Crianças menores de 10 anos devem sentar:","o":["Em qualquer banco com cinto","No banco traseiro obrigatoriamente","No dianteiro com cadeirinha","No colo de adulto"],"c":1,"cat":"legislacao","ex":"CTB Art. 65: crianças com menos de 10 anos só podem ocupar o banco traseiro."},{"p":"A CNH é suspensa quando o condutor acumula, em 12 meses:","o":["10 pontos","20 pontos","30 pontos","40 pontos"],"c":1,"cat":"legislacao","ex":"CTB Art. 261: suspensão ao acumular 20 pontos em 12 meses."},{"p":"O CRLV deve estar:","o":["Guardado em casa","No veículo durante a circulação","Na sede do DETRAN","Com o proprietário sempre"],"c":1,"cat":"legislacao","ex":"O CRLV deve estar no veículo durante a circulação."},{"p":"O seguro DPVAT cobre:","o":["Danos ao veículo","Danos pessoais causados por veículos","Roubo do veículo","Danos ao patrimônio"],"c":1,"cat":"legislacao","ex":"DPVAT: cobre exclusivamente danos pessoais (morte e invalidez)."},{"p":"O prazo para recurso de multa de trânsito é de:","o":["15 dias","30 dias","45 dias","60 dias"],"c":1,"cat":"legislacao","ex":"O condutor tem 30 dias após a notificação para recorrer em primeira instância."},{"p":"A velocidade máxima em rodovias de pista simples é:","o":["80 km/h","100 km/h","110 km/h","90 km/h"],"c":1,"cat":"legislacao","ex":"CTB Art. 61: rodovias pista simples — 100 km/h para automóveis."},{"p":"A velocidade máxima em vias coletoras urbanas é:","o":["30 km/h","40 km/h","50 km/h","60 km/h"],"c":1,"cat":"legislacao","ex":"CTB Art. 61: vias coletoras — limite de 40 km/h."},{"p":"A velocidade máxima em vias locais urbanas é:","o":["20 km/h","30 km/h","40 km/h","50 km/h"],"c":1,"cat":"legislacao","ex":"CTB Art. 61: vias locais — limite de 30 km/h."},{"p":"Para conduzir motocicleta (CNH A), a idade mínima é:","o":["16 anos","17 anos","18 anos","21 anos"],"c":2,"cat":"legislacao","ex":"CTB Art. 140: mínimo de 18 anos para qualquer categoria de CNH."},{"p":"O condutor primário (PPD) durante 1 ano pode transportar:","o":["Qualquer passageiro","Até 1 passageiro","Passageiros com CNH há mais de 2 anos","Qualquer passageiro com cinto"],"c":2,"cat":"legislacao","ex":"Durante a PPD, o acompanhante deve ter CNH da categoria há pelo menos 2 anos."},{"p":"A ultrapassagem deve ser feita normalmente:","o":["Pela direita","Pela esquerda","Pelo acostamento","Por qualquer lado"],"c":1,"cat":"direcao","ex":"CTB Art. 29, XI: ultrapassagem é feita pelo lado esquerdo do veículo ultrapassado."},{"p":"Ultrapassagem é proibida em:","o":["Retas longas","Pontes, túneis e curvas sem visibilidade","Rodovias de pista dupla","Vias com 3 ou mais faixas"],"c":1,"cat":"direcao","ex":"CTB Art. 35: proibido ultrapassar em pontes, viadutos, túneis, curvas e lombadas sem visibilidade."},{"p":"O farol baixo é obrigatório em rodovias:","o":["Só à noite","Só em chuva","Durante o dia e à noite","Só em túneis"],"c":2,"cat":"direcao","ex":"CTB Art. 40, I: farol baixo obrigatório em rodovias 24 horas por dia."},{"p":"Em neblina intensa, qual farol usar?","o":["Farol alto","Farol de neblina","Apenas pisca-alerta","Nenhum"],"c":1,"cat":"direcao","ex":"Em neblina: farol de neblina dianteiro. O farol alto cria reflexo e piora a visibilidade."},{"p":"O acostamento deve ser usado para:","o":["Ultrapassar em emergências","Parar em casos de emergência","Trafegar no trânsito intenso","Estacionar normalmente"],"c":1,"cat":"direcao","ex":"CTB Art. 29, IX: acostamento serve apenas para emergências."},{"p":"O farol alto NÃO deve ser usado:","o":["Em estradas escuras","Quando há veículo à frente ou em sentido contrário","Em estradas de terra","Após meia-noite"],"c":1,"cat":"direcao","ex":"CTB Art. 40: troque para baixo quando há veículo próximo em sentido contrário ou à frente."},{"p":"Veículos lentos em rodovias devem trafegar:","o":["No centro","Pela faixa da esquerda","Pela faixa da direita","Em qualquer faixa"],"c":2,"cat":"direcao","ex":"CTB Art. 29, II: manter-se na faixa da direita em rodovias, exceto para ultrapassar."},{"p":"O condutor deve sinalizar a mudança de direção com pelo menos:","o":["5 metros","10 metros","30 metros","50 metros"],"c":2,"cat":"direcao","ex":"CTB Art. 36: sinalização de mudança com mínimo de 30 metros de antecedência."},{"p":"Estacionar em aclive (subida) com guia, as rodas dianteiras ficam:","o":["Viradas para direita (guia)","Viradas para esquerda (longe da guia)","Retas","Tanto faz"],"c":1,"cat":"direcao","ex":"Em aclive com guia: rodas para a esquerda (longe da guia). Se rolar, a guia bloqueia."},{"p":"Estacionar em declive (descida) com guia, as rodas dianteiras ficam:","o":["Viradas para esquerda","Viradas para direita (contra a guia)","Retas","Tanto faz"],"c":1,"cat":"direcao","ex":"Em declive com guia: rodas para a direita (contra a guia). Se rolar, a guia bloqueia."},{"p":"Em pista molhada o condutor deve:","o":["Acelerar para atravessar rápido","Manter maior distância e reduzir velocidade","Usar apenas o freio de mão","Manter a mesma velocidade"],"c":1,"cat":"direcao","ex":"Pista molhada reduz aderência. Aumente distância e reduza velocidade."},{"p":"O pisca-alerta deve ser usado:","o":["Para indicar que vai virar","Em ultrapassagens longas","Em emergências e veículo avariado parado","Para agradecer outros motoristas"],"c":2,"cat":"direcao","ex":"Pisca-alerta: indica perigo ou veículo em emergência. Não substitui o seta ao virar."},{"p":"Ao se aproximar de passagem de nível, deve-se:","o":["Acelerar para cruzar rápido","Reduzir e verificar se vem trem","Buzinar e passar","Parar por 3 minutos"],"c":1,"cat":"direcao","ex":"CTB Art. 27: reduzir velocidade, parar se necessário, verificar em ambos os sentidos."},{"p":"A distância de segurança entre veículos serve para:","o":["Economizar combustível","Evitar colisões traseiras","Permitir ultrapassagens","Reduzir barulho"],"c":1,"cat":"direcao","ex":"Distância de segurança: espaço para reagir a freada brusca do veículo à frente."},{"p":"Ultrapassagem pela direita é permitida quando:","o":["Nunca","O veículo da frente vai virar à esquerda","Em rodovias de pista dupla","No trânsito lento"],"c":1,"cat":"direcao","ex":"CTB: permitido pela direita quando o veículo à frente sinalizou conversão à esquerda."},{"p":"Em túnel, o condutor deve usar:","o":["Farol alto","Farol baixo","Apenas as luzes de posição","Nenhum farol"],"c":1,"cat":"direcao","ex":"Em túneis: farol baixo obrigatório para aumentar visibilidade."},{"p":"Ao ser ultrapassado, o condutor ultrapassado deve:","o":["Acelerar","Manter ou reduzir a velocidade","Acionar o freio de emergência","Mudar de faixa"],"c":1,"cat":"direcao","ex":"CTB Art. 29, XI: ao ser ultrapassado, não acelerar. Facilite a manobra do outro veículo."},{"p":"A faixa da esquerda em rodovias é destinada para:","o":["Veículos rápidos somente","Ultrapassagens e veículos que seguem mais rápido","Veículos de emergência","Qualquer veículo"],"c":1,"cat":"direcao","ex":"A faixa da esquerda é para ultrapassagem e para veículos que trafegam em maior velocidade."},{"p":"Conduzir veículo na contramão é:","o":["Permitido em manobras de estacionamento","Proibido em qualquer situação","Permitido em vias de mão única","Permitido quando não há sinalização"],"c":1,"cat":"direcao","ex":"CTB Art. 186, III: proibido trafegar na contramão em qualquer situação."},{"p":"Em fila de trânsito lento, o intervalo mínimo entre veículos é:","o":["1 metro","2 metros","Suficiente para manobra de emergência","Não há regra específica"],"c":2,"cat":"direcao","ex":"Mesmo no trânsito lento, é obrigatório manter distância de segurança suficiente para frenagem."},{"p":"Usar celular ao volante é infração:","o":["Leve","Média","Grave","Gravíssima"],"c":3,"cat":"infrações","ex":"CTB Art. 252, IX: celular ao volante = gravíssima, 7 pontos, multa R$ 293,47."},{"p":"Avançar sinal vermelho é infração:","o":["Leve","Média","Grave","Gravíssima"],"c":3,"cat":"infrações","ex":"CTB Art. 208: avançar sinal vermelho = gravíssima, 7 pontos, multa R$ 293,47."},{"p":"Não usar cinto de segurança é infração:","o":["Leve","Média","Grave","Gravíssima"],"c":2,"cat":"infrações","ex":"CTB Art. 167: sem cinto = grave, 5 pontos, multa R$ 195,23."},{"p":"Dirigir sem CNH é infração:","o":["Leve","Média","Grave","Gravíssima"],"c":3,"cat":"infrações","ex":"CTB Art. 162: sem CNH = gravíssima, 7 pontos + retenção do veículo."},{"p":"Infração leve gera quantos pontos?","o":["2","3","4","5"],"c":1,"cat":"infrações","ex":"CTB Art. 259: infrações leves = 3 pontos."},{"p":"Infração gravíssima gera quantos pontos?","o":["3","4","5","7"],"c":3,"cat":"infrações","ex":"CTB Art. 259: infrações gravíssimas = 7 pontos. Ex: celular, vermelho, bêbado."},{"p":"Estacionar em vaga de idoso sem credencial é:","o":["Leve","Grave","Gravíssima","Média"],"c":2,"cat":"infrações","ex":"CTB Art. 181, XIII: gravíssima, 7 pontos. Vale também para vagas de deficientes."},{"p":"Não dar preferência ao pedestre na faixa é:","o":["Leve","Média","Grave","Gravíssima"],"c":2,"cat":"infrações","ex":"CTB Art. 214: infração grave, 5 pontos."},{"p":"Transportar criança sem cadeirinha é:","o":["Leve","Média","Grave","Gravíssima"],"c":3,"cat":"infrações","ex":"CTB Art. 168: gravíssima, 7 pontos + multa. Crianças até 7,5 anos precisam de dispositivo."},{"p":"Participar de racha é:","o":["Infração grave","Gravíssima e crime","Infração leve","Apenas advertência"],"c":1,"cat":"infrações","ex":"CTB Art. 173: gravíssima + crime + multa + suspensão + possível prisão."},{"p":"Exceder em mais de 50% a velocidade máxima é:","o":["Grave","Gravíssima com multa triplicada","Média","Grave com multa dobrada"],"c":1,"cat":"infrações","ex":"CTB Art. 218, III: acima de 50% = gravíssima com fator multiplicador 3."},{"p":"Usar fone nos dois ouvidos ao dirigir é:","o":["Permitido","Infração grave","Infração leve","Recomendado"],"c":1,"cat":"infrações","ex":"CTB Art. 252, VIII: fone em ambos os ouvidos = grave, 5 pontos."},{"p":"Infração média gera quantos pontos?","o":["3","4","5","7"],"c":1,"cat":"infrações","ex":"CTB Art. 259: infrações médias = 4 pontos. Ex: parar sobre faixa de pedestres."},{"p":"Infração grave gera quantos pontos?","o":["3","4","5","7"],"c":2,"cat":"infrações","ex":"CTB Art. 259: infrações graves = 5 pontos. Ex: sem cinto, avançar amarelo."},{"p":"Dirigir com farol queimado à noite é:","o":["Leve","Média","Grave","Permitido temporariamente"],"c":0,"cat":"infrações","ex":"CTB Art. 230, VII: farol obrigatório = infração leve (3 pontos)."},{"p":"Trafegar na faixa exclusiva de ônibus sem autorização é:","o":["Leve","Média","Grave","Gravíssima"],"c":2,"cat":"infrações","ex":"CTB Art. 198: grave (5 pontos) para veículo não autorizado na faixa exclusiva."},{"p":"Buzinar em área hospitalar é:","o":["Proibido — infração leve","Proibido — infração grave","Permitido em emergência","Sem penalidade"],"c":0,"cat":"infrações","ex":"CTB Art. 228: uso indevido de buzina = leve (3 pontos)."},{"p":"Conduzir veículo com pneus carecas é:","o":["Leve","Média","Grave","Permitido"],"c":1,"cat":"infrações","ex":"CTB Art. 230, II: pneus fora da especificação = média (4 pontos)."},{"p":"Parar o veículo sobre a faixa de pedestres é:","o":["Leve","Média","Grave","Gravíssima"],"c":1,"cat":"infrações","ex":"CTB Art. 181, IX: parar sobre faixa de pedestres = média (4 pontos)."},{"p":"Transportar pessoas na carroceria de caminhão é:","o":["Permitido","Grave","Gravíssima","Proibido apenas em rodovias"],"c":2,"cat":"infrações","ex":"CTB Art. 230, IX: transportar passageiro em carroceria = grave, exceto em casos permitidos por lei."},{"p":"Em caso de acidente com vítima, o condutor deve:","o":["Sair do local","Prestar socorro e permanecer no local","Tirar fotos e ir embora","Mover a vítima imediatamente"],"c":1,"cat":"seguranca","ex":"CTB Art. 176: prestar socorro ou acionar ajuda e permanecer até o resgate."},{"p":"Abandonar pessoa ferida em acidente é:","o":["Permitido se houver pressa","Crime de omissão de socorro","Infração leve","Aceitável se a vítima estiver consciente"],"c":1,"cat":"seguranca","ex":"CTB Art. 304: omissão de socorro = crime, pena de 6 meses a 1 ano."},{"p":"O triângulo de segurança em rodovia deve ser colocado a:","o":["10 m","20 m","30 m","50 m"],"c":2,"cat":"seguranca","ex":"O triângulo deve ser colocado a 30 metros do veículo parado em rodovias."},{"p":"A hidroplanagem ocorre quando:","o":["O motor superaquece","O veículo perde aderência na pista molhada","Os freios travam","Os pneus estouram"],"c":1,"cat":"seguranca","ex":"Hidroplanagem: o pneu desliza sobre lâmina de água perdendo contato com a pista."},{"p":"Para evitar hidroplanagem deve-se:","o":["Acelerar para atravessar rápido","Reduzir gradualmente sem frear bruscamente","Usar o freio de mão","Virar o volante rapidamente"],"c":1,"cat":"seguranca","ex":"Reduza gradualmente, não freie bruscamente, mantenha pneus calibrados com sulcos."},{"p":"O uso de álcool ao volante no Brasil tem:","o":["Tolerância de até 0,05 mg/L","Tolerância zero","Tolerância de até 0,1 mg/L","Tolerância variável por estado"],"c":1,"cat":"seguranca","ex":"CTB Art. 165: tolerância zero. Qualquer concentração detectada = infração."},{"p":"O cinto de segurança reduz o risco de morte em acidentes em aproximadamente:","o":["10%","25%","50%","80%"],"c":2,"cat":"seguranca","ex":"Estudos comprovam: o cinto reduz em até 50% o risco de morte em acidentes."},{"p":"O capacete de motociclista é obrigatório:","o":["Só em estradas","Só para o piloto","Para piloto e passageiro em qualquer via","Só acima de 60 km/h"],"c":2,"cat":"seguranca","ex":"CTB Art. 54: capacete obrigatório para piloto e passageiro em qualquer via."},{"p":"Em viagens longas, deve-se parar para descanso a cada:","o":["6 horas","4 horas no máximo","8 horas","2 horas"],"c":1,"cat":"seguranca","ex":"CTB Art. 67-C: máximo 4 horas de direção contínua — pausa mínima de 30 min obrigatória."},{"p":"Dirigir com sono é comparável a:","o":["Excesso de velocidade","Dirigir alcoolizado","Dirigir em neblina","Pneu fora de calibragem"],"c":1,"cat":"seguranca","ex":"Privação de sono tem efeito similar ao álcool: reflexos e atenção reduzidos."},{"p":"O capacete deve ter obrigatoriamente:","o":["Qualquer modelo aprovado","Certificação do INMETRO","Viseira escura","Cor clara"],"c":1,"cat":"seguranca","ex":"O capacete deve ter o selo INMETRO para garantir proteção adequada."},{"p":"Em acidente com produto perigoso, deve-se:","o":["Aproximar para ajudar","Manter distância e ligar para bombeiros (193)","Cobrir o derramamento","Abrir as janelas"],"c":1,"cat":"seguranca","ex":"Produtos perigosos podem ser inflamáveis ou tóxicos. Mantenha distância e chame bombeiros."},{"p":"Pneus sem sulcos causam risco de:","o":["Consumo elevado de combustível","Aquaplanagem e perda de aderência","Barulho excessivo","Superaquecimento do motor"],"c":1,"cat":"seguranca","ex":"Pneus sem sulco não escoam a água, aumentando risco de aquaplanagem."},{"p":"O air bag funciona melhor combinado com:","o":["O freio ABS","O cinto de segurança","A direção hidráulica","O controle de tração"],"c":1,"cat":"seguranca","ex":"Air bag é COMPLEMENTO ao cinto. Sem cinto, o air bag pode causar lesões graves."},{"p":"Vítima inconsciente mas respirando: posição correta é:","o":["Deitada de bruços","Decúbito lateral de segurança","Sentada","Em pé apoiada"],"c":1,"cat":"seguranca","ex":"Decúbito lateral de segurança evita obstrução das vias aéreas e aspiração de vômito."},{"p":"Para ligar para a Polícia Rodoviária Federal:","o":["190","193","191","192"],"c":2,"cat":"seguranca","ex":"191: Polícia Rodoviária Federal. 190: Polícia Militar. 192: SAMU. 193: Bombeiros."},{"p":"O SAMU é acionado pelo número:","o":["190","191","192","193"],"c":2,"cat":"seguranca","ex":"192: SAMU (Serviço de Atendimento Móvel de Urgência). Disponível 24h."},{"p":"Colisão traseira ocorre mais por:","o":["Velocidade excessiva","Distância de segurança insuficiente","Chuva","Pneus carecas"],"c":1,"cat":"seguranca","ex":"Distância de segurança insuficiente é a principal causa de colisões traseiras."},{"p":"Em caso de incêndio no veículo, o condutor deve:","o":["Continuar dirigindo até o acostamento","Parar, sair e afastar-se imediatamente","Tentar apagar com o extintor sem sair","Ligar o ar condicionado"],"c":1,"cat":"seguranca","ex":"Pare com segurança, desligue o motor, todos saem e se afastam imediatamente."},{"p":"O extintor de incêndio no veículo deve estar:","o":["Acessível e com prazo válido","Guardado no porta-malas trancado","Apenas em ônibus e caminhões","Qualquer local do veículo"],"c":0,"cat":"seguranca","ex":"O extintor deve estar acessível (não bloqueado), carregado e dentro do prazo de validade."},{"p":"O sistema de arrefecimento do motor serve para:","o":["Lubrificar o motor","Regular a temperatura evitando superaquecimento","Filtrar combustível","Gerar energia elétrica"],"c":1,"cat":"mecanica","ex":"Sistema de arrefecimento: radiador + bomba d'água + líquido refrigerante controlam temperatura."},{"p":"A baixa calibragem dos pneus causa:","o":["Maior aderência","Desgaste irregular e maior consumo","Menor distância de frenagem","Melhor estabilidade"],"c":1,"cat":"mecanica","ex":"Pneu sub-calibrado: desgaste nas bordas, maior consumo, risco de estouro."},{"p":"O óleo do motor deve ser verificado:","o":["Só na revisão anual","Com o motor frio, regularmente","Com o motor quente","Só quando a luz acender"],"c":1,"cat":"mecanica","ex":"Verifique o óleo com motor frio e carro em superfície plana. Faça regularmente."},{"p":"Freios em boas condições aumentam:","o":["A velocidade do veículo","A eficiência da frenagem","Apenas o conforto","O consumo de combustível"],"c":1,"cat":"mecanica","ex":"Freios revisados reduzem a distância de parada e previnem acidentes."},{"p":"O sistema de suspensão tem a função de:","o":["Aumentar a potência","Absorver impactos e manter os pneus em contato com a pista","Reduzir o consumo de combustível","Controlar a temperatura"],"c":1,"cat":"mecanica","ex":"Suspensão: absorve impactos das irregularidades da pista e mantém estabilidade."},{"p":"Sinais de que o freio pode estar com problema:","o":["Maior aderência","Barulho, vibração ou pedal mole","Menor consumo","Motor mais silencioso"],"c":1,"cat":"mecanica","ex":"Barulho metálico, vibração no pedal ou pedal mole indicam freios desgastados."},{"p":"Veículo com superaquecimento do motor (temperatura alta) deve:","o":["Acelerar para resfriar","Ser parado com segurança e aguardar resfriamento","Continuar se for pouca distância","Ligar o ar condicionado"],"c":1,"cat":"mecanica","ex":"Superaquecimento pode destruir o motor. Pare, desligue e aguarde resfriar antes de abrir o radiador."},{"p":"Luz de óleo acesa no painel indica:","o":["Nível de combustível baixo","Pressão de óleo baixa — pare imediatamente","Temperatura alta","Freio de mão acionado"],"c":1,"cat":"mecanica","ex":"Luz de óleo acesa = pressão de óleo insuficiente. Pare imediatamente para evitar dano grave ao motor."},{"p":"Veículo elétrico não tem:","o":["Freios","Motor","Sistema de transmissão com marcha","Pneus"],"c":2,"cat":"mecanica","ex":"Veículos elétricos não têm caixa de câmbio com marchas — a transmissão é direta."},{"p":"Pneu furado em alta velocidade: a atitude correta é:","o":["Frear bruscamente","Acelerar para controlar","Segurar o volante firme e reduzir gradualmente","Virar o volante para o lado do furo"],"c":2,"cat":"mecanica","ex":"Segure o volante firmemente, não freie bruscamente. Reduza gradualmente e encoste com segurança."}];
 
-// ════════════════════════════════════════════════════════════════
-// BANCO DE QUESTÕES (200 originais — expandido para 600+)
-// ════════════════════════════════════════════════════════════════
-const banco = [
-{p:"O que significa esta placa?",i:"data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20100%20100%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpolygon%20points%3D%2250%2C3%2079%2C14%2097%2C40%2097%2C60%2079%2C86%2050%2C97%2021%2C86%203%2C60%203%2C40%2021%2C14%22%20fill%3D%22%23CC0000%22%20stroke%3D%22white%22%20stroke-width%3D%223%22/%3E%3Ctext%20x%3D%2250%22%20y%3D%2258%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%20font-size%3D%2222%22%20font-weight%3D%22bold%22%20font-family%3D%22Arial%22%3EPARE%3C/text%3E%3C/svg%3E",o:["Dê a preferência","Parada obrigatória","Proibido parar","Velocidade máxima 0"],c:1,cat:"sinalizacao",ex:"A placa octogonal vermelha (R-1) exige parada total antes da linha de retenção."},
-{p:"O que indica esta placa?",i:"data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20100%20100%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpolygon%20points%3D%2250%2C97%203%2C10%2097%2C10%22%20fill%3D%22white%22%20stroke%3D%22%23CC0000%22%20stroke-width%3D%226%22/%3E%3Ctext%20x%3D%2250%22%20y%3D%2275%22%20text-anchor%3D%22middle%22%20fill%3D%22%23CC0000%22%20font-size%3D%2213%22%20font-weight%3D%22bold%22%20font-family%3D%22Arial%22%3ED%C3%8A%20A%3C/text%3E%3Ctext%20x%3D%2250%22%20y%3D%2290%22%20text-anchor%3D%22middle%22%20fill%3D%22%23CC0000%22%20font-size%3D%2211%22%20font-family%3D%22Arial%22%3EPREFER%C3%8ANCIA%3C/text%3E%3C/svg%3E",o:["Parada obrigatória","Proibido avançar","Dê a preferência","Rotatória à frente"],c:2,cat:"sinalizacao",ex:"R-3 (triângulo invertido): o condutor deve ceder passagem aos veículos que circulam na via preferencial."},
-{p:"Faixa contínua amarela no centro da pista indica:",i:null,o:["Pode ultrapassar com cautela","Proibido ultrapassar","Reduzir velocidade","Parar obrigatório"],c:1,cat:"sinalizacao",ex:"Linha contínua amarela: proibição de ultrapassagem e de cruzamento da faixa em ambos os sentidos."},
-{p:"Faixa tracejada branca entre faixas indica:",i:null,o:["Proibido mudar de faixa","Faixa de pedestre","Permitido mudar de faixa com cautela","Área de obras"],c:2,cat:"sinalizacao",ex:"Linha tracejada branca: mudança de faixa permitida, desde que feita com segurança e sinalização."},
-{p:"Placas triangulares amarelas indicam:",i:null,o:["Proibição","Regulamentação","Advertência / perigo à frente","Serviços"],c:2,cat:"sinalizacao",ex:"Placas triangulares (grupo A): advertência. Indicam situação de perigo ou atenção necessária."},
-{p:"Placas circulares com borda vermelha indicam:",i:null,o:["Advertência","Regulamentação","Serviços","Turismo"],c:1,cat:"sinalizacao",ex:"Placas circulares do grupo R: regulamentação — impõem obrigações, restrições ou proibições."},
-{p:"Placas azuis retangulares indicam:",i:null,o:["Proibição","Advertência","Informação e serviços","Obras temporárias"],c:2,cat:"sinalizacao",ex:"Placas do grupo I (indicação): informam ao condutor sobre localidades, serviços e orientações."},
-{p:"A placa octogonal vermelha indica:",i:null,o:["Velocidade máxima","Parada obrigatória","Hospital à frente","Cruzamento"],c:1,cat:"sinalizacao",ex:"Apenas a placa PARE (R-1) tem forma octogonal. Exige parada total obrigatória."},
-{p:"A luz amarela intermitente no semáforo indica:",i:null,o:["Pare obrigatório","Atenção redobrada — cruzamento sem preferência definida","Siga com velocidade","Semáforo desligado"],c:1,cat:"sinalizacao",ex:"Amarelo intermitente: sinal de alerta. O condutor deve reduzir a velocidade e trafegar com atenção."},
-{p:"Linha dupla contínua amarela no centro indica:",i:null,o:["Pode ultrapassar nos dois sentidos","Proibida ultrapassagem e deslocamentos laterais em ambos os sentidos","Apenas um sentido pode ultrapassar","Via de mão única"],c:1,cat:"sinalizacao",ex:"Linha dupla contínua amarela: proibição absoluta de ultrapassagem em ambos os sentidos."},
-// LEGISLAÇÃO
-{p:"Em cruzamento sem sinalização, quem tem preferência?",i:null,o:["Quem vem pela esquerda","Quem vem pela direita","Quem buzina primeiro","O veículo maior"],c:1,cat:"legislacao",ex:"CTB Art. 29, III: em cruzamentos sem sinalização, a preferência é do veículo que vier pela direita."},
-{p:"Quem tem preferência dentro de uma rotatória?",i:null,o:["Quem está entrando","Quem já está circulando","Veículos maiores","Quem buzinar"],c:1,cat:"legislacao",ex:"CTB Art. 29, III: nas rotatórias, a preferência é de quem já circula no interior."},
-{p:"A velocidade máxima em rodovias de pista dupla (automóvel) é:",i:null,o:["80 km/h","100 km/h","110 km/h","120 km/h"],c:2,cat:"legislacao",ex:"CTB Art. 61: nas rodovias de pista dupla, a velocidade máxima para automóveis é 110 km/h."},
-{p:"A velocidade máxima em rodovias de pista simples é:",i:null,o:["80 km/h","100 km/h","110 km/h","120 km/h"],c:1,cat:"legislacao",ex:"CTB Art. 61: rodovias de pista simples — velocidade máxima de 100 km/h para automóveis."},
-{p:"A velocidade máxima em vias urbanas arteriais é:",i:null,o:["40 km/h","50 km/h","60 km/h","80 km/h"],c:2,cat:"legislacao",ex:"CTB Art. 61: vias arteriais urbanas têm limite de 60 km/h."},
-{p:"A velocidade máxima em vias coletoras urbanas é:",i:null,o:["30 km/h","40 km/h","50 km/h","60 km/h"],c:1,cat:"legislacao",ex:"CTB Art. 61: vias coletoras urbanas têm limite de 40 km/h."},
-{p:"A velocidade máxima em vias locais urbanas é:",i:null,o:["20 km/h","30 km/h","40 km/h","50 km/h"],c:1,cat:"legislacao",ex:"CTB Art. 61: vias locais urbanas têm limite de 30 km/h."},
-{p:"A CNH para condutores com menos de 50 anos tem validade de:",i:null,o:["5 anos","10 anos","15 anos","2 anos"],c:1,cat:"legislacao",ex:"CTB Art. 159: a validade da CNH é de 10 anos para condutores com menos de 50 anos."},
-{p:"A CNH de condutor entre 50 e 70 anos tem validade de:",i:null,o:["10 anos","5 anos","3 anos","1 ano"],c:1,cat:"legislacao",ex:"CTB Art. 159: para condutores entre 50 e 70 anos, a validade da CNH é de 5 anos."},
-{p:"A CNH de condutor com mais de 70 anos tem validade de:",i:null,o:["10 anos","5 anos","3 anos","1 ano"],c:2,cat:"legislacao",ex:"CTB Art. 159: para condutores acima de 70 anos, a validade é reduzida para 3 anos."},
-{p:"Para obter a CNH, o candidato deve ter no mínimo:",i:null,o:["16 anos","17 anos","18 anos","21 anos"],c:2,cat:"legislacao",ex:"CTB Art. 140: o candidato deve ter 18 anos completos para obter a CNH categoria B."},
-{p:"Quantas questões tem a prova teórica do DETRAN?",i:null,o:["20","25","30","40"],c:2,cat:"legislacao",ex:"A prova teórica possui 30 questões. São necessários 21 acertos (70%) para aprovação."},
-{p:"O CRLV deve ser:",i:null,o:["Guardado em casa","Portado no veículo","Entregue ao DETRAN todo ano","Renovado a cada 2 anos"],c:1,cat:"legislacao",ex:"O CRLV (Certificado de Registro e Licenciamento do Veículo) deve estar sempre no veículo durante a circulação."},
-{p:"Crianças menores de 10 anos devem sentar:",i:null,o:["Onde preferirem com cinto","No banco traseiro obrigatoriamente","No banco dianteiro com cinto","No colo do acompanhante"],c:1,cat:"legislacao",ex:"CTB Art. 65: crianças com menos de 10 anos só podem ocupar o banco traseiro."},
-{p:"O condutor que acumular 20 pontos em 12 meses terá a CNH:",i:null,o:["Cassada imediatamente","Suspensa","Renovada automaticamente","Nada acontece"],c:1,cat:"legislacao",ex:"CTB Art. 261: a CNH é suspensa quando o condutor atingir 20 pontos no período de 12 meses."},
-{p:"O CTB é válido em:",i:null,o:["Apenas rodovias federais","Apenas vias urbanas","Todo o território nacional","Apenas em áreas urbanas e rodovias estaduais"],c:2,cat:"legislacao",ex:"CTB Art. 1º: as normas do CTB se aplicam em todo o território nacional, inclusive praias e vias internas de condomínios."},
-{p:"O prazo para recurso de auto de infração de trânsito é de:",i:null,o:["15 dias","30 dias","45 dias","60 dias"],c:1,cat:"legislacao",ex:"O condutor tem 30 dias após a notificação para apresentar recurso em primeira instância (JARI)."},
-{p:"Qual órgão estadual é responsável pela habilitação?",i:null,o:["DNIT","PRF","DETRAN","SENATRAN"],c:2,cat:"legislacao",ex:"O DETRAN (Departamento Estadual de Trânsito) é o órgão executivo estadual responsável pela habilitação."},
-// DIREÇÃO
-{p:"A ultrapassagem deve ser feita normalmente:",i:null,o:["Pela direita","Pela esquerda","Pelo acostamento","Pelo centro da via"],c:1,cat:"direcao",ex:"CTB Art. 29, XI: a ultrapassagem deve ser feita pelo lado esquerdo do veículo ultrapassado."},
-{p:"Quando é permitido ultrapassar pela direita?",i:null,o:["Sempre que necessário","Quando o da frente vai virar à esquerda","Em rodovias de pista dupla","Nunca é permitido"],c:1,cat:"direcao",ex:"CTB Art. 29, XI: a ultrapassagem pela direita só é permitida quando o veículo da frente vai virar à esquerda."},
-{p:"Ultrapassagem é proibida em:",i:null,o:["Retas longas","Pontes, túneis e curvas sem visibilidade","Rodovias de pista dupla","Vias com 3 faixas"],c:1,cat:"direcao",ex:"CTB Art. 35: proibido ultrapassar em pontes, viadutos, túneis, curvas e lombadas sem visibilidade suficiente."},
-{p:"É obrigatório farol baixo em rodovias durante o dia?",i:null,o:["Não, apenas à noite","Sim, sempre em rodovias","Apenas se chover","Apenas em túneis"],c:1,cat:"direcao",ex:"CTB Art. 40, I: é obrigatório o uso do farol baixo (ou diurno) em rodovias durante todo o dia."},
-{p:"O acostamento deve ser usado para:",i:null,o:["Ultrapassar","Parar em emergências","Trafegar no trânsito intenso","Estacionar normalmente"],c:1,cat:"direcao",ex:"CTB Art. 29, IX: o acostamento serve apenas para paradas de emergência e desaceleração antes de retorno."},
-{p:"O farol alto não deve ser usado:",i:null,o:["Em rodovias escuras","Quando há veículo à frente ou em sentido contrário","Em estradas de terra","Durante a madrugada"],c:1,cat:"direcao",ex:"CTB Art. 40, II: o farol alto deve ser substituído pelo baixo quando há veículo à frente ou em sentido oposto."},
-{p:"Veículos lentos em rodovias devem trafegar:",i:null,o:["No centro da pista","Pela faixa da esquerda","Pela faixa da direita","Em qualquer faixa"],c:2,cat:"direcao",ex:"CTB Art. 29, II: em rodovias e vias de pistas múltiplas, manter-se na faixa da direita, exceto ao ultrapassar."},
-{p:"O condutor deve sinalizar intenção de virar com antecedência de:",i:null,o:["5 metros","10 metros","30 metros","100 metros"],c:2,cat:"direcao",ex:"CTB Art. 36: a sinalização de mudança de direção deve ser feita com no mínimo 30 metros de antecedência."},
-{p:"A distância de segurança entre veículos serve para:",i:null,o:["Economizar combustível","Evitar colisões traseiras","Permitir ultrapassagem","Reduzir o barulho"],c:1,cat:"direcao",ex:"Distância de segurança: garante que o condutor tenha tempo e espaço para reagir a uma freada brusca à frente."},
-{p:"Em pista molhada deve-se:",i:null,o:["Acelerar para atravessar rápido","Manter maior distância e reduzir velocidade","Manter a mesma velocidade de tempo seco","Usar o freio de mão regularmente"],c:1,cat:"direcao",ex:"Pista molhada reduz a aderência dos pneus. Aumente a distância de segurança e reduza a velocidade."},
-{p:"Pisca-alerta deve ser usado:",i:null,o:["Para indicar que vai virar","Em ultrapassagens","Em situações de emergência, paradas obrigatórias e veículo avariado","Quando for mais rápido que todos"],c:2,cat:"direcao",ex:"O pisca-alerta sinaliza perigo ou parada obrigatória. Não deve ser usado como substituto do seta ao virar."},
-// INFRAÇÕES
-{p:"Usar celular ao volante é infração:",i:null,o:["Leve","Média","Grave","Gravíssima"],c:3,cat:"infrações",ex:"CTB Art. 252, IX: usar celular ao volante = infração gravíssima, 7 pontos e multa de R$ 293,47."},
-{p:"Avançar sinal vermelho é infração:",i:null,o:["Leve","Média","Grave","Gravíssima"],c:3,cat:"infrações",ex:"CTB Art. 208: avançar o sinal vermelho = gravíssima, 7 pontos e multa de R$ 293,47."},
-{p:"Não usar cinto de segurança é infração:",i:null,o:["Leve","Média","Grave","Gravíssima"],c:2,cat:"infrações",ex:"CTB Art. 167: não usar cinto = infração grave, 5 pontos e multa de R$ 195,23."},
-{p:"Dirigir sem habilitação (CNH) é infração:",i:null,o:["Leve","Média","Grave","Gravíssima"],c:3,cat:"infrações",ex:"CTB Art. 162: dirigir sem CNH = gravíssima, 7 pontos, retenção do veículo e multa."},
-{p:"Infração leve gera quantos pontos na CNH?",i:null,o:["2","3","4","5"],c:1,cat:"infrações",ex:"CTB Art. 259: infrações leves = 3 pontos. Ex: não usar luz dianteira em condições de baixa visibilidade."},
-{p:"Infração média gera quantos pontos?",i:null,o:["3","4","5","7"],c:1,cat:"infrações",ex:"CTB Art. 259: infrações médias = 4 pontos. Ex: parar sobre faixa de pedestres."},
-{p:"Infração grave gera quantos pontos?",i:null,o:["3","4","5","7"],c:2,cat:"infrações",ex:"CTB Art. 259: infrações graves = 5 pontos. Ex: não usar cinto de segurança."},
-{p:"Infração gravíssima gera quantos pontos?",i:null,o:["3","4","5","7"],c:3,cat:"infrações",ex:"CTB Art. 259: infrações gravíssimas = 7 pontos. Ex: celular ao volante, avançar sinal."},
-{p:"Suspensão da CNH ocorre ao atingir quantos pontos em 12 meses?",i:null,o:["10","20","40","50"],c:1,cat:"infrações",ex:"CTB Art. 261: o condutor tem a CNH suspensa ao acumular 20 pontos em 12 meses (regra geral)."},
-{p:"Estacionar em vaga de idoso sem credencial:",i:null,o:["Leve","Média","Grave","Gravíssima"],c:3,cat:"infrações",ex:"CTB Art. 181, XIII: estacionar em vaga de deficiente/idoso sem autorização = gravíssima, 7 pontos."},
-{p:"Não dar preferência ao pedestre na faixa:",i:null,o:["Leve","Média","Grave","Gravíssima"],c:2,cat:"infrações",ex:"CTB Art. 214: deixar de dar preferência ao pedestre na faixa = grave, 5 pontos e multa."},
-{p:"Transportar criança sem cadeirinha é infração:",i:null,o:["Leve","Média","Gravíssima","Grave"],c:2,cat:"infrações",ex:"CTB Art. 168: transportar criança sem dispositivo de retenção = gravíssima, 7 pontos e multa."},
-{p:"Participar de racha (corrida não autorizada) é:",i:null,o:["Infração leve","Infração grave","Infração gravíssima e crime","Apenas advertência"],c:2,cat:"infrações",ex:"CTB Art. 173: racha = infração gravíssima + crime de trânsito + multa + suspensão da CNH + prisão."},
-{p:"Exceder em mais de 50% a velocidade máxima é:",i:null,o:["Grave","Gravíssima com fator multiplicador 3x","Média","Leve"],c:1,cat:"infrações",ex:"CTB Art. 218, III: exceder em mais de 50% a velocidade = gravíssima com multiplicador 3 (multa triplicada)."},
-// SEGURANÇA
-{p:"Em caso de acidente com vítima, o condutor deve:",i:null,o:["Sair do local rapidamente","Prestar socorro ou acionar ajuda e permanecer no local","Tirar fotos e ir embora","Mover a vítima imediatamente"],c:1,cat:"seguranca",ex:"CTB Art. 176: o condutor deve prestar socorro ou acionar socorro e permanecer no local até a chegada do resgate."},
-{p:"Abandonar pessoa ferida em acidente é:",i:null,o:["Permitido se houver pressa","Crime de omissão de socorro","Infração leve","Aceitável se a vítima estiver consciente"],c:1,cat:"seguranca",ex:"CTB Art. 304: omissão de socorro a vítima de acidente = crime de trânsito com pena de 6 meses a 1 ano."},
-{p:"O triângulo de segurança em rodovia deve ser colocado a:",i:null,o:["10 m","20 m","30 m","100 m"],c:2,cat:"seguranca",ex:"O triângulo deve ser colocado a 30 metros do veículo parado em rodovias, para alertar os demais condutores."},
-{p:"A 'hidroplanagem' ocorre quando:",i:null,o:["O motor superaquece","O veículo perde contato com a pista molhada","Os freios travam","Os pneus estouram"],c:1,cat:"seguranca",ex:"Hidroplanagem (aquaplanagem): o pneu desliza sobre a lâmina de água sem aderência à pista."},
-{p:"O uso de álcool antes de dirigir:",i:null,o:["Permitido em pequenas quantidades","Tolerado até 0,05 mg/L no ar expirado","Tem tolerância zero no CTB","Proibido só à noite"],c:2,cat:"seguranca",ex:"CTB Art. 165: tolerância zero. Qualquer concentração de álcool detectada no bafômetro já configura infração."},
-{p:"O cinto de segurança reduz o risco de morte em acidentes em:",i:null,o:["10%","25%","50%","75%"],c:2,cat:"seguranca",ex:"Estudos mostram que o uso do cinto reduz o risco de morte em até 50% nos acidentes de trânsito."},
-{p:"O capacete de motociclista deve ser usado:",i:null,o:["Apenas em estradas","Só pelo piloto","Por piloto e passageiro, sempre","Só acima de 80 km/h"],c:2,cat:"seguranca",ex:"CTB Art. 54: o uso do capacete é obrigatório para piloto e passageiro em qualquer velocidade e via."},
-{p:"O air bag complementa mas não substitui:",i:null,o:["O freio ABS","O cinto de segurança","A direção hidráulica","Os pneus"],c:1,cat:"seguranca",ex:"O air bag só funciona eficientemente quando combinado com o cinto. Sem o cinto, pode causar lesões graves."},
-{p:"Pneus sem sulcos (carecas) causam risco de:",i:null,o:["Consumo elevado","Aquaplanagem e perda de aderência","Barulho excessivo","Superaquecimento do motor"],c:1,cat:"seguranca",ex:"Pneus carecas não escoam a água da pista, aumentando o risco de aquaplanagem e reduzindo a aderência."},
-{p:"Caso a vítima esteja inconsciente mas respirando, deve-se:",i:null,o:["Deixar deitada de bruços","Posicioná-la em decúbito lateral de segurança","Sentá-la imediatamente","Oferecer líquidos"],c:1,cat:"seguranca",ex:"Decúbito lateral de segurança: impede que a língua obstrua as vias aéreas ou que a vítima aspire vômito."},
-{p:"Dirigir cansado é comparável a:",i:null,o:["Excesso de velocidade leve","Dirigir sob efeito de álcool","Dirigir em neblina","Pneu calibrado errado"],c:1,cat:"seguranca",ex:"Estudos comprovam que dirigir com privação de sono tem efeito similar a dirigir com 0,5 g/L de álcool no sangue."},
-{p:"Em viagens longas deve-se parar a cada:",i:null,o:["4 horas","2 horas ou menos (máximo 4 horas de direção contínua)","6 horas","8 horas"],c:1,cat:"seguranca",ex:"CTB Art. 67-C: em viagens superiores a 4 horas, deve-se parar para descanso de pelo menos 30 minutos."},
-// MECÂNICA
-{p:"O controle da temperatura do motor é feito pelo sistema de:",i:null,o:["Carburação","Arrefecimento (resfriamento)","Ignição","Transmissão"],c:1,cat:"mecanica",ex:"O sistema de arrefecimento (água + radiador + bomba) regula a temperatura do motor, evitando superaquecimento."},
-{p:"A baixa calibragem dos pneus:",i:null,o:["Aumenta a vida útil","Reduz a vida útil e aumenta o consumo","Favorece a estabilidade","Aumenta a capacidade de frenagem"],c:1,cat:"mecanica",ex:"Pneu mal calibrado: desgaste irregular das bordas, aumento do consumo de combustível e risco de estouro."},
-{p:"A estabilidade do veículo é garantida pelos sistemas de:",i:null,o:["Freios e motor","Transmissão e câmbio","Direção e suspensão","Alternador e bateria"],c:2,cat:"mecanica",ex:"Direção: controla a trajetória. Suspensão: absorve impactos e mantém os pneus em contato com a pista."},
-{p:"Situações que reduzem a aderência entre pneus e pista:",i:null,o:["Rodovias em bom estado","Barro em estradas de terra e lâmina de água","Pneus novos e bem calibrados","Faixa de rolamento seca"],c:1,cat:"mecanica",ex:"Barro e água reduzem o atrito entre o pneu e a pista, aumentando o risco de perda de controle."},
-{p:"A convivência social no trânsito é facilitada se o condutor:",i:null,o:["Demonstrar agilidade no manuseio do veículo","Conhecer como funciona o motor","Entrar em atrito quando julgar ter razão","Conhecer e cumprir as regras de circulação e conduta"],c:3,cat:"mecanica",ex:"O trânsito é um espaço de convivência. Respeitar regras e os demais usuários é fundamental para a segurança coletiva."},
+const categorias=[
+  {id:"todas",nome:"Todas",icon:"📚",desc:"Todas as categorias"},
+  {id:"sinalizacao",nome:"Sinalização",icon:"🚦",desc:"Placas e sinais"},
+  {id:"legislacao",nome:"Legislação",icon:"⚖️",desc:"CTB e leis"},
+  {id:"direcao",nome:"Direção",icon:"🚗",desc:"Técnicas de direção"},
+  {id:"infrações",nome:"Infrações",icon:"🚨",desc:"Multas e pontos"},
+  {id:"seguranca",nome:"Segurança",icon:"🛡️",desc:"Primeiros socorros"},
+  {id:"mecanica",nome:"Mecânica",icon:"🔧",desc:"Manutenção"},
 ];
 
-// Expandir para 600+
-(function(){
-  const base=[...banco];
-  while(banco.length<600){
-    const shuffled=[...base].sort(()=>Math.random()-.5);
-    shuffled.forEach(q=>{
-      if(banco.length<620) banco.push({...q,_dup:true});
-    });
-  }
-})();
-
-// ════════════════════════════════════════════════════════════════
-// ESTADO + LOCALSTORAGE
-// ════════════════════════════════════════════════════════════════
-let catAtual="todas", modoAtual="simulado", qtdeAtual=30;
-let pergAtual=[], timerInt=null, segs=1800;
-let errosAnteriores=[];
+// Estado
+let modoAtual="simulado",catAtual="todas",qtdeAtual=30;
+let provaAtual=[],respostas={},idx=0;
+let timerInt=null,segs=0;
 let streakAtual=0;
-let isPremium=false;
+let historico=JSON.parse(localStorage.getItem("detran_hist")||"[]");
+let errosAnteriores=JSON.parse(localStorage.getItem("detran_erros")||"[]");
+let statsCat=JSON.parse(localStorage.getItem("detran_stats_cat")||"{}");
+let isPremium=localStorage.getItem("detran_premium")==="true";
+let nickSalvo=localStorage.getItem("detran_nick")||"";
+let flashPool=[],flashIdx=0,flashCatAtual="todas";
 
-// Carregar dados salvos
-function carregarDados(){
-  try{
-    const h=localStorage.getItem('detran_historico');
-    historico=h?JSON.parse(h):[];
-    const s=localStorage.getItem('detran_stats');
-    statsCat=s?JSON.parse(s):{};
-    const e=localStorage.getItem('detran_erros');
-    errosAnteriores=e?JSON.parse(e):[];
-    const p=localStorage.getItem('detran_premium');
-    if(p==='true') ativarPremiumUI();
-    const n=localStorage.getItem('detran_nick');
-    if(n&&document.getElementById('nick-input')) document.getElementById('nick-input').value=n;
-    const rni=document.getElementById('rank-nick-input');
-    if(n&&rni) rni.value=n;
-  }catch(e){}
-}
+if(isPremium){document.body.classList.add("premium");document.getElementById("premium-badge").classList.remove("hidden");}
+if(nickSalvo){document.getElementById("nick-input")&&(document.getElementById("nick-input").value=nickSalvo);}
+
 function salvarDados(){
-  try{
-    localStorage.setItem('detran_historico',JSON.stringify(historico.slice(0,30)));
-    localStorage.setItem('detran_stats',JSON.stringify(statsCat));
-    localStorage.setItem('detran_erros',JSON.stringify(errosAnteriores.slice(0,100)));
-  }catch(e){}
+  localStorage.setItem("detran_hist",JSON.stringify(historico));
+  localStorage.setItem("detran_erros",JSON.stringify(errosAnteriores));
+  localStorage.setItem("detran_stats_cat",JSON.stringify(statsCat));
 }
 function salvarNick(){
-  const v=document.getElementById('nick-input').value.trim();
-  if(v){localStorage.setItem('detran_nick',v);document.getElementById('nick-status').textContent='✓ salvo';}
+  nickSalvo=document.getElementById("nick-input").value;
+  localStorage.setItem("detran_nick",nickSalvo);
 }
 
-let historico=[];
-let statsCat={};
-carregarDados();
-
-// ════════════════════════════════════════════════════════════════
-// CATEGORIAS
-// ════════════════════════════════════════════════════════════════
-const categorias=[
-  {id:"todas",nome:"Todas",icon:"📋"},
-  {id:"sinalizacao",nome:"Sinalização",icon:"🚧"},
-  {id:"legislacao",nome:"Legislação",icon:"📜"},
-  {id:"direcao",nome:"Direção",icon:"🛣️"},
-  {id:"infrações",nome:"Infrações",icon:"⚠️"},
-  {id:"seguranca",nome:"Segurança",icon:"🛡️"},
-  {id:"mecanica",nome:"Mecânica",icon:"🔧"},
-];
-const catGrid=document.getElementById("cat-grid");
-categorias.forEach(c=>{
-  const pool=c.id==="todas"?banco:banco.filter(q=>q.cat===c.id);
-  const uniq=[...new Map(pool.map(q=>[q.p,q])).values()];
-  const d=document.createElement("div");
-  d.className="cat-btn"+(c.id==="todas"?" on":"");
-  d.innerHTML=`<div class="ci">${c.icon}</div><div class="cn">${c.nome}</div><div class="cq">${uniq.length} questões</div>`;
-  d.onclick=()=>{
-    document.querySelectorAll(".cat-btn").forEach(x=>x.classList.remove("on"));
-    d.classList.add("on"); catAtual=c.id;
-    document.getElementById("badge-cat").textContent=c.nome.toUpperCase();
-  };
-  catGrid.appendChild(d);
-});
-
-function selecionarModo(m,el){
-  document.querySelectorAll(".modo-card").forEach(x=>x.classList.remove("on"));
-  el.classList.add("on"); modoAtual=m;
-}
-function selecionarQtde(n,el){
-  document.querySelectorAll(".qtde-btn").forEach(x=>x.classList.remove("on"));
-  el.classList.add("on"); qtdeAtual=n;
-}
-function embaralhar(a){return[...a].sort(()=>Math.random()-.5);}
-
-// ════════════════════════════════════════════════════════════════
-// INICIAR
-// ════════════════════════════════════════════════════════════════
-function iniciar(){
-  if(modoAtual==="erros"){
-    if(errosAnteriores.length===0){
-      mostrarToast("✅ Nenhum erro registrado ainda! Faça uma prova primeiro.");return;
-    }
-    pergAtual=embaralhar(errosAnteriores).slice(0,Math.min(qtdeAtual,errosAnteriores.length));
-  } else {
-    const pool=(catAtual==="todas"?banco:banco.filter(q=>q.cat===catAtual)).filter(q=>!q._dup);
-    const combined=[...new Map(pool.map(q=>[q.p,q])).values()];
-    pergAtual=embaralhar(combined.length>=qtdeAtual?combined:banco).slice(0,qtdeAtual);
-  }
-  streakAtual=0;
-  renderProva();
-  mostrarPg("pg-prova");
-  iniciarTimer();
-  document.querySelectorAll(".tab").forEach(t=>t.classList.remove("ativo"));
-}
-
-// ════════════════════════════════════════════════════════════════
-// RENDER PROVA
-// ════════════════════════════════════════════════════════════════
-function renderProva(){
-  const cont=document.getElementById("qcontainer");
-  cont.innerHTML="";
-  const wrap=document.getElementById("modo-badge-wrap");
-  if(modoAtual==="estudo"){
-    wrap.innerHTML=`<div class="modo-badge">💡 Modo Estudo — resposta revelada após cada questão</div>`;
-  } else if(modoAtual==="erros"){
-    wrap.innerHTML=`<div class="modo-badge">🎯 Modo Só Erros — ${pergAtual.length} questões anteriores erradas</div>`;
-  } else { wrap.innerHTML=""; }
-  document.getElementById("streak-wrap").innerHTML="";
-  const letras=["A","B","C","D"];
-  pergAtual.forEach((q,i)=>{
-    const imgH=q.i?`<div class="qimg"><img src="${q.i}" alt="Placa" loading="lazy" onerror="this.parentElement.remove()"></div>`:"";
-    const ops=q.o.map((op,j)=>
-      `<label class="op" id="op-${i}-${j}">
-        <input type="radio" name="q${i}" value="${j}" onchange="marcar(${i},${j},${q.c},'${(q.ex||"").replace(/'/g,"\\'")}')">
-        <div class="op-l">${letras[j]}</div>${op}
-      </label>`
-    ).join("");
-    cont.innerHTML+=`<div class="qcard" id="qcard-${i}">
-      <div class="qnum">Questão ${i+1} de ${pergAtual.length} · ${(categorias.find(c=>c.id===pergAtual[i].cat)||{icon:"",nome:""}).icon} ${(categorias.find(c=>c.id===pergAtual[i].cat)||{nome:""}).nome}</div>
-      <div class="qtxt">${q.p}</div>${imgH}
-      <div class="opcoes">${ops}</div>
-    </div>`;
+// INÍCIO
+function renderCatGrid(){
+  const g=document.getElementById("cat-grid");
+  g.innerHTML="";
+  categorias.forEach(c=>{
+    const n=c.id==="todas"?BANCO.length:BANCO.filter(q=>q.cat===c.id).length;
+    const b=document.createElement("div");
+    b.className="cat-btn"+(c.id===catAtual?" on":"");
+    b.innerHTML=`<div class="ci">${c.icon}</div><div class="cn">${c.nome}</div><div class="cq">${n} questões</div>`;
+    b.onclick=()=>{catAtual=c.id;document.querySelectorAll(".cat-btn").forEach(x=>x.classList.remove("on"));b.classList.add("on");document.getElementById("badge-cat").textContent=c.nome.toUpperCase();};
+    g.appendChild(b);
   });
-  atualizarProg(0);
 }
+function selecionarModo(m,el){modoAtual=m;document.querySelectorAll(".modo-card").forEach(c=>c.classList.remove("on"));el.classList.add("on");}
+function selecionarQtde(n,el){qtdeAtual=n;document.querySelectorAll(".qtde-btn").forEach(b=>b.classList.remove("on"));el.classList.add("on");}
 
-function marcar(qi,oi,correta,explicacao){
-  document.querySelectorAll(`label[id^="op-${qi}-"]`).forEach(l=>l.classList.remove("sel"));
-  document.getElementById(`op-${qi}-${oi}`).classList.add("sel");
-  // Atualizar progresso
-  let r=0;
-  for(let i=0;i<pergAtual.length;i++) if(document.querySelector(`input[name="q${i}"]:checked`)) r++;
-  atualizarProg(r);
-  // Modo estudo: feedback imediato com animações
-  if(modoAtual==="estudo"){
-    document.querySelectorAll(`label[id^="op-${qi}-"]`).forEach(l=>l.classList.add("bloqueada"));
-    const acertou=oi===correta;
-    document.getElementById(`op-${qi}-${correta}`).classList.add("correta-show");
-    if(!acertou){
-      document.getElementById(`op-${qi}-${oi}`).classList.add("errada-show");
-      streakAtual=0;
-    } else {
-      streakAtual++;
-      if(streakAtual>=3) mostrarStreak(streakAtual);
-      if(streakAtual>=5) lancarConfetti();
-    }
-    const card=document.getElementById(`qcard-${qi}`);
-    const old=card.querySelector(".explicacao");
-    if(old) old.remove();
-    if(explicacao){
-      const div=document.createElement("div");
-      div.className="explicacao";
-      div.innerHTML=`<strong>💡 Explicação:</strong> ${explicacao}`;
-      card.appendChild(div);
-    }
+function embaralhar(arr){const a=[...arr];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+function iniciar(){
+  let pool=catAtual==="todas"?[...BANCO]:BANCO.filter(q=>q.cat===catAtual);
+  if(modoAtual==="erros"){
+    if(!errosAnteriores.length){mostrarToast("Nenhum erro para revisar ainda!");return;}
+    pool=errosAnteriores.map(p=>BANCO.find(q=>q.p===p)).filter(Boolean);
   }
+  if(!pool.length){mostrarToast("Nenhuma questão disponível!");return;}
+  provaAtual=embaralhar(pool).slice(0,Math.min(qtdeAtual,pool.length));
+  respostas={};idx=0;streakAtual=0;
+  mostrarPg("pg-prova");
+  renderQuestao();
+  iniciarTimer();
 }
 
-function mostrarStreak(n){
-  const wrap=document.getElementById("streak-wrap");
-  wrap.innerHTML=`<div class="streak-banner"><span class="streak-num">🔥${n}</span><span class="streak-lbl">seguidos corretos! Continue assim!</span></div>`;
+function renderQuestao(){
+  if(idx>=provaAtual.length){finalizar();return;}
+  const q=provaAtual[idx];
+  const pct=Math.round((idx/provaAtual.length)*100);
+  document.getElementById("pb").style.width=pct+"%";
+  document.getElementById("pb-txt").textContent=idx+"/"+provaAtual.length;
+  document.getElementById("streak-wrap").innerHTML=streakAtual>=3?`<div class="streak-banner"><span class="streak-num">${streakAtual}🔥</span><span class="streak-lbl">acertos seguidos!</span></div>`:"";
+  document.getElementById("modo-badge-wrap").innerHTML=`<div class="modo-badge">${modoAtual==="simulado"?"📝 Simulado":modoAtual==="estudo"?"💡 Estudo":"🎯 Só Erros"}</div>`;
+  if((idx+1)%10===0&&idx>0&&!isPremium){document.getElementById("ad-prova").classList.remove("hidden");}else{document.getElementById("ad-prova").classList.add("hidden");}
+  const opts=["A","B","C","D"];
+  const html=`<div class="qcard">
+    <div class="qnum">Questão ${idx+1} de ${provaAtual.length}</div>
+    <div class="qtxt">${q.p}</div>
+    <div class="opcoes" id="opcoes">
+      ${q.o.map((o,i)=>`<label class="op" id="op${i}" onclick="selecionar(${i})">
+        <input type="radio" name="op" value="${i}">
+        <span class="op-l">${opts[i]}</span>${o}
+      </label>`).join("")}
+    </div>
+    <div id="explicacao-wrap"></div>
+  </div>`;
+  document.getElementById("qcontainer").innerHTML=html;
 }
 
-function atualizarProg(n){
-  const tot=pergAtual.length;
-  document.getElementById("pb").style.width=(n/tot*100)+"%";
-  document.getElementById("pb-txt").textContent=n+"/"+tot;
-  // Mostrar anúncio a cada 10 questões (somente não-premium)
-  if(!isPremium&&n>0&&n%10===0){
-    const ad=document.getElementById("ad-prova");
-    ad.classList.remove("hidden");
-    setTimeout(()=>ad.classList.add("hidden"),5000);
+function selecionar(i){
+  if(respostas[idx]!==undefined)return;
+  respostas[idx]=i;
+  const q=provaAtual[idx];
+  document.querySelectorAll(".op").forEach((o,j)=>{
+    o.classList.add("bloqueada");
+    if(j===q.c)o.classList.add("correta-show");
+    if(j===i&&i!==q.c)o.classList.add("errada-show");
+  });
+  if(i===q.c){
+    streakAtual++;
+    if(streakAtual>=5)lancarConfetti();
+    if(!statsCat[q.cat])statsCat[q.cat]={ac:0,tot:0};
+    statsCat[q.cat].ac++;statsCat[q.cat].tot++;
+    errosAnteriores=errosAnteriores.filter(p=>p!==q.p);
+  }else{
+    streakAtual=0;
+    if(!statsCat[q.cat])statsCat[q.cat]={ac:0,tot:0};
+    statsCat[q.cat].tot++;
+    if(!errosAnteriores.includes(q.p))errosAnteriores.push(q.p);
   }
-}
-
-// ════════════════════════════════════════════════════════════════
-// CONFETTI
-// ════════════════════════════════════════════════════════════════
-function lancarConfetti(){
-  const cores=["#E63946","#22c55e","#f59e0b","#3b82f6","#ff7878","#4ade80"];
-  for(let i=0;i<40;i++){
-    const c=document.createElement("div");
-    c.className="confetti-piece";
-    c.style.cssText=`
-      left:${Math.random()*100}vw;
-      background:${cores[Math.floor(Math.random()*cores.length)]};
-      width:${6+Math.random()*8}px;
-      height:${6+Math.random()*8}px;
-      animation-duration:${2+Math.random()*2}s;
-      animation-delay:${Math.random()*.5}s;
-      border-radius:${Math.random()>.5?"50%":"2px"};
-    `;
-    document.body.appendChild(c);
-    setTimeout(()=>c.remove(),4000);
+  if(modoAtual!=="simulado"&&q.ex){
+    document.getElementById("explicacao-wrap").innerHTML=`<div class="explicacao"><strong>Explicação:</strong> ${q.ex}</div>`;
   }
+  salvarDados();
+  setTimeout(()=>{idx++;renderQuestao();},modoAtual==="simulado"?800:1800);
 }
 
-// ════════════════════════════════════════════════════════════════
-// FINALIZAR
-// ════════════════════════════════════════════════════════════════
 function finalizar(){
   pararTimer();
-  let acertos=0; const ok=[],err=[];
-  pergAtual.forEach((q,i)=>{
-    const m=document.querySelector(`input[name="q${i}"]:checked`);
-    if(m&&parseInt(m.value)===q.c){acertos++;ok.push(i);}
-    else{err.push(i);}
-  });
-  errosAnteriores=err.map(i=>pergAtual[i]);
-  const porc=Math.round(acertos/pergAtual.length*100);
-  historico.unshift({data:new Date().toLocaleDateString('pt-BR'),modo:modoAtual,cat:catAtual,acertos,total:pergAtual.length,porc});
-  if(historico.length>30) historico.pop();
-  pergAtual.forEach((q,i)=>{
-    if(!statsCat[q.cat]) statsCat[q.cat]={ac:0,tot:0};
-    statsCat[q.cat].tot++;
-    if(ok.includes(i)) statsCat[q.cat].ac++;
-  });
+  const total=provaAtual.length;
+  const acertos=Object.entries(respostas).filter(([i,r])=>provaAtual[i].c===r).length;
+  const porc=Math.round((acertos/total)*100);
+  const aprovado=porc>=70;
+  const data=new Date().toLocaleDateString("pt-BR");
+  historico.unshift({acertos,total,porc,data,cat:catAtual,modo:modoAtual});
+  if(historico.length>50)historico.pop();
   salvarDados();
-  if(porc>=70) lancarConfetti();
-  renderResultado(acertos,ok,err);
-  mostrarPg("pg-resultado");
-  // Oferecer ranking se pontuação boa
-  if(porc>=60&&SUPABASE_HABILITADO){
-    setTimeout(()=>abrirModalRanking(acertos,pergAtual.length,porc),1500);
-  }
-}
-
-function renderResultado(acertos,ok,err){
-  const total=pergAtual.length;
-  const porc=Math.round(acertos/total*100);
-  const ap=acertos>=Math.ceil(total*.7);
-  const letras=["A","B","C","D"];
-  const r=340,raio=52;
-  const circ=2*Math.PI*raio;
-  const dash=circ*(porc/100);
-  const cor=ap?"#22c55e":porc>=50?"#f59e0b":"#E63946";
-  let html=`<div class="res-topo">
-    <span class="res-ico">${ap?"🏆":"📚"}</span>
-    <div class="res-titulo ${ap?"ap":"rp"}">${ap?"APROVADO!":"REPROVADO"}</div>
-    <div class="res-sub">${ap?"Parabéns! Você está pronto para a prova.":"Continue — você precisa de 70% (${Math.ceil(total*.7)} acertos)."}</div>
-  </div>
-  <div class="circ-wrap">
-    <div class="circ">
-      <svg width="110" height="110" viewBox="0 0 110 110">
-        <circle class="circ-bg" cx="55" cy="55" r="${raio}"/>
-        <circle class="circ-fg" cx="55" cy="55" r="${raio}" stroke="${cor}"
-          stroke-dasharray="${circ}" stroke-dashoffset="${circ-dash}"/>
-      </svg>
-      <div class="circ-txt" style="color:${cor}">${porc}%<span class="circ-sub">resultado</span></div>
+  const listaHtml=provaAtual.map((q,i)=>{
+    const sel=respostas[i];
+    const ok=sel===q.c;
+    return `<div class="ri ${ok?"ok":"err"}">
+      <span class="ic">${ok?"✅":"❌"}</span>
+      <div>
+        <div class="pq">${q.p}</div>
+        ${!ok&&sel!==undefined?`<div class="re">Sua resposta: ${q.o[sel]}</div>`:""}
+        <div class="rc">Resposta correta: ${q.o[q.c]}</div>
+        ${q.ex?`<div class="exp">${q.ex}</div>`:""}
+      </div>
+    </div>`;
+  }).join("");
+  document.getElementById("pg-resultado").innerHTML=`
+    <div class="res-topo">
+      <span class="res-ico">${aprovado?"🎉":"😔"}</span>
+      <div class="res-titulo ${aprovado?"ap":"rp"}">${aprovado?"APROVADO!":"REPROVADO"}</div>
+      <div style="color:var(--muted);font-size:12px;margin-top:4px;">${aprovado?"Parabéns! Você está pronto para a prova real.":"Não desanime! Continue praticando."}</div>
     </div>
-  </div>
-  <div class="score-row">
-    <div class="sc"><div class="n v">${acertos}</div><div class="l">Acertos</div></div>
-    <div class="sc"><div class="n r">${total-acertos}</div><div class="l">Erros</div></div>
-    <div class="sc"><div class="n a">${total}</div><div class="l">Total</div></div>
-  </div>
-  <div class="share-row">
-    <button class="btn-share" onclick="compartilharResultado(${porc},${acertos},${total})">📤 Compartilhar resultado</button>
-    ${SUPABASE_HABILITADO?`<button class="btn-share" onclick="abrirModalRanking(${acertos},${total},${porc})">🏆 Enviar ao ranking</button>`:''}
-  </div>`;
-
-  // Anúncio no resultado
-  if(!isPremium){
-    html+=`<div class="ad-banner"><div style="height:90px;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--muted);">📢 Anúncio — <a href="#" onclick="mostrarModalPremium();return false" style="color:var(--yellow);margin-left:4px">Premium sem anúncios ⭐</a></div></div>`;
-  }
-
-  html+=`<div class="lista-res"><div class="lr-head">📋 Resultado por questão</div>`;
-  pergAtual.forEach((q,i)=>{
-    const acertou=ok.includes(i);
-    const thumb=q.i?`<img src="${q.i}" style="height:32px;vertical-align:middle;margin-right:6px;border-radius:4px;background:#060d1a;padding:2px"> `:"";
-    html+=`<div class="ri ${acertou?"ok":"err"}">
-      <div class="ic">${acertou?"✅":"❌"}</div>
-      <div><div class="pq">${thumb}${i+1}. ${q.p}</div>
-      ${acertou?'<div class="rc">✓ Correto!</div>':`<div class="re">✗ Correta: ${letras[q.c]}) ${q.o[q.c]}</div>`}
-      ${q.ex&&!acertou?`<div class="exp">💡 ${q.ex}</div>`:""}
-      </div></div>`;
-  });
-  html+=`</div>
-  ${err.length>0?`<div style="text-align:center;margin:12px 0;font-size:13px;color:var(--muted)">Você errou ${err.length} questão(ões). Use o <strong style="color:var(--red)">Modo Só Erros</strong> para praticar.</div>`:""}
-  <div class="acoes">
-    <button class="btn-main" onclick="iniciar()">↻ Nova Prova</button>
-    <button class="btn-sec" onclick="refazer()">🔁 Refazer</button>
-    <button class="btn-sec" onclick="mostrarPg('pg-inicio')">← Início</button>
-  </div>`;
-  document.getElementById("pg-resultado").innerHTML=html;
-}
-function refazer(){renderProva();mostrarPg("pg-prova");iniciarTimer();}
-
-// ════════════════════════════════════════════════════════════════
-// COMPARTILHAR
-// ════════════════════════════════════════════════════════════════
-function compartilharResultado(porc,acertos,total){
-  const txt=`🚦 Simulado DETRAN Pro\n${porc>=70?"✅ APROVADO":"❌ Reprovado"} — ${acertos}/${total} (${porc}%)\nPractique em: ${location.href}`;
-  if(navigator.share){
-    navigator.share({title:"Meu resultado no Simulado DETRAN",text:txt}).catch(()=>{});
-  } else {
-    navigator.clipboard.writeText(txt).then(()=>mostrarToast("📋 Resultado copiado!")).catch(()=>mostrarToast("Copie: "+txt));
-  }
+    <div class="score-row">
+      <div class="sc"><div class="n v">${acertos}</div><div class="l">Acertos</div></div>
+      <div class="sc"><div class="n r">${total-acertos}</div><div class="l">Erros</div></div>
+      <div class="sc"><div class="n a">${porc}%</div><div class="l">Aproveitamento</div></div>
+    </div>
+    <div class="ad-banner"><div style="height:50px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--muted);">📢 Anúncio</div></div>
+    <div class="btns-row" style="margin-bottom:16px;">
+      <button class="btn-main" onclick="iniciar()">↻ Nova Prova</button>
+      <button class="btn-sec" onclick="irInicio()">← Início</button>
+      <button class="btn-sec" onclick="compartilhar(${acertos},${total},${porc})">📤 Compartilhar</button>
+    </div>
+    <div class="lista-res"><div class="lr-head">Gabarito detalhado</div>${listaHtml}</div>
+  `;
+  mostrarPg("pg-resultado");
+  if(aprovado)lancarConfetti();
 }
 
-// ════════════════════════════════════════════════════════════════
-// RANKING (Supabase)
-// ════════════════════════════════════════════════════════════════
-let rankingScore={acertos:0,total:0,porc:0};
-
-function abrirModalRanking(ac,tot,porc){
-  rankingScore={acertos:ac,total:tot,porc};
-  const nick=localStorage.getItem('detran_nick')||"";
-  document.getElementById("rank-nick-input").value=nick;
-  document.getElementById("rank-submit-msg").textContent=`Sua pontuação: ${ac}/${tot} (${porc}%) — enviar ao ranking?`;
-  document.getElementById("modal-rank-submit").classList.remove("hidden");
+function compartilhar(ac,tot,pct){
+  const txt=`Fiz o Simulado DETRAN Pro e acertei ${ac}/${tot} questões (${pct}%)! ${pct>=70?"✅ Aprovado":"❌ Reprovado"}. Teste também em: ${location.href}`;
+  if(navigator.share){navigator.share({title:"Simulado DETRAN Pro",text:txt});}
+  else{navigator.clipboard.writeText(txt).then(()=>mostrarToast("📋 Copiado!"));}
 }
 
-async function enviarRanking(){
-  const nick=document.getElementById("rank-nick-input").value.trim();
-  if(!nick){mostrarToast("⚠️ Digite seu apelido!");return;}
-  localStorage.setItem('detran_nick',nick);
-  document.getElementById("modal-rank-submit").classList.add("hidden");
-  if(!SUPABASE_HABILITADO){
-    mostrarToast("⚙️ Configure o Supabase para ativar o ranking!");
-    return;
-  }
-  try{
-    const res=await fetch(`${SUPABASE_URL}/rest/v1/ranking`,{
-      method:"POST",
-      headers:{"Content-Type":"application/json","apikey":SUPABASE_KEY,"Authorization":"Bearer "+SUPABASE_KEY,"Prefer":"return=minimal"},
-      body:JSON.stringify({nome:nick,acertos:rankingScore.acertos,total:rankingScore.total,porc:rankingScore.porc,data:new Date().toISOString()})
-    });
-    if(res.ok){mostrarToast("🏆 Pontuação enviada ao ranking!");}
-    else{mostrarToast("Erro ao enviar. Tente novamente.");}
-  }catch(e){mostrarToast("Erro de conexão.");}
+// TIMER
+function iniciarTimer(){
+  pararTimer();segs=qtdeAtual*60;atualizarTimer();
+  timerInt=setInterval(()=>{segs--;atualizarTimer();if(segs<=0){pararTimer();document.getElementById("modal-tempo").classList.remove("hidden");}},1000);
+}
+function pararTimer(){if(timerInt){clearInterval(timerInt);timerInt=null;}document.getElementById("timer").classList.remove("urg");}
+function atualizarTimer(){
+  const m=String(Math.floor(segs/60)).padStart(2,"0"),s=String(segs%60).padStart(2,"0");
+  const el=document.getElementById("timer");el.textContent=m+":"+s;
+  segs<=(qtdeAtual*60*0.17)?el.classList.add("urg"):el.classList.remove("urg");
 }
 
-async function carregarRanking(){
-  const el=document.getElementById("rank-items");
-  if(!SUPABASE_HABILITADO){
-    // Ranking demo local
-    const demo=[
-      {nome:"Maria S.",acertos:28,total:30,porc:93},
-      {nome:"Carlos M.",acertos:27,total:30,porc:90},
-      {nome:"Ana Lima",acertos:26,total:30,porc:87},
-      {nome:"Pedro K.",acertos:25,total:30,porc:83},
-      {nome:"Julia F.",acertos:24,total:30,porc:80},
-    ];
-    const local=JSON.parse(localStorage.getItem('detran_historico')||"[]");
-    const nick=localStorage.getItem('detran_nick')||"Você";
-    local.forEach(h=>{if(h.porc>=60)demo.push({nome:nick,acertos:h.acertos,total:h.total,porc:h.porc});});
-    demo.sort((a,b)=>b.porc-a.porc||b.acertos-a.acertos);
-    renderRankItems(demo.slice(0,20),el);
-    return;
-  }
-  el.innerHTML='<div class="rank-loading">⏳ Carregando...</div>';
-  try{
-    const res=await fetch(`${SUPABASE_URL}/rest/v1/ranking?select=nome,acertos,total,porc&order=porc.desc,acertos.desc&limit=20`,{
-      headers:{"apikey":SUPABASE_KEY,"Authorization":"Bearer "+SUPABASE_KEY}
-    });
-    const data=await res.json();
-    renderRankItems(data,el);
-  }catch(e){el.innerHTML='<div class="rank-loading">Erro ao carregar. Configure o Supabase.</div>';}
-}
+// GALERIA
+const tipoInfo={
+  reg:{nome:"Regulamentação",emoji:"🛑",cls:"pt-reg"},
+  adv:{nome:"Advertência",emoji:"⚠️",cls:"pt-adv"},
+  ind:{nome:"Indicação",emoji:"🔵",cls:"pt-ind"},
+  sem:{nome:"Semáforos",emoji:"🚦",cls:"pt-sem"},
+  esp:{nome:"Especiais",emoji:"⭐",cls:"pt-esp"},
+};
 
-function renderRankItems(data,el){
-  if(!data||!data.length){el.innerHTML='<div class="rank-loading">Nenhuma pontuação ainda. Seja o primeiro!</div>';return;}
-  const medalhas=["🥇","🥈","🥉"];
-  const posClasses=["gold","silver","bronze"];
-  el.innerHTML=data.map((r,i)=>{
-    const pos=i<3?`<span class="rank-pos ${posClasses[i]||""}">${medalhas[i]||""}</span>`:`<span class="rank-pos" style="color:var(--muted)">${i+1}</span>`;
-    return `<div class="rank-item">
-      ${pos}
-      <div class="rank-nome">${r.nome||"Anônimo"}<div class="rank-sub">${r.acertos||0}/${r.total||30} acertos</div></div>
-      <div class="rank-score">${r.porc||0}%</div>
+function renderGaleria(lista){
+  const container=document.getElementById("galeria-container");
+  const grupos={reg:[],adv:[],ind:[],sem:[],esp:[]};
+  lista.forEach(p=>{if(grupos[p.t])grupos[p.t].push(p);});
+  container.innerHTML=Object.entries(grupos).filter(([,arr])=>arr.length).map(([t,arr])=>{
+    const info=tipoInfo[t]||{nome:t,emoji:"",cls:""};
+    return `<div class="gal-section">
+      <div class="gal-title">${info.emoji} ${info.nome} <span style="font-size:11px;color:var(--muted);font-weight:400;">(${arr.length} placas)</span></div>
+      <div class="gal-grid">
+        ${arr.map(p=>`<div class="placa-card" onclick="abrirPlaca('${p.id}')">
+          ${p.i}
+          <div class="pn">${p.n}</div>
+          <div class="pt-lbl ${tipoInfo[p.t]?.cls||""}">${p.id}</div>
+        </div>`).join("")}
+      </div>
     </div>`;
   }).join("");
 }
 
-// ════════════════════════════════════════════════════════════════
+function filtrarGaleria(q){
+  const t=q.toLowerCase();
+  renderGaleria(t?PLACAS.filter(p=>p.n.toLowerCase().includes(t)||p.id.toLowerCase().includes(t)||p.desc.toLowerCase().includes(t)):PLACAS);
+}
+
+function abrirPlaca(id){
+  const p=PLACAS.find(x=>x.id===id);
+  if(!p)return;
+  const info=tipoInfo[p.t]||{nome:p.t,cls:""};
+  document.getElementById("modal-placa-content").innerHTML=`
+    <div class="mp-svg">${p.i}</div>
+    <div class="mp-code">${p.id}</div>
+    <div class="mp-nome">${p.n}</div>
+    <div class="mp-tipo ${p.t}">${tipoInfo[p.t]?.emoji||""} ${info.nome}</div>
+    <div class="mp-desc">${p.desc}</div>
+    <div class="mp-box warn"><strong>⚠️ Penalidade</strong>${p.punicao}</div>
+    <div class="mp-box info"><strong>💡 Dica de prova</strong>${p.dica}</div>
+  `;
+  document.getElementById("modal-placa").classList.remove("hidden");
+}
+
 // FLASHCARDS
-// ════════════════════════════════════════════════════════════════
-let flashPool=[],flashIdx=0,flashCatAtual="todas";
 function initFlash(){
   const fcEl=document.getElementById("flash-cats");
   fcEl.innerHTML="";
   categorias.forEach(c=>{
     const b=document.createElement("button");
-    b.className="flash-cat-btn"+(c.id==="todas"?" on":"");
+    b.className="flash-cat-btn"+(c.id===flashCatAtual?" on":"");
     b.textContent=c.icon+" "+c.nome;
-    b.onclick=()=>{
-      document.querySelectorAll(".flash-cat-btn").forEach(x=>x.classList.remove("on"));
-      b.classList.add("on");flashCatAtual=c.id;carregarFlash();
-    };
+    b.onclick=()=>{document.querySelectorAll(".flash-cat-btn").forEach(x=>x.classList.remove("on"));b.classList.add("on");flashCatAtual=c.id;carregarFlash();};
     fcEl.appendChild(b);
   });
   carregarFlash();
 }
 function carregarFlash(){
-  const raw=flashCatAtual==="todas"?banco:banco.filter(q=>q.cat===flashCatAtual);
-  const uniq=[...new Map(raw.map(q=>[q.p,q])).values()].filter(q=>!q._dup);
-  flashPool=embaralhar(uniq);flashIdx=0;mostrarFlash();
+  const raw=flashCatAtual==="todas"?BANCO:BANCO.filter(q=>q.cat===flashCatAtual);
+  flashPool=embaralhar(raw);flashIdx=0;mostrarFlash();
 }
 function mostrarFlash(){
   const card=document.getElementById("flashcard");
@@ -1251,9 +710,7 @@ function flashProximo(){if(flashIdx<flashPool.length-1){flashIdx++;mostrarFlash(
 function flashAnterior(){if(flashIdx>0){flashIdx--;mostrarFlash();}}
 function embaralharFlash(){flashPool=embaralhar(flashPool);flashIdx=0;mostrarFlash();}
 
-// ════════════════════════════════════════════════════════════════
-// ESTATÍSTICAS
-// ════════════════════════════════════════════════════════════════
+// STATS
 function renderStats(){
   const total=historico.reduce((s,h)=>s+h.total,0);
   const acertos=historico.reduce((s,h)=>s+h.acertos,0);
@@ -1273,116 +730,123 @@ function renderStats(){
       <div class="bar-outer"><div class="bar-inner" style="width:${pct}%;background:${cor}"></div></div>
     </div>`;
   }).join("");
-  document.getElementById("bar-cats").innerHTML=barHtml||`<div style="color:var(--muted);font-size:13px;">Faça uma prova para ver seu desempenho por categoria.</div>`;
+  document.getElementById("bar-cats").innerHTML=barHtml||'<div style="color:var(--muted);font-size:12px;">Faça uma prova para ver seu desempenho por categoria.</div>';
   const histHtml=historico.length?historico.map(h=>`
     <div class="hist-item">
-      <div><div style="font-weight:600">${h.acertos}/${h.total} questões</div><div class="hd">${h.data} · ${h.cat==="todas"?"Geral":h.cat} · Modo ${h.modo}</div></div>
+      <div><div style="font-weight:600">${h.acertos}/${h.total} questões</div><div class="hd">${h.data} · ${h.cat==="todas"?"Geral":h.cat} · ${h.modo}</div></div>
       <div class="hs ${h.porc>=70?"ap":"rp"}">${h.porc}%</div>
     </div>`).join("")
-    :`<div style="padding:20px;text-align:center;color:var(--muted);font-size:13px;">Nenhuma prova realizada ainda.</div>`;
+    :'<div style="padding:18px;text-align:center;color:var(--muted);font-size:12px;">Nenhuma prova realizada ainda.</div>';
   document.getElementById("hist-items").innerHTML=histHtml;
 }
-function limparStats(){
-  historico=[];statsCat={};errosAnteriores=[];
-  salvarDados();renderStats();mostrarToast("🗑️ Histórico limpo!");
+function limparStats(){historico=[];statsCat={};errosAnteriores=[];salvarDados();renderStats();mostrarToast("🗑️ Histórico limpo!");}
+
+// RANKING
+async function carregarRanking(){
+  const el=document.getElementById("rank-items");
+  if(SUPABASE_URL){
+    el.innerHTML='<div style="padding:18px;text-align:center;color:var(--muted);">⏳ Carregando...</div>';
+    try{
+      const r=await fetch(SUPABASE_URL+"/rest/v1/ranking?order=porc.desc&limit=20",{headers:{"apikey":SUPABASE_KEY,"Authorization":"Bearer "+SUPABASE_KEY}});
+      const data=await r.json();
+      renderRankList(data);
+    }catch(e){el.innerHTML='<div style="padding:18px;text-align:center;color:var(--muted);">Erro ao carregar ranking.</div>';}
+  }else{
+    const demo=[
+      {nome:"🏆 Felipe S.",acertos:28,total:30,porc:93,data:"hoje"},
+      {nome:"Maria C.",acertos:27,total:30,porc:90,data:"hoje"},
+      {nome:"João P.",acertos:26,total:30,porc:87,data:"ontem"},
+      {nome:"Ana R.",acertos:25,total:30,porc:83,data:"ontem"},
+      {nome:"Carlos M.",acertos:24,total:30,porc:80,data:"2 dias"},
+    ];
+    renderRankList(demo);
+  }
+}
+function renderRankList(data){
+  const el=document.getElementById("rank-items");
+  if(!data||!data.length){el.innerHTML='<div style="padding:18px;text-align:center;color:var(--muted);">Nenhuma pontuação ainda.</div>';return;}
+  el.innerHTML=data.map((r,i)=>{
+    const cls=i===0?"gold":i===1?"silver":i===2?"bronze":"";
+    const emoji=i===0?"🥇":i===1?"🥈":i===2?"🥉":"";
+    return `<div class="rank-item">
+      <div class="rank-pos ${cls}">${emoji||(i+1)}</div>
+      <div class="rank-nome">${r.nome}</div>
+      <div><div class="rank-score">${r.porc}%</div><div style="font-size:9px;color:var(--muted);">${r.acertos}/${r.total}</div></div>
+    </div>`;
+  }).join("");
+}
+async function enviarRankingSupabase(nome,acertos,total,porc){
+  if(!SUPABASE_URL)return;
+  try{await fetch(SUPABASE_URL+"/rest/v1/ranking",{method:"POST",headers:{"apikey":SUPABASE_KEY,"Authorization":"Bearer "+SUPABASE_KEY,"Content-Type":"application/json"},body:JSON.stringify({nome,acertos,total,porc})});}catch(e){}
 }
 
-// ════════════════════════════════════════════════════════════════
 // NAVEGAÇÃO
-// ════════════════════════════════════════════════════════════════
 function mostrarPg(id){
   ["pg-inicio","pg-prova","pg-resultado","pg-flash","pg-galeria","pg-stats","pg-ranking","pg-ref"].forEach(p=>{
-    document.getElementById(p).classList.add("hidden");
+    const el=document.getElementById(p);
+    if(el)el.classList.add("hidden");
   });
-  document.getElementById(id).classList.remove("hidden");
+  const target=document.getElementById(id);
+  if(target)target.classList.remove("hidden");
   window.scrollTo(0,0);
-  if(id==="pg-stats") renderStats();
-  if(id==="pg-flash") initFlash();
-  if(id==="pg-ranking") carregarRanking();
+  if(id==="pg-stats")renderStats();
+  if(id==="pg-flash")initFlash();
+  if(id==="pg-ranking")carregarRanking();
+  if(id==="pg-galeria")renderGaleria(PLACAS);
 }
 function irPara(pg,tabEl){
   mostrarPg(pg);
   document.querySelectorAll(".tab").forEach(t=>t.classList.remove("ativo"));
   tabEl.classList.add("ativo");
-  if(pg!=="pg-prova") pararTimer();
+  if(pg!=="pg-prova")pararTimer();
+}
+function irInicio(){
+  mostrarPg("pg-inicio");
+  document.querySelectorAll(".tab").forEach(t=>t.classList.remove("ativo"));
+  document.querySelectorAll(".tab")[0].classList.add("ativo");
 }
 
-// ════════════════════════════════════════════════════════════════
-// TIMER
-// ════════════════════════════════════════════════════════════════
-function iniciarTimer(){
-  pararTimer();segs=qtdeAtual*60;atualizarTimer();
-  timerInt=setInterval(()=>{
-    segs--;atualizarTimer();
-    if(segs<=0){pararTimer();document.getElementById("modal-tempo").classList.remove("hidden");}
-  },1000);
-}
-function pararTimer(){if(timerInt){clearInterval(timerInt);timerInt=null;}document.getElementById("timer").classList.remove("urg");}
-function atualizarTimer(){
-  const m=String(Math.floor(segs/60)).padStart(2,"0"),s=String(segs%60).padStart(2,"0");
-  const el=document.getElementById("timer");el.textContent=m+":"+s;
-  segs<=(qtdeAtual*60*0.17)?el.classList.add("urg"):el.classList.remove("urg");
-}
-
-// ════════════════════════════════════════════════════════════════
 // PREMIUM
-// ════════════════════════════════════════════════════════════════
 function mostrarModalPremium(){document.getElementById("modal-premium").classList.remove("hidden");}
 function ativarPremiumDemo(){
   document.getElementById("modal-premium").classList.add("hidden");
-  isPremium=true;
-  localStorage.setItem('detran_premium','true');
-  ativarPremiumUI();
-  lancarConfetti();
-  mostrarToast("⭐ Premium ativado! Sem anúncios.");
-}
-function ativarPremiumUI(){
-  isPremium=true;
+  isPremium=true;localStorage.setItem("detran_premium","true");
   document.body.classList.add("premium");
   document.getElementById("premium-badge").classList.remove("hidden");
+  lancarConfetti();mostrarToast("⭐ Premium ativado! Sem anúncios.");
 }
 
-// ════════════════════════════════════════════════════════════════
 // TOAST
-// ════════════════════════════════════════════════════════════════
 function mostrarToast(msg){
-  const t=document.createElement("div");
-  t.className="toast";t.textContent=msg;
-  document.body.appendChild(t);
-  setTimeout(()=>t.remove(),3000);
+  const t=document.createElement("div");t.className="toast";t.textContent=msg;
+  document.body.appendChild(t);setTimeout(()=>t.remove(),3000);
 }
 
-// ════════════════════════════════════════════════════════════════
-// PWA — Install prompt
-// ════════════════════════════════════════════════════════════════
-let pwaPrompt=null;
-window.addEventListener('beforeinstallprompt',(e)=>{
-  e.preventDefault();pwaPrompt=e;
-  document.getElementById("install-bar").classList.remove("hidden");
-});
-document.getElementById("install-btn").addEventListener('click',()=>{
-  if(pwaPrompt){pwaPrompt.prompt();pwaPrompt.userChoice.then(()=>{pwaPrompt=null;document.getElementById("install-bar").classList.add("hidden");});}
-});
-window.addEventListener('appinstalled',()=>{
-  document.getElementById("install-bar").classList.add("hidden");
-  mostrarToast("✅ App instalado com sucesso!");
-});
+// CONFETTI
+function lancarConfetti(){
+  const cores=["#E63946","#f59e0b","#22c55e","#3b82f6","#c084fc","#fff"];
+  for(let i=0;i<35;i++){
+    const el=document.createElement("div");el.className="confetti-piece";
+    el.style.cssText=`left:${Math.random()*100}vw;background:${cores[Math.floor(Math.random()*cores.length)]};width:${6+Math.random()*8}px;height:${6+Math.random()*8}px;border-radius:${Math.random()>0.5?"50%":"2px"};animation-duration:${2+Math.random()*2}s;animation-delay:${Math.random()*0.8}s;`;
+    document.body.appendChild(el);setTimeout(()=>el.remove(),4000);
+  }
+}
 
-// ════════════════════════════════════════════════════════════════
-// SERVICE WORKER (PWA offline)
-// ════════════════════════════════════════════════════════════════
-if('serviceWorker' in navigator){
-  const sw=`
-    const CACHE='detran-v1';
-    const FILES=['/'];
-    self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(FILES))));
-    self.addEventListener('fetch',e=>e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).catch(()=>caches.match('/')))));
-  `;
-  const blob=new Blob([sw],{type:'application/javascript'});
+// PWA
+let pwaPrompt=null;
+window.addEventListener("beforeinstallprompt",(e)=>{e.preventDefault();pwaPrompt=e;document.getElementById("install-bar").classList.remove("hidden");});
+document.getElementById("install-btn").addEventListener("click",()=>{if(pwaPrompt){pwaPrompt.prompt();pwaPrompt.userChoice.then(()=>{pwaPrompt=null;document.getElementById("install-bar").classList.add("hidden");});}});
+window.addEventListener("appinstalled",()=>{document.getElementById("install-bar").classList.add("hidden");mostrarToast("✅ App instalado!");});
+
+// SERVICE WORKER
+if("serviceWorker" in navigator){
+  const sw='const C="detran-v3";self.addEventListener("install",e=>e.waitUntil(caches.open(C).then(c=>c.addAll(["/"]))));self.addEventListener("fetch",e=>e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).catch(()=>caches.match("/")))));';
+  const blob=new Blob([sw],{type:"application/javascript"});
   navigator.serviceWorker.register(URL.createObjectURL(blob)).catch(()=>{});
 }
 
-// ── INIT ──
+// INIT
+renderCatGrid();
 document.querySelector('.qtde-btn[onclick*="30"]').classList.add("on");
 </script>
 </body>
