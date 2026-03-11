@@ -244,6 +244,21 @@ tr:hover td{background:rgba(255,255,255,.02);}
   .hero h1{font-size:24px;}
   .modo-card{min-width:110px;}
 }
+
+/* ── SCROLL PROVA ──────────────────────────────────────── */
+.prova-header{position:sticky;top:0;z-index:50;background:var(--bg2);padding:10px 16px 6px;border-bottom:1px solid var(--border);margin-bottom:8px;}
+.prova-info{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;font-size:12px;color:var(--muted);}
+#prova-titulo{font-weight:700;color:var(--fg);font-size:14px;}
+.acoes-fixas{display:flex;gap:8px;flex-wrap:wrap;padding:16px;margin-top:8px;border-top:1px solid var(--border);position:sticky;bottom:0;background:var(--bg2);z-index:40;}
+.acoes-fixas .btn-fin{flex:1;background:var(--red);color:#fff;border:none;border-radius:8px;padding:12px;font-weight:700;font-size:14px;cursor:pointer;}
+.acoes-fixas .btn-n{background:var(--bg3);color:var(--fg);border:1px solid var(--border);border-radius:8px;padding:12px 16px;font-weight:600;font-size:13px;cursor:pointer;}
+.prova-instrucao{text-align:center;font-size:12px;color:var(--muted);padding:8px 16px 12px;border-bottom:1px solid var(--border);margin-bottom:4px;}
+.qcard{background:var(--bg3);border-radius:12px;padding:16px;margin:8px 0;border:2px solid transparent;transition:border-color .2s;}
+.qcard.respondida-ok{border-color:rgba(34,197,94,.35);}
+.qcard.respondida-err{border-color:rgba(239,68,68,.25);}
+.qcat-tag{font-size:10px;background:var(--bg2);color:var(--muted);border-radius:4px;padding:2px 6px;margin-left:6px;font-weight:500;text-transform:capitalize;}
+.explicacao{margin-top:10px;padding:10px 12px;background:rgba(96,165,250,.1);border-left:3px solid var(--blue);border-radius:0 6px 6px 0;font-size:12px;color:var(--muted);line-height:1.5;}
+.explicacao.hidden{display:none;}
 </style>
 </head>
 <body>
@@ -310,14 +325,17 @@ tr:hover td{background:rgba(255,255,255,.02);}
 </div>
 
 <div id="pg-prova" class="hidden">
-  <div class="prog-wrap"><div class="pb-out"><div class="pb-in" id="pb" style="width:0%"></div></div><div class="pb-txt" id="pb-txt">0/30</div></div>
-  <div id="streak-wrap"></div>
-  <div id="modo-badge-wrap"></div>
-  <div class="ad-banner hidden" id="ad-prova"><div style="height:44px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--muted);">📢 Anúncio — <a href="#" onclick="mostrarModalPremium();return false" style="color:var(--yellow);margin-left:4px">Premium ⭐</a></div></div>
+  <div class="prova-header">
+    <div class="prova-info">
+      <span id="prova-titulo">📝 Simulado</span>
+      <span id="prova-count">0 questões</span>
+    </div>
+    <div class="prog-wrap"><div class="pb-out"><div class="pb-in" id="pb" style="width:0%"></div></div><div class="pb-txt" id="pb-txt">0/30</div></div>
+  </div>
   <div id="qcontainer"></div>
-  <div class="acoes">
-    <button class="btn-fin" onclick="finalizar()">✓ Finalizar</button>
-    <button class="btn-n" onclick="iniciar()">↻ Nova</button>
+  <div class="acoes-fixas">
+    <button class="btn-fin" onclick="finalizarScroll()">✓ Finalizar Prova</button>
+    <button class="btn-n" onclick="iniciar()">↻ Nova Prova</button>
     <button class="btn-n" onclick="irInicio()">← Início</button>
   </div>
 </div>
@@ -1554,79 +1572,92 @@ function iniciar(){
     pool=errosAnteriores.map(p=>BANCO_COMPLETO.find(q=>q.p===p)).filter(Boolean);
   }
   if(!pool.length){mostrarToast("Nenhuma questão disponível!");return;}
-  // Evitar repetições: priorizar questões não vistas nesta sessão
+  // Anti-repetição por sessão
   if(modoAtual!=="erros"){
     const naoVistas=pool.filter(q=>!sessionAsked.has(q.p));
-    const jaVistas=pool.filter(q=>sessionAsked.has(q.p));
-    // Se não há questões suficientes não vistas, resetar o histórico da sessão
-    if(naoVistas.length<qtdeAtual){
-      sessionAsked.clear();
-      pool=embaralhar(pool);
-    } else {
-      // Priorizar não vistas, completar com já vistas se necessário
-      pool=embaralhar(naoVistas).concat(embaralhar(jaVistas));
-    }
+    if(naoVistas.length<qtdeAtual){sessionAsked.clear();pool=embaralhar(pool);}
+    else{pool=embaralhar(naoVistas).concat(embaralhar(pool.filter(q=>sessionAsked.has(q.p))));}
   }
   provaAtual=embaralhar(pool).slice(0,Math.min(qtdeAtual,pool.length));
-  // Registrar questões desta prova na sessão
   provaAtual.forEach(q=>sessionAsked.add(q.p));
-  respostas={};idx=0;streakAtual=0;
+  respostas={};streakAtual=0;
+  const modoLabel=modoAtual==="simulado"?"📝 Simulado":modoAtual==="estudo"?"💡 Estudo":"🎯 Só Erros";
+  document.getElementById("prova-titulo").textContent=modoLabel;
+  document.getElementById("prova-count").textContent=provaAtual.length+" questões";
+  document.getElementById("pb").style.width="0%";
+  document.getElementById("pb-txt").textContent="0/"+provaAtual.length;
+  renderTodasQuestoes();
   mostrarPg("pg-prova");
-  renderQuestao();
+  window.scrollTo(0,0);
   iniciarTimer();
 }
 
-function renderQuestao(){
-  if(idx>=provaAtual.length){finalizar();return;}
-  const q=provaAtual[idx];
-  const pct=Math.round((idx/provaAtual.length)*100);
-  document.getElementById("pb").style.width=pct+"%";
-  document.getElementById("pb-txt").textContent=idx+"/"+provaAtual.length;
-  document.getElementById("streak-wrap").innerHTML=streakAtual>=3?`<div class="streak-banner"><span class="streak-num">${streakAtual}🔥</span><span class="streak-lbl">acertos seguidos!</span></div>`:"";
-  document.getElementById("modo-badge-wrap").innerHTML=`<div class="modo-badge">${modoAtual==="simulado"?"📝 Simulado":modoAtual==="estudo"?"💡 Estudo":"🎯 Só Erros"}</div>`;
-  if((idx+1)%10===0&&idx>0&&!isPremium){document.getElementById("ad-prova").classList.remove("hidden");}else{document.getElementById("ad-prova").classList.add("hidden");}
+function renderTodasQuestoes(){
   const opts=["A","B","C","D"];
-  const html=`<div class="qcard">
-    <div class="qnum">Questão ${idx+1} de ${provaAtual.length}</div>
-    <div class="qtxt">${q.p}</div>
-    <div class="opcoes" id="opcoes">
-      ${q.o.map((o,i)=>`<label class="op" id="op${i}" onclick="selecionar(${i})">
-        <input type="radio" name="op" value="${i}">
-        <span class="op-l">${opts[i]}</span>${o}
-      </label>`).join("")}
-    </div>
-    <div id="explicacao-wrap"></div>
-  </div>`;
-  document.getElementById("qcontainer").innerHTML=html;
+  const blocosModo=modoAtual==="simulado"?"":"<em style='font-size:11px;color:var(--muted)'>Respostas reveladas após sua seleção</em>";
+  const cards=provaAtual.map((q,qi)=>`
+    <div class="qcard" id="qcard-${qi}">
+      <div class="qnum">Questão ${qi+1} <span class="qcat-tag">${q.cat}</span></div>
+      <div class="qtxt">${q.p}</div>
+      <div class="opcoes" id="opcoes-${qi}">
+        ${q.o.map((o,i)=>`<label class="op" id="op-${qi}-${i}" onclick="selecionarQ(${qi},${i})">
+          <input type="radio" name="op-${qi}" value="${i}">
+          <span class="op-l">${opts[i]}</span>${o}
+        </label>`).join("")}
+      </div>
+      <div id="explic-${qi}" class="explicacao hidden"></div>
+    </div>`).join("");
+  document.getElementById("qcontainer").innerHTML=`<div class="prova-instrucao">Responda todas as questões e clique em <strong>Finalizar Prova</strong></div>`+cards;
 }
 
-function selecionar(i){
-  if(respostas[idx]!==undefined)return;
-  respostas[idx]=i;
-  const q=provaAtual[idx];
-  document.querySelectorAll(".op").forEach((o,j)=>{
+function selecionarQ(qi,i){
+  if(respostas[qi]!==undefined)return;
+  respostas[qi]=i;
+  const q=provaAtual[qi];
+  // Atualizar barra de progresso
+  const respondidas=Object.keys(respostas).length;
+  const pct=Math.round((respondidas/provaAtual.length)*100);
+  document.getElementById("pb").style.width=pct+"%";
+  document.getElementById("pb-txt").textContent=respondidas+"/"+provaAtual.length;
+  // Marcar opções no card desta questão
+  const opcoesDivs=document.querySelectorAll(`#opcoes-${qi} .op`);
+  opcoesDivs.forEach((o,j)=>{
     o.classList.add("bloqueada");
     if(j===q.c)o.classList.add("correta-show");
     if(j===i&&i!==q.c)o.classList.add("errada-show");
   });
+  // Stats e erros
   if(i===q.c){
     streakAtual++;
-    if(streakAtual>=5)lancarConfetti();
     if(!statsCat[q.cat])statsCat[q.cat]={ac:0,tot:0};
     statsCat[q.cat].ac++;statsCat[q.cat].tot++;
     errosAnteriores=errosAnteriores.filter(p=>p!==q.p);
+    document.getElementById("qcard-"+qi).classList.add("respondida-ok");
   }else{
     streakAtual=0;
     if(!statsCat[q.cat])statsCat[q.cat]={ac:0,tot:0};
     statsCat[q.cat].tot++;
     if(!errosAnteriores.includes(q.p))errosAnteriores.push(q.p);
+    document.getElementById("qcard-"+qi).classList.add("respondida-err");
   }
+  // Modo estudo: mostrar explicação imediatamente
   if(modoAtual!=="simulado"&&q.ex){
-    document.getElementById("explicacao-wrap").innerHTML=`<div class="explicacao"><strong>Explicação:</strong> ${q.ex}</div>`;
+    const expEl=document.getElementById("explic-"+qi);
+    expEl.innerHTML="<strong>💡 Explicação:</strong> "+q.ex;
+    expEl.classList.remove("hidden");
   }
   salvarDados();
-  setTimeout(()=>{idx++;renderQuestao();},modoAtual==="simulado"?800:1800);
 }
+
+function finalizarScroll(){
+  const respondidas=Object.keys(respostas).length;
+  if(respondidas<provaAtual.length){
+    const faltam=provaAtual.length-respondidas;
+    if(!confirm("Você ainda tem "+faltam+" questão(ões) sem resposta. Deseja finalizar mesmo assim?"))return;
+  }
+  finalizar();
+}
+
 
 function finalizar(){
   pararTimer();
