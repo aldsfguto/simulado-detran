@@ -1566,19 +1566,23 @@ function selecionarQtde(n,el){qtdeAtual=n;document.querySelectorAll(".qtde-btn")
 function embaralhar(arr){const a=[...arr];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 
 function iniciar(){
-  let pool=catAtual==="todas"?[...BANCO_COMPLETO]:BANCO_COMPLETO.filter(q=>q.cat===catAtual);
+  let pool;
   if(modoAtual==="erros"){
     if(!errosAnteriores.length){mostrarToast("Nenhum erro para revisar ainda!");return;}
-    pool=errosAnteriores.map(p=>BANCO_COMPLETO.find(q=>q.p===p)).filter(Boolean);
-  }
-  if(!pool.length){mostrarToast("Nenhuma questão disponível!");return;}
-  // Anti-repetição por sessão
-  if(modoAtual!=="erros"){
+    pool=errosAnteriores.map(p=>BANCO_COMPLETO.find(q=>q&&q.p===p)).filter(Boolean);
+  } else {
+    pool=catAtual==="todas"?[...BANCO_COMPLETO]:BANCO_COMPLETO.filter(q=>q.cat===catAtual);
+    // Anti-repetição: priorizar não vistas
     const naoVistas=pool.filter(q=>!sessionAsked.has(q.p));
-    if(naoVistas.length<qtdeAtual){sessionAsked.clear();pool=embaralhar(pool);}
-    else{pool=embaralhar(naoVistas).concat(embaralhar(pool.filter(q=>sessionAsked.has(q.p))));}
+    if(naoVistas.length>=qtdeAtual){
+      pool=embaralhar(naoVistas);
+    } else {
+      sessionAsked.clear();
+      pool=embaralhar(pool);
+    }
   }
-  provaAtual=embaralhar(pool).slice(0,Math.min(qtdeAtual,pool.length));
+  if(!pool||!pool.length){mostrarToast("Nenhuma questão disponível!");return;}
+  provaAtual=pool.slice(0,Math.min(qtdeAtual,pool.length));
   provaAtual.forEach(q=>sessionAsked.add(q.p));
   respostas={};streakAtual=0;
   const modoLabel=modoAtual==="simulado"?"📝 Simulado":modoAtual==="estudo"?"💡 Estudo":"🎯 Só Erros";
@@ -1611,6 +1615,8 @@ function renderTodasQuestoes(){
 }
 
 function selecionarQ(qi,i){
+  qi=parseInt(qi);i=parseInt(i);
+  if(!provaAtual||!provaAtual[qi])return;
   if(respostas[qi]!==undefined)return;
   respostas[qi]=i;
   const q=provaAtual[qi];
