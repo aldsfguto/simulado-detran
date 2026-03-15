@@ -259,6 +259,45 @@ tr:hover td{background:rgba(255,255,255,.02);}
 .qcat-tag{font-size:10px;background:var(--bg2);color:var(--muted);border-radius:4px;padding:2px 6px;margin-left:6px;font-weight:500;text-transform:capitalize;}
 .explicacao{margin-top:10px;padding:10px 12px;background:rgba(96,165,250,.1);border-left:3px solid var(--blue);border-radius:0 6px 6px 0;font-size:12px;color:var(--muted);line-height:1.5;}
 .explicacao.hidden{display:none;}
+
+/* ── TEORIA PAGE ─────────────────────────────────────────── */
+.ttab{background:none;border:none;color:var(--muted);font-size:11px;font-weight:600;padding:10px 14px;cursor:pointer;white-space:nowrap;border-bottom:3px solid transparent;transition:all .2s;text-transform:uppercase;letter-spacing:.5px;}
+.ttab.on,.ttab:hover{color:var(--fg);border-bottom-color:var(--red);}
+.tsec{padding:12px 12px 0;}
+.tsec.hidden{display:none;}
+.tsec-title{font-size:18px;font-weight:900;font-family:'Barlow Condensed',sans-serif;color:var(--fg);margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--border);letter-spacing:.5px;}
+.tcard{background:var(--bg3);border-radius:12px;margin-bottom:12px;overflow:hidden;border:1px solid var(--border);}
+.tcard-head{background:linear-gradient(90deg,rgba(204,0,0,.15),transparent);padding:12px 14px;font-weight:700;font-size:14px;border-bottom:1px solid var(--border);}
+.tcard-body{padding:12px 14px;font-size:13px;line-height:1.6;color:var(--muted);}
+.tcard-body p{margin:0 0 10px;color:var(--fg);}
+.tbox{border-radius:8px;padding:10px 12px;font-size:12px;margin:10px 0;line-height:1.5;}
+.tbox.red{background:rgba(239,68,68,.1);border-left:3px solid var(--red);color:#fca5a5;}
+.tbox.blue{background:rgba(59,130,246,.1);border-left:3px solid #3b82f6;color:#93c5fd;}
+.tbox.yellow{background:rgba(245,158,11,.1);border-left:3px solid var(--yellow);color:#fcd34d;}
+.ttable{width:100%;border-collapse:collapse;font-size:12px;margin:8px 0;}
+.ttable th{background:rgba(255,255,255,.05);padding:8px 10px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);}
+.ttable td{padding:8px 10px;border-top:1px solid var(--border);color:var(--fg);vertical-align:top;}
+.ttable tr:hover td{background:rgba(255,255,255,.03);}
+.tlist{margin:0;padding-left:20px;color:var(--fg);}
+.tlist li{margin-bottom:6px;}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0;}
+.info-item{background:rgba(255,255,255,.04);border-radius:8px;padding:10px;font-size:12px;color:var(--fg);}
+.info-item.emergency{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);display:flex;align-items:center;gap:10px;}
+.info-item.emergency span{font-size:22px;font-weight:900;color:var(--red);font-family:'Barlow Condensed',sans-serif;min-width:36px;}
+.badge{display:inline-block;border-radius:4px;padding:2px 7px;font-size:10px;font-weight:700;text-transform:uppercase;margin-right:4px;}
+.badge.reg{background:rgba(204,0,0,.2);color:#fca5a5;}
+.badge.adv{background:rgba(245,158,11,.2);color:#fcd34d;}
+.badge.ind{background:rgba(21,101,192,.2);color:#93c5fd;}
+.badge.esp{background:rgba(192,132,252,.2);color:#e9d5ff;}
+.badge.vy{background:rgba(245,158,11,.2);color:#fcd34d;}
+.badge.vr{background:rgba(239,68,68,.2);color:#fca5a5;}
+.vg{color:#4ade80;font-weight:700;}
+.vy{color:#fbbf24;font-weight:700;}
+.vr{color:#f87171;font-weight:700;}
+.steps{display:flex;flex-direction:column;gap:8px;}
+.step{display:flex;gap:12px;align-items:flex-start;padding:8px 0;}
+.step-n{background:var(--red);color:#fff;font-weight:700;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;margin-top:2px;}
+@media(max-width:480px){.info-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -285,6 +324,7 @@ tr:hover td{background:rgba(255,255,255,.02);}
   <div class="tab" onclick="irPara('pg-stats',this)">📊 Stats</div>
   <div class="tab" onclick="irPara('pg-ranking',this)">🏆 Rank</div>
   <div class="tab" onclick="irPara('pg-ref',this)">📚 Ref</div>
+  <div class="tab" onclick="irPara('pg-teoria',this)">📖 Teoria</div>
 </div>
 
 <div class="main">
@@ -426,6 +466,629 @@ tr:hover td{background:rgba(255,255,255,.02);}
   </table></div>
 </div>
 
+</div>
+
+<div id="pg-teoria" class="hidden" style="animation:fadeUp .4s ease;">
+<div style="padding:0 0 80px 0;">
+
+  <!-- HEADER -->
+  <div style="background:linear-gradient(135deg,var(--red) 0%,#7f0000 100%);padding:20px 16px 24px;margin-bottom:0;">
+    <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:4px;">Manual do Condutor</div>
+    <div style="font-size:22px;font-weight:900;color:#fff;font-family:'Barlow Condensed',sans-serif;letter-spacing:1px;">📖 TEORIA COMPLETA</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.7);margin-top:4px;">Tudo que você precisa saber para passar na prova do DETRAN</div>
+  </div>
+
+  <!-- ÍNDICE / TABS -->
+  <div id="teoria-tabs" style="display:flex;gap:0;overflow-x:auto;background:var(--bg2);border-bottom:2px solid var(--border);scrollbar-width:none;">
+    <button class="ttab on" onclick="teoriaGo('t-sinalizacao',this)">🚦 Sinais</button>
+    <button class="ttab" onclick="teoriaGo('t-velocidades',this)">⚡ Velocidades</button>
+    <button class="ttab" onclick="teoriaGo('t-ultrapassagem',this)">↔ Ultrapass.</button>
+    <button class="ttab" onclick="teoriaGo('t-estacionamento',this)">🅿️ Estacion.</button>
+    <button class="ttab" onclick="teoriaGo('t-alcool',this)">🍺 Álcool</button>
+    <button class="ttab" onclick="teoriaGo('t-cnh',this)">🪪 CNH</button>
+    <button class="ttab" onclick="teoriaGo('t-infracoes',this)">⚠️ Infrações</button>
+    <button class="ttab" onclick="teoriaGo('t-primeiros',this)">🚑 Socorros</button>
+    <button class="ttab" onclick="teoriaGo('t-mecanica',this)">🔧 Mecânica</button>
+    <button class="ttab" onclick="teoriaGo('t-direcao',this)">🚗 Direção</button>
+  </div>
+
+  <!-- SEÇÕES -->
+  <div id="t-sinalizacao" class="tsec">
+    <div class="tsec-title">🚦 Sinalização de Trânsito</div>
+
+    <div class="tcard">
+      <div class="tcard-head">🔴 Placas de Regulamentação (Grupo R)</div>
+      <div class="tcard-body">
+        <p>Impõem obrigações, proibições ou restrições ao condutor. O descumprimento constitui infração.</p>
+        <div class="info-grid">
+          <div class="info-item"><span class="badge reg">Forma</span> Circulares com borda vermelha (ou octogonal para PARE)</div>
+          <div class="info-item"><span class="badge reg">Cor</span> Fundo branco com símbolo e borda vermelha</div>
+          <div class="info-item"><span class="badge reg">Exemplos</span> PARE (R-1), Velocidade Máxima, Proibido Ultrapassar</div>
+        </div>
+        <div class="tbox red">⚠️ <strong>Cuidado na prova:</strong> Círculo azul = OBRIGAÇÃO. Círculo com borda vermelha = PROIBIÇÃO ou LIMITE.</div>
+        <table class="ttable">
+          <tr><th>Placa</th><th>Nome</th><th>O que significa</th></tr>
+          <tr><td>R-1</td><td>PARE</td><td>Parada total obrigatória antes da linha de retenção</td></tr>
+          <tr><td>R-2</td><td>Sentido Proibido</td><td>Proibida a entrada no sentido indicado</td></tr>
+          <tr><td>R-3</td><td>Dê a Preferência</td><td>Ceder passagem aos veículos da via preferencial</td></tr>
+          <tr><td>R-4a</td><td>Proibido Ultrapassar</td><td>Proibida ultrapassagem no trecho</td></tr>
+          <tr><td>R-5a</td><td>Proibido Estacionar</td><td>Parar brevemente ainda é permitido</td></tr>
+          <tr><td>R-5b</td><td>Proibido Parar e Estacionar</td><td>Nenhuma imobilização permitida</td></tr>
+          <tr><td>R-6a–h</td><td>Velocidade Máxima</td><td>30 / 40 / 50 / 60 / 80 / 90 / 100 / 110 km/h</td></tr>
+          <tr><td>R-7</td><td>Velocidade Mínima 40</td><td>Proibido circular abaixo de 40 km/h</td></tr>
+          <tr><td>R-24a–f</td><td>Sentido Obrigatório</td><td>Direção de circulação obrigatória (azul com seta)</td></tr>
+          <tr><td>R-28</td><td>Rotatória</td><td>Sentido anti-horário obrigatório</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="tcard">
+      <div class="tcard-head">⚠️ Placas de Advertência (Grupo A)</div>
+      <div class="tcard-body">
+        <p>Alertam sobre condições especiais na via. Não exigem parada, mas pedem atenção redobrada e redução de velocidade.</p>
+        <div class="info-grid">
+          <div class="info-item"><span class="badge adv">Forma</span> Triângulo equilátero com vértice para cima</div>
+          <div class="info-item"><span class="badge adv">Cor</span> Fundo amarelo com bordas e símbolos pretos</div>
+          <div class="info-item"><span class="badge adv">Exemplos</span> Curvas, Lombada, Cruzamento, Escola, Animais</div>
+        </div>
+        <table class="ttable">
+          <tr><th>Placa</th><th>O que há à frente</th></tr>
+          <tr><td>A-1 / A-2</td><td>Curva acentuada à esquerda / direita</td></tr>
+          <tr><td>A-8</td><td>Rotatória</td></tr>
+          <tr><td>A-9</td><td>Semáforo</td></tr>
+          <tr><td>A-10</td><td>Obras na pista</td></tr>
+          <tr><td>A-11</td><td>Lombada</td></tr>
+          <tr><td>A-12</td><td>Depressão (buraco)</td></tr>
+          <tr><td>A-13</td><td>Pista escorregadia</td></tr>
+          <tr><td>A-14</td><td>Passagem de nível com cancela</td></tr>
+          <tr><td>A-15</td><td>Passagem de nível SEM cancela</td></tr>
+          <tr><td>A-17</td><td>Área escolar — máx. 30 km/h</td></tr>
+          <tr><td>A-27 / A-28</td><td>Subida / Descida acentuada</td></tr>
+          <tr><td>A-29</td><td>Névoa / Neblina frequente</td></tr>
+          <tr><td>A-38</td><td>Perigo não especificado (!)</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="tcard">
+      <div class="tcard-head">🔵 Placas de Indicação (Grupo I) e Especiais</div>
+      <div class="tcard-body">
+        <div class="info-grid">
+          <div class="info-item"><span class="badge ind">Indicação</span> Fundo azul ou verde — localidades, serviços, distâncias</div>
+          <div class="info-item"><span class="badge esp">Especiais</span> Formato variado — educação e zonas específicas</div>
+        </div>
+        <p><strong>Fundo laranja</strong> = sinalização temporária de <strong>obras</strong> — tem força legal igual às placas definitivas.</p>
+        <div class="tbox blue">💡 <strong>Regra de ouro:</strong> Quando dois sinais se contradizem, sempre obedece o mais <strong>restritivo</strong>.</div>
+      </div>
+    </div>
+
+    <div class="tcard">
+      <div class="tcard-head">🟡 Marcas no Pavimento</div>
+      <div class="tcard-body">
+        <table class="ttable">
+          <tr><th>Marca</th><th>Cor</th><th>Significado</th></tr>
+          <tr><td>Linha contínua central</td><td>Amarela</td><td>Proibido ultrapassar (ambos sentidos)</td></tr>
+          <tr><td>Linha tracejada central</td><td>Amarela</td><td>Pode ultrapassar com segurança</td></tr>
+          <tr><td>Linha contínua lateral</td><td>Branca</td><td>Borda da pista / não ultrapassar</td></tr>
+          <tr><td>Linha tracejada lateral</td><td>Branca</td><td>Pode mudar de faixa com segurança</td></tr>
+          <tr><td>Faixa de pedestres</td><td>Branca</td><td>Travessia de pedestres — ceder passagem</td></tr>
+          <tr><td>Linha de retenção</td><td>Branca transversal</td><td>Parar antes desta linha (semáforo, PARE)</td></tr>
+          <tr><td>Setas no pavimento</td><td>Branca</td><td>Sentido obrigatório de circulação na faixa</td></tr>
+          <tr><td>Palavra PARE no asfalto</td><td>Branca</td><td>Reforça a placa R-1 — parada total</td></tr>
+        </table>
+        <div class="tbox yellow">⚡ <strong>Macete:</strong> AMARELO = sentidos opostos de tráfego. BRANCO = mesmo sentido ou bordas.</div>
+      </div>
+    </div>
+
+    <div class="tcard">
+      <div class="tcard-head">🚦 Semáforos — Tudo sobre as Cores</div>
+      <div class="tcard-body">
+        <table class="ttable">
+          <tr><th>Sinal</th><th>O que fazer</th><th>Infração se desrespeitar</th></tr>
+          <tr><td>🟢 Verde</td><td>Via livre — siga com atenção</td><td>—</td></tr>
+          <tr><td>🟡 Amarelo</td><td>Pare se puder com segurança</td><td>Avançar = infração</td></tr>
+          <tr><td>🔴 Vermelho</td><td>PARE antes da linha de retenção</td><td>Gravíssima — 7 pts</td></tr>
+          <tr><td>🟡 Amarelo piscante</td><td>Atenção — preferência de quem vem pela direita</td><td>Grave se causar acidente</td></tr>
+          <tr><td>🔴 Vermelho piscante</td><td>Parada obrigatória — equivale ao PARE</td><td>Gravíssima — 7 pts</td></tr>
+          <tr><td>🟢 Verde piscante</td><td>Sinal vai fechar — prepare-se para parar</td><td>—</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div id="t-velocidades" class="tsec hidden">
+    <div class="tsec-title">⚡ Limites de Velocidade</div>
+
+    <div class="tcard">
+      <div class="tcard-head">📋 Tabela Oficial de Velocidades (CTB Art. 61)</div>
+      <div class="tcard-body">
+        <table class="ttable">
+          <tr><th>Tipo de Via</th><th>Automóvel / Moto</th><th>Caminhão / Ônibus</th></tr>
+          <tr><td><strong>Rodovia — Pista Dupla</strong></td><td class="vg">110 km/h</td><td>90 km/h</td></tr>
+          <tr><td><strong>Rodovia — Pista Simples</strong></td><td class="vg">100 km/h</td><td>90 km/h</td></tr>
+          <tr><td><strong>Via Arterial Urbana</strong></td><td class="vy">60 km/h</td><td>60 km/h</td></tr>
+          <tr><td><strong>Via Coletora Urbana</strong></td><td class="vy">40 km/h</td><td>40 km/h</td></tr>
+          <tr><td><strong>Via Local Urbana</strong></td><td class="vr">30 km/h</td><td>30 km/h</td></tr>
+          <tr><td><strong>Área Escolar</strong></td><td class="vr">30 km/h</td><td>30 km/h</td></tr>
+        </table>
+        <div class="tbox yellow">⚡ <strong>Atenção:</strong> O farol baixo é obrigatório em rodovias <strong>24 horas por dia</strong>, inclusive de dia.</div>
+      </div>
+    </div>
+
+    <div class="tcard">
+      <div class="tcard-head">⚖️ Penalidades por Excesso de Velocidade</div>
+      <div class="tcard-body">
+        <table class="ttable">
+          <tr><th>Excesso</th><th>Infração</th><th>Pontos</th><th>Multa</th></tr>
+          <tr><td>Até 20% acima</td><td>Grave</td><td>5</td><td>R$ 195,23</td></tr>
+          <tr><td>20% a 50% acima</td><td>Gravíssima ×2</td><td>14</td><td>R$ 586,94</td></tr>
+          <tr><td>Acima de 50%</td><td>Gravíssima ×3</td><td>21</td><td>R$ 880,41</td></tr>
+        </table>
+        <div class="tbox red">🚨 Exceder 50% da velocidade em área escolar = fator multiplicador ainda maior.</div>
+      </div>
+    </div>
+
+    <div class="tcard">
+      <div class="tcard-head">🌧️ Velocidade em Condições Adversas</div>
+      <div class="tcard-body">
+        <ul class="tlist">
+          <li><strong>Pista molhada:</strong> Reduza ~20% — distância de frenagem pode triplicar</li>
+          <li><strong>Neblina densa:</strong> Reduza 50% ou mais — use farol de neblina ou baixo</li>
+          <li><strong>Gelo ou neve:</strong> Reduza 50%+ — use marchas baixas e aumente distância</li>
+          <li><strong>Obras:</strong> Respeite o limite indicado (geralmente 30 km/h)</li>
+          <li><strong>Zona escolar:</strong> 30 km/h com atenção redobrada a crianças</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="t-ultrapassagem" class="tsec hidden">
+    <div class="tsec-title">↔️ Ultrapassagem</div>
+
+    <div class="tcard">
+      <div class="tcard-head">✅ Regras Gerais de Ultrapassagem</div>
+      <div class="tcard-body">
+        <ul class="tlist">
+          <li>A ultrapassagem é feita sempre pelo <strong>lado esquerdo</strong> do veículo ultrapassado</li>
+          <li>Pela direita: somente quando o veículo à frente sinalizou conversão à esquerda</li>
+          <li>Ao ser ultrapassado: <strong>não acelere</strong>, mantenha ou reduza a velocidade</li>
+          <li>Sinalizar: pisca-esquerda ao iniciar, pisca-direita ao concluir e retornar à faixa</li>
+        </ul>
+        <div class="tbox blue">💡 A faixa da esquerda em rodovias é para <strong>ultrapassagem</strong>. Retorne à direita após ultrapassar.</div>
+      </div>
+    </div>
+
+    <div class="tcard">
+      <div class="tcard-head">🚫 Onde é PROIBIDO Ultrapassar (CTB Art. 35)</div>
+      <div class="tcard-body">
+        <ul class="tlist">
+          <li>Curvas e lombadas sem visibilidade completa</li>
+          <li>Cruzamentos, interseções e bifurcações</li>
+          <li>Pontes, viadutos e túneis</li>
+          <li>Passagens de nível (cruzamento com trilhos)</li>
+          <li>Onde houver linha contínua amarela</li>
+          <li>Faixas de pedestres</li>
+          <li>Pelo acostamento — <span class="badge vr">Gravíssima</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tcard">
+      <div class="tcard-head">📏 Distâncias de Segurança</div>
+      <div class="tcard-body">
+        <table class="ttable">
+          <tr><th>Velocidade</th><th>Distância mínima recomendada</th></tr>
+          <tr><td>60 km/h</td><td>~30 metros (tempo de reação + frenagem)</td></tr>
+          <tr><td>80 km/h</td><td>~50 metros</td></tr>
+          <tr><td>100 km/h</td><td>~70 metros</td></tr>
+          <tr><td>110 km/h</td><td>~85 metros</td></tr>
+        </table>
+        <p style="font-size:12px;color:var(--muted);margin-top:8px;">Tempo médio de reação: 0,8 a 1 segundo. A 110 km/h, o carro percorre ~30m antes de você pisar o freio.</p>
+        <div class="tbox yellow">⚡ Ao ultrapassar caminhão: mantenha 1,5m de distância lateral mínima de ciclistas.</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="t-estacionamento" class="tsec hidden">
+    <div class="tsec-title">🅿️ Estacionamento e Parada</div>
+
+    <div class="tcard">
+      <div class="tcard-head">📌 Diferença entre PARAR e ESTACIONAR</div>
+      <div class="tcard-body">
+        <div class="info-grid">
+          <div class="info-item"><span class="badge vy">PARAR</span> Imobilização <strong>breve</strong> para embarque/desembarque ou aguardar algo. O condutor permanece no veículo.</div>
+          <div class="info-item"><span class="badge vr">ESTACIONAR</span> Imobilização por tempo maior ou com o condutor fora do veículo.</div>
+        </div>
+        <div class="tbox red">🚨 R-5a (um risco) = proibido ESTACIONAR, mas pode PARAR. R-5b (dois riscos) = proibido até PARAR.</div>
+      </div>
+    </div>
+
+    <div class="tcard">
+      <div class="tcard-head">🚫 Onde é Proibido Estacionar</div>
+      <div class="tcard-body">
+        <table class="ttable">
+          <tr><th>Local</th><th>Penalidade</th></tr>
+          <tr><td>Frente a entrada de garagem</td><td>Grave (5 pts) + remoção</td></tr>
+          <tr><td>Sobre calçada</td><td>Gravíssima (7 pts) + remoção</td></tr>
+          <tr><td>Faixa de pedestres</td><td>Gravíssima (7 pts) + remoção</td></tr>
+          <tr><td>Frente a hidrante</td><td>Gravíssima (7 pts) + remoção</td></tr>
+          <tr><td>Vagas de deficiente / idoso sem credencial</td><td>Gravíssima (7 pts) + remoção</td></tr>
+          <tr><td>Área reservada a táxis</td><td>Gravíssima (7 pts) + remoção</td></tr>
+          <tr><td>Sobre trilhos de trem</td><td>Gravíssima (7 pts)</td></tr>
+          <tr><td>Fila dupla por mais de 2 minutos</td><td>Grave (5 pts)</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="tcard">
+      <div class="tcard-head">🔄 Posição das Rodas no Estacionamento</div>
+      <div class="tcard-body">
+        <table class="ttable">
+          <tr><th>Situação</th><th>Rodas dianteiras</th><th>Por quê</th></tr>
+          <tr><td>Aclive (subida) COM guia</td><td>Viradas para a <strong>esquerda</strong></td><td>Se rolar, a guia bloqueia</td></tr>
+          <tr><td>Aclive (subida) SEM guia</td><td>Viradas para a <strong>esquerda</strong></td><td>Se rolar, sai da via (não vai para a pista)</td></tr>
+          <tr><td>Declive (descida) COM guia</td><td>Viradas para a <strong>direita</strong></td><td>Se rolar, a guia bloqueia</td></tr>
+          <tr><td>Declive (descida) SEM guia</td><td>Viradas para a <strong>direita</strong></td><td>Se rolar, sai da via</td></tr>
+        </table>
+        <div class="tbox blue">💡 <strong>Macete:</strong> Na subida — rodas para fora (esquerda). Na descida — rodas para dentro (direita) se tiver guia.</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="t-alcool" class="tsec hidden">
+    <div class="tsec-title">🍺 Álcool e Direção</div>
+
+    <div class="tcard">
+      <div class="tcard-head">🔬 Faixas de Alcoolemia e Penalidades</div>
+      <div class="tcard-body">
+        <table class="ttable">
+          <tr><th>Concentração (ar alveolar)</th><th>Concentração (sangue)</th><th>Penalidade</th></tr>
+          <tr><td>Qualquer quantidade detectável</td><td>>0 g/L</td><td>Tolerância zero — infração</td></tr>
+          <tr><td>0,05 a 0,33 mg/L</td><td>0,1 a 0,6 g/L</td><td>Gravíssima — R$ 2.934,70 + susp. 12 meses</td></tr>
+          <tr><td><strong>Acima de 0,33 mg/L</strong></td><td>>0,6 g/L</td><td><strong>CRIME</strong> — detenção + multa + susp. + possível prisão</td></tr>
+          <tr><td>Recusa ao bafômetro</td><td>—</td><td>Mesma pena de quem está acima de 0,33 mg/L</td></tr>
+        </table>
+        <div class="tbox red">🚨 <strong>CRIME</strong> de trânsito por embriaguez: CTB Art. 306. Pena de 6 meses a 3 anos de detenção. Dirigir embriagado e causar morte = homicídio culposo agravado (2 a 4 anos de reclusão).</div>
+      </div>
+    </div>
+
+    <div class="tcard">
+      <div class="tcard-head">🧠 Como o Álcool Afeta a Direção</div>
+      <div class="tcard-body">
+        <ul class="tlist">
+          <li><strong>Tempo de reação:</strong> Aumenta significativamente — você demora mais para perceber e agir</li>
+          <li><strong>Campo de visão:</strong> Reduz — "visão em túnel" impede ver os lados</li>
+          <li><strong>Julgamento:</strong> Comprometido — você sente-se mais capaz do que está</li>
+          <li><strong>Coordenação motora:</strong> Reduzida — volante e pedais ficam imprecisos</li>
+          <li><strong>Sonolência:</strong> Aumentada — risco de adormecer ao volante</li>
+        </ul>
+        <div class="tbox blue">💡 Mesmo <strong>pequenas quantidades</strong> de álcool já comprometem os reflexos. A única dose segura ao volante é <strong>zero</strong>.</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="t-cnh" class="tsec hidden">
+    <div class="tsec-title">🪪 CNH — Habilitação</div>
+
+    <div class="tcard">
+      <div class="tcard-head">📋 Categorias de CNH</div>
+      <div class="tcard-body">
+        <table class="ttable">
+          <tr><th>Categoria</th><th>Veículos autorizados</th><th>Idade mínima</th></tr>
+          <tr><td><strong>ACC</strong></td><td>Ciclomotores (até 50 cc)</td><td>16 anos</td></tr>
+          <tr><td><strong>A</strong></td><td>Motocicletas, motonetas</td><td>18 anos</td></tr>
+          <tr><td><strong>B</strong></td><td>Automóveis, até 3.500 kg, até 8 passageiros</td><td>18 anos</td></tr>
+          <tr><td><strong>C</strong></td><td>Veículos de carga acima de 3.500 kg</td><td>18 anos</td></tr>
+          <tr><td><strong>D</strong></td><td>Ônibus, micro-ônibus (mais de 8 passageiros)</td><td>21 anos</td></tr>
+          <tr><td><strong>E</strong></td><td>Combinações com reboque/semirreboque acima de 6.000 kg</td><td>21 anos</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="tcard">
+      <div class="tcard-head">📅 Validade da CNH por Faixa Etária</div>
+      <div class="tcard-body">
+        <table class="ttable">
+          <tr><th>Idade</th><th>Validade</th></tr>
+          <tr><td>Até 49 anos</td><td>10 anos</td></tr>
+          <tr><td>50 a 69 anos</td><td>5 anos</td></tr>
+          <tr><td>70 anos ou mais</td><td>3 anos</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="tcard">
+      <div class="tcard-head">🎯 Sistema de Pontuação</div>
+      <div class="tcard-body">
+        <table class="ttable">
+          <tr><th>Infração</th><th>Pontos</th><th>Multa base</th></tr>
+          <tr><td>Leve</td><td>3</td><td>R$ 88,38</td></tr>
+          <tr><td>Média</td><td>4</td><td>R$ 130,16</td></tr>
+          <tr><td>Grave</td><td>5</td><td>R$ 195,23</td></tr>
+          <tr><td>Gravíssima</td><td>7</td><td>R$ 293,47</td></tr>
+          <tr><td>Gravíssima ×2</td><td>14</td><td>R$ 586,94</td></tr>
+          <tr><td>Gravíssima ×3</td><td>21</td><td>R$ 880,41</td></tr>
+        </table>
+        <div class="tbox red">🚨 Acumular <strong>20 pontos em 12 meses</strong> = suspensão da CNH por no mínimo 6 meses. Após 12 meses sem infração, os pontos são zerados.</div>
+      </div>
+    </div>
+
+    <div class="tcard">
+      <div class="tcard-head">📝 Etapas para Obter a CNH</div>
+      <div class="tcard-body">
+        <div class="steps">
+          <div class="step"><span class="step-n">1</span><div><strong>Registro</strong> — Documentos no DETRAN, exame médico e psicotécnico</div></div>
+          <div class="step"><span class="step-n">2</span><div><strong>Curso teórico</strong> — Mínimo 45 horas de aulas de legislação e direção defensiva</div></div>
+          <div class="step"><span class="step-n">3</span><div><strong>Prova teórica</strong> — 30 questões, mínimo 21 corretas (70%) para aprovação</div></div>
+          <div class="step"><span class="step-n">4</span><div><strong>Aulas práticas</strong> — Mínimo 25 horas de condução com instrutor</div></div>
+          <div class="step"><span class="step-n">5</span><div><strong>Prova prática</strong> — Avaliação de condução em via pública</div></div>
+          <div class="step"><span class="step-n">6</span><div><strong>PPD</strong> — Permissão para Dirigir por 1 ano. Sem infrações graves = CNH definitiva</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="t-infracoes" class="tsec hidden">
+    <div class="tsec-title">⚠️ Infrações Mais Cobradas</div>
+
+    <div class="tcard">
+      <div class="tcard-head">🔴 Infrações Gravíssimas (7 pontos)</div>
+      <div class="tcard-body">
+        <ul class="tlist">
+          <li>Avançar sinal vermelho</li>
+          <li>Usar celular segurado na mão ao volante</li>
+          <li>Dirigir sob efeito de álcool (0,05 a 0,33 mg/L)</li>
+          <li>Participar de racha</li>
+          <li>Não usar cinto em menores</li>
+          <li>Ultrapassar pelo acostamento</li>
+          <li>Trafegar na contramão</li>
+          <li>Estacionar em calçada</li>
+          <li>Estacionar em frente a hidrante</li>
+          <li>Estacionar em vaga especial (deficiente/idoso) sem credencial</li>
+          <li>Transportar passageiro fora do habitáculo</li>
+          <li>Conduzir sem CNH (Gravíssima + retenção do veículo)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tcard">
+      <div class="tcard-head">🟠 Infrações Graves (5 pontos)</div>
+      <div class="tcard-body">
+        <ul class="tlist">
+          <li>Não usar cinto de segurança (cada ocupante)</li>
+          <li>Não dar preferência ao pedestre na faixa</li>
+          <li>Usar fone de ouvido nos dois ouvidos</li>
+          <li>Ultrapassar em local proibido</li>
+          <li>Não respeitar a preferência na rotatória</li>
+          <li>Circular em faixa exclusiva de ônibus</li>
+          <li>Exceder velocidade em até 20%</li>
+          <li>Não dar passagem a veículo de emergência</li>
+          <li>Pneu em fila dupla por mais de 2 min</li>
+          <li>Conduzir com extintor vencido</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tcard">
+      <div class="tcard-head">🟡 Infrações Médias (4 pts) e Leves (3 pts)</div>
+      <div class="tcard-body">
+        <table class="ttable">
+          <tr><th>Infração</th><th>Nível</th></tr>
+          <tr><td>Não sinalizar mudança de faixa / retorno</td><td>Média (4)</td></tr>
+          <tr><td>Parar sobre faixa de pedestres no semáforo</td><td>Média (4)</td></tr>
+          <tr><td>Abandonar veículo em via pública</td><td>Média (4)</td></tr>
+          <tr><td>Pneu careca / fora da especificação</td><td>Média (4)</td></tr>
+          <tr><td>Para-brisa obstruindo visibilidade</td><td>Média (4)</td></tr>
+          <tr><td>Farol traseiro com defeito à noite</td><td>Leve (3)</td></tr>
+          <tr><td>Buzinar em área proibida (hospital, etc.)</td><td>Leve (3)</td></tr>
+          <tr><td>Usar farol alto onde desnecessário</td><td>Leve (3)</td></tr>
+        </table>
+        <div class="tbox blue">💡 Pagar a multa em <strong>30 dias</strong> = 40% de desconto. Recurso na JARI = também em 30 dias.</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="t-primeiros" class="tsec hidden">
+    <div class="tsec-title">🚑 Primeiros Socorros</div>
+
+    <div class="tcard">
+      <div class="tcard-head">📞 Números de Emergência</div>
+      <div class="tcard-body">
+        <div class="info-grid">
+          <div class="info-item emergency"><span>190</span> Polícia Militar</div>
+          <div class="info-item emergency"><span>191</span> Polícia Rodoviária Federal (PRF)</div>
+          <div class="info-item emergency"><span>192</span> SAMU — Serviço de Atendimento Médico</div>
+          <div class="info-item emergency"><span>193</span> Corpo de Bombeiros</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tcard">
+      <div class="tcard-head">🩺 Protocolo em Acidente com Vítimas</div>
+      <div class="tcard-body">
+        <div class="steps">
+          <div class="step"><span class="step-n">1</span><div><strong>Proteja o local</strong> — Coloque triângulo 30m atrás, acione pisca-alerta</div></div>
+          <div class="step"><span class="step-n">2</span><div><strong>Ligue para o socorro</strong> — SAMU (192) ou Bombeiros (193)</div></div>
+          <div class="step"><span class="step-n">3</span><div><strong>Avalie a vítima</strong> — Está consciente? Respira? (VOS: Ver, Ouvir, Sentir)</div></div>
+          <div class="step"><span class="step-n">4</span><div><strong>Não mova a vítima</strong> — Suspeita de lesão na coluna = NÃO MOVA (paralisia)</div></div>
+          <div class="step"><span class="step-n">5</span><div><strong>Se não respira</strong> — Inicie RCP: 100-120 compressões/min no centro do peito</div></div>
+          <div class="step"><span class="step-n">6</span><div><strong>Hemorragia</strong> — Comprimir com pano limpo e pressão firme</div></div>
+        </div>
+        <div class="tbox red">🚨 Abandonar vítima = <strong>crime</strong> de omissão de socorro (CTB Art. 304) — pena de 6 meses a 1 ano.</div>
+      </div>
+    </div>
+
+    <div class="tcard">
+      <div class="tcard-head">💡 Situações Especiais</div>
+      <div class="tcard-body">
+        <table class="ttable">
+          <tr><th>Situação</th><th>O que fazer</th></tr>
+          <tr><td>Vítima engasgada consciente</td><td>Manobra de Heimlich (compressões abdominais)</td></tr>
+          <tr><td>Suspeita de coluna</td><td>NÃO mova. Aguarde bombeiros</td></tr>
+          <tr><td>Choque elétrico</td><td>Desligue a energia ANTES de tocar</td></tr>
+          <tr><td>Incêndio no veículo</td><td>Pare, desligue, todos saem, afastem-se, ligue 193</td></tr>
+          <tr><td>Produto perigoso derramado</td><td>Mantenha distância, ligue 193, não fume</td></tr>
+          <tr><td>Vítima presa no veículo</td><td>Aguarde bombeiros — só mova se risco de fogo/afogamento</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="tcard">
+      <div class="tcard-head">🪑 Dispositivos de Retenção Infantil</div>
+      <div class="tcard-body">
+        <table class="ttable">
+          <tr><th>Grupo</th><th>Peso / Altura</th><th>Dispositivo</th></tr>
+          <tr><td>0 / 0+</td><td>Até 13 kg</td><td>Bebê conforto (voltado para trás)</td></tr>
+          <tr><td>I</td><td>9 a 18 kg</td><td>Cadeirinha voltada para frente</td></tr>
+          <tr><td>II</td><td>15 a 25 kg</td><td>Assento de elevação com encosto</td></tr>
+          <tr><td>III</td><td>22 a 36 kg / até 1,45m</td><td>Assento de elevação sem encosto</td></tr>
+          <tr><td>Acima de 1,45m</td><td>—</td><td>Cinto de segurança normal</td></tr>
+        </table>
+        <div class="tbox red">🚨 Criança no colo = Gravíssima (7 pts). Crianças menores de 10 anos só no banco traseiro.</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="t-mecanica" class="tsec hidden">
+    <div class="tsec-title">🔧 Mecânica Básica</div>
+
+    <div class="tcard">
+      <div class="tcard-head">🔦 Luzes do Painel — O que Significam</div>
+      <div class="tcard-body">
+        <table class="ttable">
+          <tr><th>Luz</th><th>Significado</th><th>O que fazer</th></tr>
+          <tr><td>🔴 Óleo</td><td>Pressão de óleo baixa</td><td><strong>PARE IMEDIATAMENTE</strong> — motor pode ser destruído</td></tr>
+          <tr><td>🔴 Temperatura</td><td>Motor superaquecido</td><td>Pare com segurança, desligue, aguarde resfriar</td></tr>
+          <tr><td>🔴 Bateria</td><td>Alternador com defeito</td><td>Vá ao mecânico urgente — veículo pode parar</td></tr>
+          <tr><td>🟡 ABS</td><td>ABS com defeito</td><td>Freios normais funcionam, mas sem ABS</td></tr>
+          <tr><td>🟡 Airbag</td><td>Airbag com defeito</td><td>Revisão urgente — airbag pode não funcionar</td></tr>
+          <tr><td>⛽ Combustível</td><td>Reserva atingida</td><td>Abasteça em breve — ~50 km restantes</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="tcard">
+      <div class="tcard-head">🚨 Sinais de Alerta do Veículo</div>
+      <div class="tcard-body">
+        <table class="ttable">
+          <tr><th>Sintoma</th><th>Causa provável</th><th>Gravidade</th></tr>
+          <tr><td>Fumaça azul no escapamento</td><td>Óleo queimado — desgaste interno</td><td>Alta</td></tr>
+          <tr><td>Fumaça branca densa</td><td>Refrigerante no motor — junta do cabeçote</td><td>Alta</td></tr>
+          <tr><td>Rangido metálico nos freios</td><td>Pastilha no limite / disco danificado</td><td>Urgente</td></tr>
+          <tr><td>Vibração no pedal ao frear</td><td>Disco de freio empenado</td><td>Alta</td></tr>
+          <tr><td>Clic-clic ao virar o volante</td><td>Junta homocinética desgastada</td><td>Alta</td></tr>
+          <tr><td>Pedal de freio esponjoso</td><td>Ar no sistema / fluido baixo</td><td>Urgente</td></tr>
+          <tr><td>Oscilação lateral em alta velocidade</td><td>Pneu desbalanceado / alinhamento</td><td>Média</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="tcard">
+      <div class="tcard-head">📅 Manutenção Preventiva</div>
+      <div class="tcard-body">
+        <table class="ttable">
+          <tr><th>Item</th><th>Intervalo recomendado</th></tr>
+          <tr><td>Óleo do motor</td><td>5.000 a 10.000 km (conforme o manual)</td></tr>
+          <tr><td>Filtro de ar</td><td>15.000 a 20.000 km</td></tr>
+          <tr><td>Filtro de combustível</td><td>20.000 a 30.000 km</td></tr>
+          <tr><td>Velas de ignição</td><td>20.000 a 30.000 km</td></tr>
+          <tr><td>Fluido de freio</td><td>2 anos ou 40.000 km</td></tr>
+          <tr><td>Líquido de arrefecimento</td><td>40.000 a 60.000 km</td></tr>
+          <tr><td>Correia dentada</td><td>Conforme manual (geralmente 60.000 km)</td></tr>
+          <tr><td>Rodízio dos pneus</td><td>A cada 10.000 km</td></tr>
+          <tr><td>Alinhamento e balanceamento</td><td>A cada 10.000 km ou ao trocar pneus</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="tcard">
+      <div class="tcard-head">🛞 Pneus — Tudo que Você Precisa Saber</div>
+      <div class="tcard-body">
+        <ul class="tlist">
+          <li><strong>Sub-calibrado (menos pressão):</strong> Desgaste nas bordas, maior consumo, risco de estouro</li>
+          <li><strong>Super-calibrado (mais pressão):</strong> Desgaste no centro, menor aderência, "bolada"</li>
+          <li><strong>Calibragem correta:</strong> Use a etiqueta do veículo (não a lateral do pneu — esta mostra a pressão MÁXIMA)</li>
+          <li><strong>Aquaplanagem:</strong> Pneus sem sulco não escoam a água — reduza a velocidade</li>
+          <li><strong>Estepe:</strong> Calibre junto com os outros pneus a cada 30 dias</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="t-direcao" class="tsec hidden">
+    <div class="tsec-title">🚗 Direção Defensiva</div>
+
+    <div class="tcard">
+      <div class="tcard-head">🛡️ Os 3 Pilares da Direção Segura</div>
+      <div class="tcard-body">
+        <div class="info-grid">
+          <div class="info-item"><span class="badge reg">Conhecimento</span> Conhecer as leis, as técnicas e os riscos do trânsito</div>
+          <div class="info-item"><span class="badge adv">Habilidade</span> Capacidade técnica de manobrar o veículo com segurança</div>
+          <div class="info-item"><span class="badge ind">Atitude</span> Disposição para agir corretamente mesmo sob pressão</div>
+        </div>
+        <div class="tbox blue">💡 <strong>IPDE:</strong> Identificar → Prever → Decidir → Executar. O método da direção defensiva.</div>
+      </div>
+    </div>
+
+    <div class="tcard">
+      <div class="tcard-head">⚡ Situações de Risco — Como Agir</div>
+      <div class="tcard-body">
+        <table class="ttable">
+          <tr><th>Situação</th><th>Conduta correta</th></tr>
+          <tr><td>Aquaplanagem</td><td>Solte o acelerador suavemente. NÃO freie bruscamente</td></tr>
+          <tr><td>Pneu estourou</td><td>Segure o volante firme. Reduza gradualmente. Não freie bruscamente</td></tr>
+          <tr><td>Freios falharam em descida</td><td>Freio motor (marcha baixa) + freio de estacionamento suave</td></tr>
+          <tr><td>Sonolência ao volante</td><td>PARE em local seguro e descanse. Não há outro jeito</td></tr>
+          <tr><td>Ofuscamento por farol alto</td><td>Olhe para a borda direita da pista e reduza a velocidade</td></tr>
+          <tr><td>Veículo ultrapassando de frente</td><td>Reduza e vá para a borda direita. Dê espaço</td></tr>
+          <tr><td>Fumaça no capô</td><td>Pare, desligue, todos saem, afastem-se, ligue 193</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="tcard">
+      <div class="tcard-head">🌙 Condução Noturna e em Condições Adversas</div>
+      <div class="tcard-body">
+        <ul class="tlist">
+          <li><strong>Farol baixo:</strong> obrigatório em rodovias 24h, em túneis e em baixa visibilidade</li>
+          <li><strong>Farol alto:</strong> use somente em vias escuras sem veículos à frente ou em sentido contrário</li>
+          <li><strong>Neblina:</strong> farol de neblina (ou baixo) + velocidade reduzida + maior distância</li>
+          <li><strong>Chuva:</strong> reduza 20%, ligue farol baixo, aumente distância de segurança</li>
+          <li><strong>Veículo parado à noite:</strong> ligue as luzes de posição (lanterna)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tcard">
+      <div class="tcard-head">⏰ Fadiga e Tempo de Descanso</div>
+      <div class="tcard-body">
+        <div class="tbox red">🚨 <strong>Máximo 4 horas</strong> de condução contínua. Pausa mínima de <strong>30 minutos</strong> obrigatória. (CTB Art. 67-C)</div>
+        <ul class="tlist" style="margin-top:12px;">
+          <li>Sonolência tem efeito similar ao álcool — não existe "vencer o sono dirigindo"</li>
+          <li>Fadiga de rodovia: retas longas e monótonas causam sonolência involuntária</li>
+          <li>Antes de viagem longa: revise o veículo (pneus, óleo, água, luzes, freios, documentos)</li>
+          <li>Medicamentos com sonolência: consulte o médico e evite dirigir</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tcard">
+      <div class="tcard-head">🔄 Regras de Preferência</div>
+      <div class="tcard-body">
+        <table class="ttable">
+          <tr><th>Situação</th><th>Quem tem preferência</th></tr>
+          <tr><td>Cruzamento sem sinalização</td><td>Quem vem pela <strong>direita</strong></td></tr>
+          <tr><td>Rotatória</td><td>Quem já está <strong>dentro</strong> da rotatória</td></tr>
+          <tr><td>Via com placa de preferência</td><td>Quem está na via <strong>preferencial</strong></td></tr>
+          <tr><td>Subida x descida em pista simples</td><td>Quem está <strong>subindo</strong> (quem desce tem mais controle)</td></tr>
+          <tr><td>Pedestre na faixa</td><td>O <strong>pedestre sempre</strong> tem preferência</td></tr>
+          <tr><td>Veículo de emergência com sirene</td><td>O veículo de <strong>emergência</strong> sempre tem preferência</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
 </div>
 
 <!-- MODAIS -->
@@ -1894,7 +2557,7 @@ async function enviarRankingSupabase(nome,acertos,total,porc){
 
 // NAVEGAÇÃO
 function mostrarPg(id){
-  ["pg-inicio","pg-prova","pg-resultado","pg-flash","pg-galeria","pg-stats","pg-ranking","pg-ref"].forEach(p=>{
+  ["pg-inicio","pg-prova","pg-resultado","pg-flash","pg-galeria","pg-stats","pg-ranking","pg-ref","pg-teoria"].forEach(p=>{
     const el=document.getElementById(p);
     if(el)el.classList.add("hidden");
   });
@@ -1912,6 +2575,16 @@ function irPara(pg,tabEl){
   tabEl.classList.add("ativo");
   if(pg!=="pg-prova")pararTimer();
 }
+function teoriaGo(secId, el){
+  document.querySelectorAll('.tsec').forEach(s=>s.classList.add('hidden'));
+  document.querySelectorAll('.ttab').forEach(t=>t.classList.remove('on'));
+  const sec = document.getElementById(secId);
+  if(sec) sec.classList.remove('hidden');
+  if(el) el.classList.add('on');
+  // scroll tabs into view
+  if(el) el.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+}
+
 function irInicio(){
   mostrarPg("pg-inicio");
   document.querySelectorAll(".tab").forEach(t=>t.classList.remove("ativo"));
