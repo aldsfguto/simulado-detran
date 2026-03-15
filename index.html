@@ -360,7 +360,7 @@ body.premium .ad-wrap{display:none!important;}
 
 <div class="main">
 
-<div id="pg-inicio" style="animation:fadeUp .5s ease;">
+<div id="pg-inicio" class="hidden" style="animation:fadeUp .5s ease;">
   <div class="hero">
     <span class="hero-ico">🚗</span>
     <h1>Simulado <em>DETRAN</em> Pro</h1>
@@ -2046,8 +2046,9 @@ function mostrarPg(id){
 function irPara(pg,tabEl){
   mostrarPg(pg);
   document.querySelectorAll(".tab").forEach(t=>t.classList.remove("ativo"));
-  tabEl.classList.add("ativo");
+  if(tabEl)tabEl.classList.add("ativo");
   if(pg!=="pg-prova")pararTimer();
+  window.scrollTo({top:0,behavior:"instant"});
   // Update URL hash without page reload
   const hashMap={"pg-inicio":"inicio","pg-flash":"flash","pg-galeria":"placas","pg-stats":"stats","pg-ranking":"ranking","pg-ref":"ref","pg-teoria":"estudos"};
   const hash=hashMap[pg];
@@ -2058,6 +2059,8 @@ function irInicio(){
   mostrarPg("pg-inicio");
   document.querySelectorAll(".tab").forEach(t=>t.classList.remove("ativo"));
   document.querySelectorAll(".tab")[0].classList.add("ativo");
+  history.replaceState(null,null,location.pathname);
+  window.scrollTo({top:0,behavior:"instant"});
 }
 
 // PREMIUM
@@ -2122,7 +2125,12 @@ document.querySelector('.qtde-btn[onclick*="30"]').classList.add("on");
     }
     mostrarPg(pg);
   }
-  navigate();
+  // Run after DOM is fully ready
+  if(document.readyState==="loading"){
+    document.addEventListener("DOMContentLoaded",navigate);
+  } else {
+    navigate();
+  }
   window.addEventListener("hashchange",navigate);
 })();
 </script>
