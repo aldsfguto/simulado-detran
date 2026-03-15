@@ -315,7 +315,7 @@ body.premium .ad-banner{display:none!important;}
 }
 
 /* ── ADS ─────────────────────────────────────────────────────── */
-.ad-wrap{margin:16px 0;text-align:center;position:relative;min-height:60px;}
+.ad-wrap{margin:16px 0;text-align:center;position:relative;min-height:0;}
 .ad-wrap.ad-top{margin:0 0 10px;}
 .ad-wrap.ad-between{margin:12px 0;}
 .ad-label{font-size:9px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;display:block;}
@@ -342,9 +342,11 @@ body.premium .ad-wrap{display:none!important;}
   color: var(--muted);
   letter-spacing: 1px;
   text-transform: uppercase;
-  display: block;
+  display: none;
   margin-bottom: 4px;
 }
+.side-ad ins[data-ad-status="filled"] ~ .side-ad-label,
+.side-ad:has(ins[data-ad-status="filled"]) .side-ad-label { display: block; }
 .side-ad-left  { left: 10px; }
 .side-ad-right { right: 10px; }
 /* Only show when there's enough room: content(880) + 2 ads(160) + gaps(160) = 1360px */
@@ -352,6 +354,10 @@ body.premium .ad-wrap{display:none!important;}
   .side-ad { display: block; }
 }
 body.premium .side-ad { display: none !important; }
+
+/* Colapsa anúncios enquanto não carregam */
+.ad-wrap ins:not([data-ad-status]) { display:none !important; }
+.ad-wrap:has(ins:not([data-ad-status])) { margin:0; }
 </style>
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9846273300293404" crossorigin="anonymous"></script>
@@ -361,7 +367,6 @@ body.premium .side-ad { display: none !important; }
 
 <!-- Side ads - desktop only -->
 <div class="side-ad side-ad-left" id="side-ad-left">
-  <span class="side-ad-label">Publicidade</span>
   <ins class="adsbygoogle"
        style="display:block;width:160px;height:600px;"
        data-ad-client="ca-pub-9846273300293404"
@@ -369,7 +374,6 @@ body.premium .side-ad { display: none !important; }
   <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
 </div>
 <div class="side-ad side-ad-right" id="side-ad-right">
-  <span class="side-ad-label">Publicidade</span>
   <ins class="adsbygoogle"
        style="display:block;width:160px;height:600px;"
        data-ad-client="ca-pub-9846273300293404"
@@ -415,16 +419,6 @@ body.premium .side-ad { display: none !important; }
       <div class="sbox"><div class="n">6</div><div class="l">Categorias</div></div>
     </div>
   </div>
-  <div class="ad-wrap ">
-  <span class="ad-label">Publicidade</span>
-  <ins class="adsbygoogle ad-banner-horizontal"
-       style="display:block;width:100%;height:60px;"
-       data-ad-client="ca-pub-9846273300293404"
-       data-ad-slot="1058543445"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
-  <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
-</div>
   <div class="ad-wrap ad-top">
   <span class="ad-label">Publicidade</span>
   <ins class="adsbygoogle ad-banner-horizontal"
@@ -3471,7 +3465,7 @@ if (document.readyState === 'loading') {
 
 <!-- Sticky bottom ad (anchor ad) - only for non-premium -->
 <div id="sticky-ad" style="position:fixed;bottom:0;left:0;right:0;z-index:90;background:var(--card2);border-top:1px solid var(--border);padding:4px 0 env(safe-area-inset-bottom,0);text-align:center;display:none;">
-  <span style="font-size:8px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;display:block;margin-bottom:2px;">Publicidade</span>
+  <span id="sticky-label" style="font-size:8px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;display:none;margin-bottom:2px;">Publicidade</span>
   <ins class="adsbygoogle"
        style="display:inline-block;width:320px;height:50px;max-width:100%;"
        data-ad-client="ca-pub-9846273300293404"
