@@ -11,42 +11,42 @@ const CSS = `
 .teoria-header { background: linear-gradient(135deg, #cc0000 0%, #7f0000 100%); padding: 20px 16px 28px; }
 .teoria-header-sub { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.55); margin-bottom: 4px; }
 .teoria-header-title { font-size: 24px; font-weight: 900; color: #fff; font-family: 'Barlow Condensed', sans-serif; letter-spacing: 1px; }
-.teoria-header-desc { font-size: 12px; color: rgba(255,255,255,.65); margin-top: 4px; }
+.teoria-header-desc { font-size: var(--fs-xs); color: rgba(255,255,255,.65); margin-top: 4px; }
 .teoria-progress-bar { height: 4px; background: rgba(255,255,255,.2); border-radius: 2px; margin-top: 12px; }
 .teoria-progress-fill { height: 100%; background: #fff; border-radius: 2px; transition: width .5s ease; }
 
 /* Tab nav */
-.teoria-tabs { display: flex; overflow-x: auto; background: var(--bg2); border-bottom: 2px solid var(--border); scrollbar-width: none; gap: 0; }
+.teoria-tabs { display: flex; overflow-x: auto; background: var(--card); border-bottom: 2px solid var(--border); scrollbar-width: none; gap: 0; }
 .teoria-tabs::-webkit-scrollbar { display: none; }
 .ttab { background: none; border: none; color: var(--muted); font-size: 11px; font-weight: 600; padding: 11px 14px; cursor: pointer; white-space: nowrap; border-bottom: 3px solid transparent; transition: all .2s; text-transform: uppercase; letter-spacing: .5px; flex-shrink: 0; }
-.ttab.on, .ttab:hover { color: var(--fg); border-bottom-color: var(--red); }
+.ttab.on, .ttab:hover { color: var(--text); border-bottom-color: var(--red); }
 
 /* Section */
 .tsec { padding: 12px 12px 80px; }
 .tsec.hidden { display: none; }
-.tsec-title { font-size: 20px; font-weight: 900; font-family: 'Barlow Condensed', sans-serif; color: var(--fg); margin-bottom: 14px; padding-bottom: 10px; border-bottom: 2px solid var(--border); letter-spacing: .5px; display: flex; align-items: center; gap: 8px; }
+.tsec-title { font-size: 20px; font-weight: 900; font-family: 'Barlow Condensed', sans-serif; color: var(--text); margin-bottom: 14px; padding-bottom: 10px; border-bottom: 2px solid var(--border); letter-spacing: .5px; display: flex; align-items: center; gap: 8px; }
 
 /* Cards */
-.tcard { background: var(--bg3); border-radius: 12px; margin-bottom: 14px; overflow: hidden; border: 1px solid var(--border); }
-.tcard-head { background: linear-gradient(90deg, rgba(204,0,0,.12), transparent); padding: 12px 14px; font-weight: 700; font-size: 14px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
-.tcard-body { padding: 14px; font-size: 13px; line-height: 1.65; color: var(--muted); }
-.tcard-body p { margin: 0 0 10px; color: var(--fg); }
+.tcard { background: var(--card2); border-radius: 12px; margin-bottom: 14px; overflow: hidden; border: 1px solid var(--border); }
+.tcard-head { background: linear-gradient(90deg, rgba(204,0,0,.12), transparent); padding: 12px 14px; font-weight: 700; font-size: var(--fs-sm); border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+.tcard-body { padding: 14px; font-size: var(--fs-sm); line-height: 1.65; color: var(--muted); }
+.tcard-body p { margin: 0 0 10px; color: var(--text); }
 
 /* Info boxes */
-.tbox { border-radius: 8px; padding: 10px 13px; font-size: 12px; margin: 10px 0; line-height: 1.55; }
+.tbox { border-radius: 8px; padding: 10px 13px; font-size: var(--fs-xs); margin: 10px 0; line-height: 1.55; }
 .tbox.red { background: rgba(239,68,68,.1); border-left: 3px solid var(--red); color: #fca5a5; }
 .tbox.blue { background: rgba(59,130,246,.1); border-left: 3px solid #3b82f6; color: #93c5fd; }
 .tbox.yellow { background: rgba(245,158,11,.1); border-left: 3px solid var(--yellow); color: #fcd34d; }
 .tbox.green { background: rgba(34,197,94,.1); border-left: 3px solid #22c55e; color: #86efac; }
 
 /* Tables */
-.ttable { width: 100%; border-collapse: collapse; font-size: 12px; margin: 8px 0; }
+.ttable { width: 100%; border-collapse: collapse; font-size: var(--fs-xs); margin: 8px 0; }
 .ttable th { background: rgba(255,255,255,.06); padding: 8px 10px; text-align: left; font-size: 10px; text-transform: uppercase; letter-spacing: .6px; color: var(--muted); border-bottom: 1px solid var(--border); }
-.ttable td { padding: 8px 10px; border-top: 1px solid rgba(255,255,255,.05); color: var(--fg); vertical-align: top; }
+.ttable td { padding: 8px 10px; border-top: 1px solid rgba(255,255,255,.05); color: var(--text); vertical-align: top; }
 .ttable tr:hover td { background: rgba(255,255,255,.03); }
 
 /* Lists */
-.tlist { margin: 0; padding-left: 18px; color: var(--fg); }
+.tlist { margin: 0; padding-left: 18px; color: var(--text); }
 .tlist li { margin-bottom: 7px; }
 
 /* Badges */
@@ -68,11 +68,11 @@ const CSS = `
 /* Steps */
 .steps { display: flex; flex-direction: column; gap: 10px; }
 .step { display: flex; gap: 12px; align-items: flex-start; }
-.step-n { background: var(--red); color: #fff; font-weight: 700; border-radius: 50%; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0; margin-top: 1px; }
+.step-n { background: var(--red); color: #fff; font-weight: 700; border-radius: 50%; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; font-size: var(--fs-xs); flex-shrink: 0; margin-top: 1px; }
 
 /* Info grid */
 .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 8px 0; }
-.info-item { background: rgba(255,255,255,.04); border-radius: 8px; padding: 10px 12px; font-size: 12px; color: var(--fg); border: 1px solid var(--border); }
+.info-item { background: rgba(255,255,255,.04); border-radius: 8px; padding: 10px 12px; font-size: var(--fs-xs); color: var(--text); border: 1px solid var(--border); }
 .info-item.emergency { background: rgba(239,68,68,.07); border-color: rgba(239,68,68,.25); display: flex; align-items: center; gap: 12px; }
 .info-item.emergency .em-num { font-size: 26px; font-weight: 900; color: var(--red); font-family: 'Barlow Condensed', sans-serif; min-width: 40px; }
 
@@ -91,7 +91,7 @@ const CSS = `
 .semaforo-row { display: flex; gap: 16px; flex-wrap: wrap; margin: 12px 0; }
 .sem-item { display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,.04); border-radius: 10px; padding: 10px 12px; flex: 1; min-width: 200px; border: 1px solid var(--border); }
 .sem-light { font-size: 22px; }
-.sem-info strong { display: block; font-size: 12px; color: var(--fg); }
+.sem-info strong { display: block; font-size: var(--fs-xs); color: var(--text); }
 .sem-info span { font-size: 11px; color: var(--muted); }
 
 /* Penalidade highlight */
@@ -110,19 +110,19 @@ const CSS = `
 
 /* Checklist */
 .checklist { list-style: none; padding: 0; margin: 0; }
-.checklist li { display: flex; align-items: flex-start; gap: 8px; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,.05); font-size: 12px; color: var(--fg); }
+.checklist li { display: flex; align-items: flex-start; gap: 8px; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,.05); font-size: var(--fs-xs); color: var(--text); }
 .checklist li:last-child { border-bottom: none; }
-.check-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+.check-icon { font-size: var(--fs-sm); flex-shrink: 0; margin-top: 1px; }
 
 /* Comparison blocks */
 .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 10px 0; }
 .compare-box { border-radius: 8px; padding: 12px; border: 1px solid; }
 .compare-box.left { background: rgba(34,197,94,.08); border-color: rgba(34,197,94,.3); }
 .compare-box.right { background: rgba(239,68,68,.08); border-color: rgba(239,68,68,.3); }
-.compare-box .cb-title { font-weight: 700; font-size: 12px; margin-bottom: 6px; }
+.compare-box .cb-title { font-weight: 700; font-size: var(--fs-xs); margin-bottom: 6px; }
 .compare-box.left .cb-title { color: #4ade80; }
 .compare-box.right .cb-title { color: #f87171; }
-.compare-box ul { font-size: 11px; color: var(--fg); padding-left: 14px; margin: 0; }
+.compare-box ul { font-size: 11px; color: var(--text); padding-left: 14px; margin: 0; }
 .compare-box ul li { margin-bottom: 4px; }
 
 @media(max-width:480px) {
@@ -169,22 +169,22 @@ function buildContent() {
     <div class="compare-grid" style="grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;">
       <div style="background:rgba(204,0,0,.08);border:1px solid rgba(204,0,0,.3);border-radius:8px;padding:10px;">
         <div style="font-weight:700;color:#fca5a5;font-size:12px;margin-bottom:4px;">🔴 REGULAMENTAÇÃO (R)</div>
-        <div style="font-size:11px;color:var(--fg);">Impõem obrigações ou proibições. Descumprir = infração.</div>
+        <div style="font-size:11px;color:var(--text);">Impõem obrigações ou proibições. Descumprir = infração.</div>
         <div style="font-size:10px;color:var(--muted);margin-top:4px;">Forma: circular borda vermelha / octogonal</div>
       </div>
       <div style="background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.3);border-radius:8px;padding:10px;">
         <div style="font-weight:700;color:#fcd34d;font-size:12px;margin-bottom:4px;">⚠️ ADVERTÊNCIA (A)</div>
-        <div style="font-size:11px;color:var(--fg);">Alertam sobre perigos à frente. Reduza a velocidade.</div>
+        <div style="font-size:11px;color:var(--text);">Alertam sobre perigos à frente. Reduza a velocidade.</div>
         <div style="font-size:10px;color:var(--muted);margin-top:4px;">Forma: triângulo equilátero, fundo amarelo</div>
       </div>
       <div style="background:rgba(21,101,192,.08);border:1px solid rgba(21,101,192,.3);border-radius:8px;padding:10px;">
         <div style="font-weight:700;color:#93c5fd;font-size:12px;margin-bottom:4px;">🔵 INDICAÇÃO (I)</div>
-        <div style="font-size:11px;color:var(--fg);">Orientam: destinos, serviços, distâncias.</div>
+        <div style="font-size:11px;color:var(--text);">Orientam: destinos, serviços, distâncias.</div>
         <div style="font-size:10px;color:var(--muted);margin-top:4px;">Forma: retangular, fundo azul ou verde</div>
       </div>
       <div style="background:rgba(255,102,0,.08);border:1px solid rgba(255,102,0,.3);border-radius:8px;padding:10px;">
         <div style="font-weight:700;color:#fdba74;font-size:12px;margin-bottom:4px;">🟠 OBRAS / TEMP.</div>
-        <div style="font-size:11px;color:var(--fg);">Sinalização temporária. Mesma força legal.</div>
+        <div style="font-size:11px;color:var(--text);">Sinalização temporária. Mesma força legal.</div>
         <div style="font-size:10px;color:var(--muted);margin-top:4px;">Forma: laranja — obras, desvios, emergências</div>
       </div>
     </div>
@@ -370,7 +370,7 @@ function buildContent() {
   <div class="tcard-head">📋 Tabela Oficial (CTB Art. 61)</div>
   <div class="tcard-body">
     <div class="diagram-wrap">
-      <svg viewBox="0 0 360 260" width="360" height="260" style="background:var(--bg2);border-radius:8px;padding:4px;">
+      <svg viewBox="0 0 360 260" width="360" height="260" style="background:var(--card);border-radius:8px;padding:4px;">
         <!-- Headers -->
         <rect x="0" y="0" width="360" height="30" rx="4" fill="rgba(204,0,0,.3)"/>
         <text x="90" y="20" fill="white" font-size="10" text-anchor="middle" font-family="Arial" font-weight="bold">TIPO DE VIA</text>
@@ -413,9 +413,9 @@ function buildContent() {
   <div class="tcard-head">⚖️ Penalidades por Excesso de Velocidade</div>
   <div class="tcard-body">
     <div class="pen-row">
-      <div class="pen-box grave"><div class="pen-num">5 pts</div><div class="pen-label">Até 20% acima</div><div style="font-size:10px;color:var(--fg);margin-top:4px;">R$ 195,23</div></div>
-      <div class="pen-box gravissima"><div class="pen-num">14 pts</div><div class="pen-label">20% a 50% acima</div><div style="font-size:10px;color:var(--fg);margin-top:4px;">R$ 586,94</div></div>
-      <div class="pen-box gravissima" style="border:2px solid #f87171;"><div class="pen-num">21 pts</div><div class="pen-label">Acima de 50%</div><div style="font-size:10px;color:var(--fg);margin-top:4px;">R$ 880,41</div></div>
+      <div class="pen-box grave"><div class="pen-num">5 pts</div><div class="pen-label">Até 20% acima</div><div style="font-size:10px;color:var(--text);margin-top:4px;">R$ 195,23</div></div>
+      <div class="pen-box gravissima"><div class="pen-num">14 pts</div><div class="pen-label">20% a 50% acima</div><div style="font-size:10px;color:var(--text);margin-top:4px;">R$ 586,94</div></div>
+      <div class="pen-box gravissima" style="border:2px solid #f87171;"><div class="pen-num">21 pts</div><div class="pen-label">Acima de 50%</div><div style="font-size:10px;color:var(--text);margin-top:4px;">R$ 880,41</div></div>
     </div>
     <div class="tbox red">🚨 Exceder 50% da velocidade = <strong>21 pontos</strong> na CNH (fator ×3). Em área escolar: penalidade ainda maior.</div>
     <table class="ttable" style="margin-top:10px;">
@@ -465,7 +465,7 @@ function buildContent() {
   <div class="tcard-head">🔄 Diagrama: Cruzamento sem Sinalização</div>
   <div class="tcard-body">
     <div class="diagram-wrap">
-      <svg viewBox="0 0 280 280" width="260" height="260" style="background:var(--bg2);border-radius:8px;">
+      <svg viewBox="0 0 280 280" width="260" height="260" style="background:var(--card);border-radius:8px;">
         <!-- Roads -->
         <rect x="110" y="0" width="60" height="280" fill="#444"/>
         <rect x="0" y="110" width="280" height="60" fill="#444"/>
@@ -503,7 +503,7 @@ function buildContent() {
   <div class="tcard-head">🔄 Rotatória — Quem tem preferência?</div>
   <div class="tcard-body">
     <div class="diagram-wrap">
-      <svg viewBox="0 0 260 260" width="240" height="240" style="background:var(--bg2);border-radius:8px;">
+      <svg viewBox="0 0 260 260" width="240" height="240" style="background:var(--card);border-radius:8px;">
         <!-- Outer roads -->
         <rect x="110" y="0" width="40" height="90" fill="#444"/>
         <rect x="110" y="170" width="40" height="90" fill="#444"/>
@@ -585,7 +585,7 @@ function buildContent() {
   <div class="tcard-head">📏 Distância de Segurança × Velocidade</div>
   <div class="tcard-body">
     <div class="diagram-wrap">
-      <svg viewBox="0 0 340 160" width="340" height="160" style="background:var(--bg2);border-radius:8px;">
+      <svg viewBox="0 0 340 160" width="340" height="160" style="background:var(--card);border-radius:8px;">
         <!-- Road -->
         <rect x="0" y="55" width="340" height="50" fill="#444"/>
         <line x1="0" y1="80" x2="340" y2="80" stroke="#F5C518" stroke-width="2" stroke-dasharray="12,8"/>
@@ -643,7 +643,7 @@ function buildContent() {
   <div class="tcard-head">🔄 Posição das Rodas — Estacionamento em rampas</div>
   <div class="tcard-body">
     <div class="diagram-wrap">
-      <svg viewBox="0 0 340 200" width="340" height="200" style="background:var(--bg2);border-radius:8px;">
+      <svg viewBox="0 0 340 200" width="340" height="200" style="background:var(--card);border-radius:8px;">
         <!-- Left: Uphill with curb -->
         <text x="85" y="18" fill="white" font-size="10" text-anchor="middle" font-family="Arial" font-weight="bold">Subida + Guia</text>
         <!-- Road uphill -->
@@ -716,7 +716,7 @@ function buildContent() {
   <div class="tcard-head">🔬 Faixas de alcoolemia e penalidades</div>
   <div class="tcard-body">
     <div class="diagram-wrap">
-      <svg viewBox="0 0 340 140" width="340" height="140" style="background:var(--bg2);border-radius:8px;">
+      <svg viewBox="0 0 340 140" width="340" height="140" style="background:var(--card);border-radius:8px;">
         <!-- Gradient bar -->
         <defs>
           <linearGradient id="alcGrad" x1="0" x2="1" y1="0" y2="0">
@@ -809,10 +809,10 @@ function buildContent() {
   <div class="tcard-head">⚠️ Sistema de Pontuação — CNH</div>
   <div class="tcard-body">
     <div class="pen-row">
-      <div class="pen-box leve"><div class="pen-num">3 pts</div><div class="pen-label">Leve</div><div style="font-size:10px;color:var(--fg);margin-top:3px;">R$ 88,38</div></div>
-      <div class="pen-box media"><div class="pen-num">4 pts</div><div class="pen-label">Média</div><div style="font-size:10px;color:var(--fg);margin-top:3px;">R$ 130,16</div></div>
-      <div class="pen-box grave"><div class="pen-num">5 pts</div><div class="pen-label">Grave</div><div style="font-size:10px;color:var(--fg);margin-top:3px;">R$ 195,23</div></div>
-      <div class="pen-box gravissima"><div class="pen-num">7 pts</div><div class="pen-label">Gravíssima</div><div style="font-size:10px;color:var(--fg);margin-top:3px;">R$ 293,47</div></div>
+      <div class="pen-box leve"><div class="pen-num">3 pts</div><div class="pen-label">Leve</div><div style="font-size:10px;color:var(--text);margin-top:3px;">R$ 88,38</div></div>
+      <div class="pen-box media"><div class="pen-num">4 pts</div><div class="pen-label">Média</div><div style="font-size:10px;color:var(--text);margin-top:3px;">R$ 130,16</div></div>
+      <div class="pen-box grave"><div class="pen-num">5 pts</div><div class="pen-label">Grave</div><div style="font-size:10px;color:var(--text);margin-top:3px;">R$ 195,23</div></div>
+      <div class="pen-box gravissima"><div class="pen-num">7 pts</div><div class="pen-label">Gravíssima</div><div style="font-size:10px;color:var(--text);margin-top:3px;">R$ 293,47</div></div>
     </div>
     <div class="tbox red">🚨 <strong>20 pontos em 12 meses</strong> = suspensão mínima de 6 meses. Após 12 meses sem infração, pontos são zerados.</div>
     <table class="ttable" style="margin-top:10px;">
@@ -981,7 +981,7 @@ function buildContent() {
   <div class="tcard-head">🪑 Dispositivos de Retenção Infantil</div>
   <div class="tcard-body">
     <div class="diagram-wrap">
-      <svg viewBox="0 0 340 110" width="340" height="110" style="background:var(--bg2);border-radius:8px;">
+      <svg viewBox="0 0 340 110" width="340" height="110" style="background:var(--card);border-radius:8px;">
         <!-- Timeline bar -->
         <rect x="20" y="40" width="300" height="12" rx="6" fill="rgba(255,255,255,.1)"/>
         <rect x="20" y="40" width="300" height="12" rx="6" fill="url(#ageGrad)"/>
@@ -1113,7 +1113,7 @@ function buildContent() {
   <div class="tcard-head">🎯 Método IPDE — A base da direção defensiva</div>
   <div class="tcard-body">
     <div class="diagram-wrap">
-      <svg viewBox="0 0 340 80" width="340" height="80" style="background:var(--bg2);border-radius:8px;">
+      <svg viewBox="0 0 340 80" width="340" height="80" style="background:var(--card);border-radius:8px;">
         <defs>
           <marker id="marrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
             <polygon points="0,0 8,3 0,6" fill="#cc0000"/>
