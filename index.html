@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
@@ -313,7 +313,23 @@ body.premium .ad-banner{display:none!important;}
   .modal-btns{flex-direction:row;}
   .stats-top{grid-template-columns:repeat(4,1fr);}
 }
+
+/* ── ADS ─────────────────────────────────────────────────────── */
+.ad-wrap{margin:16px 0;text-align:center;position:relative;min-height:60px;}
+.ad-wrap.ad-top{margin:0 0 10px;}
+.ad-wrap.ad-between{margin:12px 0;}
+.ad-label{font-size:9px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;display:block;}
+.ad-placeholder{background:rgba(255,255,255,.03);border:1px dashed rgba(255,255,255,.08);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--muted);gap:8px;cursor:pointer;}
+.ad-placeholder:hover{border-color:rgba(230,57,70,.3);}
+.ad-placeholder .ad-ph-remove{font-size:10px;color:var(--yellow);font-weight:700;margin-left:8px;text-decoration:underline;}
+body.premium .ad-wrap{display:none!important;}
+/* Responsive ad sizes */
+.ad-banner-horizontal{width:100%;height:60px;}
+.ad-banner-rect{width:100%;max-width:300px;height:250px;margin:0 auto;}
+@media(min-width:768px){.ad-banner-horizontal{height:90px;}}
 </style>
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -356,7 +372,26 @@ body.premium .ad-banner{display:none!important;}
       <div class="sbox"><div class="n">6</div><div class="l">Categorias</div></div>
     </div>
   </div>
-  <div class="ad-banner"><div style="height:60px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--muted);">📢 Espaço publicitário — <a href="#" onclick="mostrarModalPremium();return false" style="color:var(--yellow);margin-left:4px">Remover ⭐</a></div></div>
+  <div class="ad-wrap ">
+  <span class="ad-label">Publicidade</span>
+  <ins class="adsbygoogle ad-banner-horizontal"
+       style="display:block;width:100%;height:60px;"
+       data-ad-client="ca-pub-XXXXXXXXXXXXXXXXX"
+       data-ad-slot="2345678901"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+</div></div>
+  <div class="ad-wrap ad-top">
+  <span class="ad-label">Publicidade</span>
+  <ins class="adsbygoogle ad-banner-horizontal"
+       style="display:block;width:100%;height:60px;"
+       data-ad-client="ca-pub-XXXXXXXXXXXXXXXXX"
+       data-ad-slot="1234567890"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+</div>
   <div class="sec-lbl">Modo de estudo</div>
   <div class="modo-row">
     <div class="modo-card on" onclick="selecionarModo('simulado',this)"><div class="mi">📝</div><div class="mn">Simulado</div><div class="md">Igual à prova real</div></div>
@@ -444,7 +479,16 @@ body.premium .ad-banner{display:none!important;}
     <span style="font-size:11px;color:var(--muted);white-space:nowrap;">Apelido:</span>
     <input type="text" id="nick-input" placeholder="Ex: João Silva" maxlength="20" oninput="salvarNick()">
   </div>
-  <div class="ad-banner"><div style="height:44px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--muted);">📢 Anúncio — <a href="#" onclick="mostrarModalPremium();return false" style="color:var(--yellow);margin-left:4px">Premium ⭐</a></div></div>
+  <div class="ad-wrap ">
+  <span class="ad-label">Publicidade</span>
+  <ins class="adsbygoogle ad-banner-horizontal"
+       style="display:block;width:100%;height:60px;"
+       data-ad-client="ca-pub-XXXXXXXXXXXXXXXXX"
+       data-ad-slot="4567890123"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+</div></div>
   <div class="rank-list"><div class="rank-head">Top 20 — Melhores pontuações</div><div id="rank-items"></div></div>
   <div style="margin-top:10px;text-align:center;font-size:10px;color:var(--muted);">ℹ️ Configure Supabase para ranking online real.</div>
 </div>
@@ -1658,8 +1702,18 @@ function iniciar(){
 function renderTodasQuestoes(){
   const opts=["A","B","C","D"];
   const blocosModo=modoAtual==="simulado"?"":"<em style='font-size:11px;color:var(--muted)'>Respostas reveladas após sua seleção</em>";
-  const cards=provaAtual.map((q,qi)=>`
-    <div class="qcard" id="qcard-${qi}">
+  const adUnit=isPremium?"":
+    `<div class="ad-wrap ad-between" data-ad-pending="5678901234">
+       <span class="ad-label">Publicidade</span>
+       <ins class="adsbygoogle" style="display:block;width:100%;height:60px;"
+            data-ad-client="ca-pub-XXXXXXXXXXXXXXXXX"
+            data-ad-slot="5678901234"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+     </div>`;
+  const cards=provaAtual.map((q,qi)=>{
+    const adAfter=(qi>0&&(qi+1)%10===0&&qi<provaAtual.length-1)?adUnit:"";
+    return `<div class="qcard" id="qcard-${qi}">
       <div class="qnum">Questão ${qi+1} <span class="qcat-tag">${q.cat}</span></div>
       <div class="qtxt">${q.p}</div>
       <div class="opcoes" id="opcoes-${qi}">
@@ -1669,8 +1723,15 @@ function renderTodasQuestoes(){
         </label>`).join("")}
       </div>
       <div id="explic-${qi}" class="explicacao hidden"></div>
-    </div>`).join("");
+    </div>${adAfter}`;
+  }).join("");
   document.getElementById("qcontainer").innerHTML=`<div class="prova-instrucao">Responda todas as questões e clique em <strong>Finalizar Prova</strong></div>`+cards;
+  // Initialize pending AdSense units
+  if(!isPremium){
+    document.querySelectorAll(".ad-wrap[data-ad-pending] ins.adsbygoogle").forEach(ins=>{
+      try{(adsbygoogle=window.adsbygoogle||[]).push({});}catch(e){}
+    });
+  }
 }
 
 function selecionarQ(qi,i){
@@ -1758,7 +1819,16 @@ function finalizar(){
       <div class="sc"><div class="n r">${total-acertos}</div><div class="l">Erros</div></div>
       <div class="sc"><div class="n a">${porc}%</div><div class="l">Aproveitamento</div></div>
     </div>
-    <div class="ad-banner"><div style="height:50px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--muted);">📢 Anúncio</div></div>
+    <div class="ad-wrap ad-between">
+  <span class="ad-label">Publicidade</span>
+  <ins class="adsbygoogle ad-banner-rect"
+       style="display:block;width:300px;height:250px;margin:0 auto;"
+       data-ad-client="ca-pub-XXXXXXXXXXXXXXXXX"
+       data-ad-slot="3456789012"
+       data-ad-format="auto"
+       data-ad-pending="true"
+       data-full-width-responsive="true"></ins>
+</div>
     <div class="btns-row" style="margin-bottom:16px;">
       <button class="btn-main" onclick="iniciar()">↻ Nova Prova</button>
       <button class="btn-sec" onclick="irInicio()">← Início</button>
@@ -1767,6 +1837,14 @@ function finalizar(){
     <div class="lista-res"><div class="lr-head">Gabarito detalhado</div>${listaHtml}</div>
   `;
   mostrarPg("pg-resultado");
+  // Push AdSense units in the resultado page
+  if(!isPremium){
+    setTimeout(()=>{
+      document.querySelectorAll('#pg-resultado ins.adsbygoogle[data-ad-pending]').forEach(ins=>{
+        try{(adsbygoogle=window.adsbygoogle||[]).push({});}catch(e){}
+      });
+    },100);
+  }
   if(aprovado)lancarConfetti();
 }
 
@@ -2049,5 +2127,26 @@ document.querySelector('.qtde-btn[onclick*="30"]').classList.add("on");
 })();
 </script>
 <script src="teoria.js"></script>
+
+<!-- Sticky bottom ad (anchor ad) - only for non-premium -->
+<div id="sticky-ad" style="position:fixed;bottom:0;left:0;right:0;z-index:90;background:var(--card2);border-top:1px solid var(--border);padding:4px 0 env(safe-area-inset-bottom,0);text-align:center;display:none;">
+  <span style="font-size:8px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;display:block;margin-bottom:2px;">Publicidade</span>
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:320px;height:50px;max-width:100%;"
+       data-ad-client="ca-pub-XXXXXXXXXXXXXXXXX"
+       data-ad-slot="6789012345"
+       data-ad-format="auto"></ins>
+  <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+  <button onclick="document.getElementById('sticky-ad').style.display='none'" style="position:absolute;top:4px;right:8px;background:none;border:none;color:var(--muted);font-size:16px;cursor:pointer;padding:4px;">×</button>
+</div>
+<script>
+// Show sticky ad for non-premium after 3 seconds
+if(!localStorage.getItem("detran_premium")){
+  setTimeout(()=>{
+    const sa=document.getElementById("sticky-ad");
+    if(sa)sa.style.display="block";
+  },3000);
+}
+</script>
 </body>
 </html>
