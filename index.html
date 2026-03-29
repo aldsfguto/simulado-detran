@@ -358,7 +358,48 @@ body.premium .side-ad { display: none !important; }
 /* Colapsa anúncios enquanto não carregam */
 .ad-wrap ins:not([data-ad-status]) { display:none !important; }
 .ad-wrap:has(ins:not([data-ad-status])) { margin:0; }
+
+/* ── AUTH ────────────────────────────────────────────────── */
+.auth-modal .modal-box { max-width: 420px; }
+.auth-tabs { display: flex; gap: 0; margin-bottom: 20px; border-bottom: 2px solid var(--border); }
+.auth-tab { flex: 1; background: none; border: none; color: var(--muted); font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 10px; cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all .2s; }
+.auth-tab.on { color: var(--red); border-bottom-color: var(--red); }
+.auth-field { margin-bottom: 14px; }
+.auth-field label { display: block; font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 5px; }
+.auth-input { width: 100%; background: var(--dark); border: 1.5px solid var(--border); border-radius: 10px; padding: 12px 14px; color: var(--text); font-size: 15px; outline: none; transition: border-color .2s; font-family: inherit; }
+.auth-input:focus { border-color: var(--red); }
+.auth-input.error { border-color: var(--red); background: rgba(230,57,70,.05); }
+.auth-error { font-size: 12px; color: var(--red); margin-top: 5px; display: none; }
+.auth-error.show { display: block; }
+.auth-success { font-size: 12px; color: var(--green); margin: 8px 0; display: none; text-align: center; }
+.auth-success.show { display: block; }
+.auth-divider { text-align: center; font-size: 11px; color: var(--muted); margin: 14px 0; }
+.auth-btn { width: 100%; background: linear-gradient(135deg, var(--red), #8b0a14); color: #fff; border: none; padding: 14px; font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; border-radius: 10px; cursor: pointer; transition: all .2s; margin-top: 4px; }
+.auth-btn:hover { opacity: .9; }
+.auth-btn:disabled { opacity: .5; cursor: not-allowed; }
+.auth-link { font-size: 12px; color: var(--muted); text-align: center; margin-top: 12px; }
+.auth-link a { color: var(--red); cursor: pointer; font-weight: 600; }
+.auth-forgot { font-size: 11px; color: var(--muted); text-align: right; margin-top: -8px; margin-bottom: 14px; cursor: pointer; }
+.auth-forgot:hover { color: var(--text); }
+/* User avatar in header */
+.user-avatar { width: 30px; height: 30px; border-radius: 50%; background: linear-gradient(135deg, var(--red), #f59e0b); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: #fff; cursor: pointer; border: 2px solid rgba(255,255,255,.2); transition: border-color .2s; flex-shrink: 0; }
+.user-avatar:hover { border-color: rgba(255,255,255,.6); }
+.user-menu { position: absolute; top: calc(100% + 8px); right: 0; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 6px; min-width: 200px; z-index: 300; box-shadow: 0 8px 32px rgba(0,0,0,.5); animation: fadeUp .2s ease; }
+.user-menu-item { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 8px; cursor: pointer; font-size: 14px; color: var(--text); transition: background .15s; }
+.user-menu-item:hover { background: rgba(255,255,255,.06); }
+.user-menu-item.danger { color: var(--red); }
+.user-menu-name { font-weight: 700; font-size: 14px; color: var(--text); }
+.user-menu-email { font-size: 11px; color: var(--muted); }
+.user-menu-sep { height: 1px; background: var(--border); margin: 4px 0; }
+.hdr-user-wrap { position: relative; }
+/* Sync indicator */
+.sync-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); position: absolute; bottom: 0; right: 0; border: 2px solid var(--dark); }
+.sync-dot.syncing { background: var(--yellow); animation: pulse 1s infinite; }
+.sync-dot.offline { background: var(--muted); }
 </style>
+<!-- Google AdSense -->
+<!-- Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9846273300293404" crossorigin="anonymous"></script>
 </head>
@@ -390,6 +431,10 @@ body.premium .side-ad { display: none !important; }
 <div class="hdr">
   <div class="logo" onclick="irInicio()">🚦 DETRAN Pro</div>
   <div class="hdr-right">
+    <div class="hdr-user-wrap" id="hdr-user-wrap">
+      <!-- Replaced by JS: shows login btn or avatar -->
+      <button class="btn-sec" style="padding:6px 14px;font-size:12px;min-height:0;" onclick="abrirModalAuth('login')">Entrar</button>
+    </div>
     <span class="premium-hdr hidden" id="premium-badge" onclick="mostrarModalPremium()">⭐ PREMIUM</span>
     <div class="badge" id="badge-cat">GERAL</div>
     <div id="timer">30:00</div>
@@ -530,7 +575,9 @@ body.premium .side-ad { display: none !important; }
   <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
 </div></div>
   <div class="rank-list"><div class="rank-head">Top 20 — Melhores pontuações</div><div id="rank-items"></div></div>
-  <div style="margin-top:10px;text-align:center;font-size:10px;color:var(--muted);">ℹ️ Configure Supabase para ranking online real.</div>
+  <div id="rank-login-note" style="margin-top:10px;text-align:center;font-size:12px;color:var(--muted);">
+    <span id="rank-note-text">ℹ️ <a onclick="abrirModalAuth('login')" style="color:var(--red);cursor:pointer;font-weight:600;">Entre na sua conta</a> para aparecer no ranking global.</span>
+  </div>
 </div>
 
 <div id="pg-ref" class="hidden" style="animation:fadeUp .4s ease;">
@@ -569,6 +616,82 @@ body.premium .side-ad { display: none !important; }
 
 <div id="pg-teoria" class="hidden" style="animation:fadeUp .4s ease;">
   <div id="teoria-root"></div>
+</div>
+
+<!-- AUTH MODAL -->
+<div class="modal-overlay hidden auth-modal" id="modal-auth">
+  <div class="modal-box" style="max-width:420px;">
+    <button class="modal-close" onclick="fecharModalAuth()">×</button>
+    <div style="text-align:center;margin-bottom:18px;">
+      <span style="font-size:36px;">🚗</span>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;letter-spacing:1px;margin-top:4px;">DETRAN Pro</div>
+    </div>
+    <div class="auth-tabs">
+      <button class="auth-tab on" id="tab-login" onclick="authMudarAba('login')">Entrar</button>
+      <button class="auth-tab" id="tab-cadastro" onclick="authMudarAba('cadastro')">Criar conta</button>
+    </div>
+
+    <!-- LOGIN -->
+    <div id="auth-form-login">
+      <div class="auth-field">
+        <label>E-mail</label>
+        <input class="auth-input" id="login-email" type="email" placeholder="seu@email.com" autocomplete="email">
+        <div class="auth-error" id="login-email-err"></div>
+      </div>
+      <div class="auth-field">
+        <label>Senha</label>
+        <input class="auth-input" id="login-senha" type="password" placeholder="••••••••" autocomplete="current-password">
+        <div class="auth-error" id="login-senha-err"></div>
+      </div>
+      <div class="auth-forgot" onclick="authEsqueceuSenha()">Esqueci minha senha</div>
+      <div class="auth-error show" id="login-geral-err" style="margin-bottom:10px;display:none;"></div>
+      <button class="auth-btn" id="btn-login" onclick="authLogin()">▶ Entrar</button>
+      <div class="auth-success" id="login-success"></div>
+    </div>
+
+    <!-- CADASTRO -->
+    <div id="auth-form-cadastro" style="display:none;">
+      <div class="auth-field">
+        <label>Nome</label>
+        <input class="auth-input" id="cad-nome" type="text" placeholder="Seu nome" autocomplete="name" maxlength="30">
+        <div class="auth-error" id="cad-nome-err"></div>
+      </div>
+      <div class="auth-field">
+        <label>E-mail</label>
+        <input class="auth-input" id="cad-email" type="email" placeholder="seu@email.com" autocomplete="email">
+        <div class="auth-error" id="cad-email-err"></div>
+      </div>
+      <div class="auth-field">
+        <label>Senha</label>
+        <input class="auth-input" id="cad-senha" type="password" placeholder="Mínimo 6 caracteres" autocomplete="new-password">
+        <div class="auth-error" id="cad-senha-err"></div>
+      </div>
+      <div class="auth-field">
+        <label>Confirmar senha</label>
+        <input class="auth-input" id="cad-senha2" type="password" placeholder="Repita a senha" autocomplete="new-password">
+        <div class="auth-error" id="cad-senha2-err"></div>
+      </div>
+      <div class="auth-error" id="cad-geral-err" style="margin-bottom:10px;display:none;"></div>
+      <button class="auth-btn" id="btn-cadastro" onclick="authCadastrar()">✓ Criar conta</button>
+      <div class="auth-success" id="cad-success"></div>
+    </div>
+
+    <div class="auth-divider">ou continue sem conta</div>
+    <button onclick="fecharModalAuth()" style="width:100%;background:var(--card);color:var(--muted);border:1.5px solid var(--border);border-radius:10px;padding:11px;font-size:13px;cursor:pointer;">Continuar como visitante</button>
+  </div>
+</div>
+
+<!-- USER MENU (dropdown) -->
+<div id="user-menu" class="user-menu hidden" style="position:fixed;top:54px;right:12px;">
+  <div style="padding:10px 12px 8px;">
+    <div class="user-menu-name" id="um-nome">Usuário</div>
+    <div class="user-menu-email" id="um-email"></div>
+  </div>
+  <div class="user-menu-sep"></div>
+  <div class="user-menu-item" onclick="irPara('pg-stats',document.querySelector('.tab[onclick*=stats]'));fecharUserMenu()">📊 Minhas estatísticas</div>
+  <div class="user-menu-item" onclick="sincronizarDados()">☁️ Sincronizar dados</div>
+  <div class="user-menu-sep"></div>
+  <div class="user-menu-item danger" onclick="authLogout()">↩ Sair</div>
 </div>
 
 <!-- MODAIS -->
@@ -1299,8 +1422,10 @@ const PLACAS = [
 ];
 
 
-const SUPABASE_URL="";
-const SUPABASE_KEY="";
+// ── SUPABASE CONFIG (substitua pelos seus valores) ──────
+const SUPABASE_URL = https://dqwpenprbauynyssonwv.supabase.co;
+const SUPABASE_KEY = sb_publishable_3c0KN_X-yuwIcckDMN8BNg_ns9WjYwM;
+const supa = (SUPABASE_URL.includes('SEU-PROJETO')) ? null : supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 // PLACAS definidas no bloco acima (placas.js inline)
 const BANCO=[{"p":"O que significa a placa octogonal vermelha com a palavra PARE?","o":["Reduza a velocidade","Parada obrigatória antes da linha de retenção","Dê a preferência","Proibido avançar"],"c":1,"cat":"sinalizacao","ex":"R-1: exige parada total do veículo, independentemente de outros veículos."},{"p":"A placa com triângulo invertido com borda vermelha significa:","o":["Proibição","Dê a Preferência","Pare obrigatório","Velocidade mínima"],"c":1,"cat":"sinalizacao","ex":"R-3: ceder passagem aos veículos da via preferencial."},{"p":"Placas de regulamentação têm geralmente formato:","o":["Triangular amarelo","Retangular azul","Circular com borda vermelha ou octogonal","Losangular verde"],"c":2,"cat":"sinalizacao","ex":"Grupo R: circulares com borda vermelha ou octogonal (PARE)."},{"p":"Placas de advertência têm formato:","o":["Circular","Triangular com fundo amarelo","Retangular azul","Octogonal"],"c":1,"cat":"sinalizacao","ex":"Grupo A: triângulo equilátero amarelo com bordas pretas."},{"p":"Linha contínua amarela no centro da pista significa:","o":["Pode ultrapassar","Proibido ultrapassar em ambos os sentidos","Apenas um sentido pode ultrapassar","Reduzir velocidade"],"c":1,"cat":"sinalizacao","ex":"Linha contínua amarela: proibição de ultrapassagem nos dois sentidos."},{"p":"Linha tracejada branca entre faixas de rolamento indica:","o":["Proibido mudar de faixa","Faixa de pedestre","Pode mudar de faixa com cautela","Área de obras"],"c":2,"cat":"sinalizacao","ex":"Linha tracejada branca: mudança de faixa permitida com segurança."},{"p":"Semáforo com luz amarela piscante indica:","o":["Pode seguir normalmente","Atenção — cruzamento sem preferência definida","Pare obrigatório","Semáforo com defeito — ignore"],"c":1,"cat":"sinalizacao","ex":"Amarelo piscante: reduza a velocidade. Preferência é de quem vem pela direita."},{"p":"O sinal verde do semáforo indica:","o":["Acelere para passar logo","Via livre — pode prosseguir","Atenção, vai fechar","Preferência para pedestres"],"c":1,"cat":"sinalizacao","ex":"Verde: via livre. Observe pedestres e demais veículos antes de prosseguir."},{"p":"Faixa de zebra (listras brancas) na pista indica:","o":["Área de obras","Faixa de pedestre — ceder preferência","Proibido parar","Limite de velocidade"],"c":1,"cat":"sinalizacao","ex":"Faixa de travessia de pedestres: ceda passagem ao pedestre que estiver atravessando."},{"p":"Placas azuis retangulares indicam geralmente:","o":["Proibição","Advertência de perigo","Informação e serviços","Obras temporárias"],"c":2,"cat":"sinalizacao","ex":"Grupo I (Indicação): localidades, serviços, distâncias e orientações."},{"p":"Uma placa com círculo azul e número branco indica:","o":["Velocidade máxima","Velocidade mínima obrigatória","Distância em km","Peso máximo"],"c":1,"cat":"sinalizacao","ex":"Velocidade mínima (R-8): círculo azul, o condutor não pode ir abaixo desse limite."},{"p":"Dupla linha contínua amarela no centro da pista indica:","o":["Ultrapassagem permitida nos dois sentidos","Ultrapassagem proibida nos dois sentidos","Só caminhões não podem ultrapassar","Área de obras"],"c":1,"cat":"sinalizacao","ex":"Dupla linha contínua amarela: proibição absoluta de ultrapassagem."},{"p":"Linha tracejada amarela no centro da pista indica:","o":["Proibido ultrapassar","Proibido mudar de faixa","Pode ultrapassar quando seguro","Faixa de pedestres"],"c":2,"cat":"sinalizacao","ex":"Linha tracejada amarela: ultrapassagem permitida quando há visibilidade e segurança."},{"p":"A placa de velocidade máxima tem fundo:","o":["Azul","Vermelho","Branco com borda vermelha","Amarelo"],"c":2,"cat":"sinalizacao","ex":"Velocidade máxima: círculo branco com borda vermelha e número no centro."},{"p":"O semáforo vermelho piscante equivale a:","o":["Sinal amarelo","Placa PARE — parada obrigatória","Pode seguir com cuidado","Sinal de obra"],"c":1,"cat":"sinalizacao","ex":"Vermelho piscante = parada total obrigatória, equivale à placa R-1 (PARE)."},{"p":"Placas de cor laranja geralmente indicam:","o":["Serviços","Restrições permanentes","Obras e situações temporárias","Parques e áreas verdes"],"c":2,"cat":"sinalizacao","ex":"Laranja: sinalização temporária de obras. Deve ser obedecida mesmo em caráter temporário."},{"p":"A linha de retenção (linha branca contínua transversal) indica:","o":["Faixa de pedestre","Local de parada obrigatória","Início de estacionamento","Fim de via"],"c":1,"cat":"sinalizacao","ex":"Linha de retenção: o condutor deve parar antes desta linha nos semáforos e placas PARE."},{"p":"A marca vibrátil na pista serve para:","o":["Decoração","Alertar visualmente e tatilmente sobre perigos ou limites","Demarcar faixas de ciclistas","Indicar chuva"],"c":1,"cat":"sinalizacao","ex":"Tachões e saliências vibrátorias alertam o condutor através de vibração e som."},{"p":"A placa que indica 'início de proibição de ultrapassagem' tem:","o":["Dois carros com seta","Linha reta com X","Dois carros com linha diagonal vermelha","Apenas um carro"],"c":2,"cat":"sinalizacao","ex":"R-4a: dois automóveis (um cinza e um escuro) com linha diagonal vermelha."},{"p":"Quando há duas placas contraditórias, prevalece:","o":["A mais antiga","A mais restritiva","A de maior tamanho","A mais recente"],"c":1,"cat":"sinalizacao","ex":"Em caso de conflito, deve-se obedecer à sinalização mais restritiva para segurança."},{"p":"Em cruzamento sem sinalização, a preferência é de:","o":["Quem vem pela esquerda","Quem vem pela direita","O veículo maior","Quem chegar primeiro"],"c":1,"cat":"legislacao","ex":"CTB Art. 29, III: em cruzamento sem sinalização, preferência para quem vem pela direita."},{"p":"Dentro de uma rotatória, a preferência é de:","o":["Quem está entrando","Quem já circula no interior","Veículos maiores","Quem acelerar primeiro"],"c":1,"cat":"legislacao","ex":"CTB Art. 29, III: nas rotatórias, preferência sempre de quem já está circulando."},{"p":"A velocidade máxima em rodovias de pista dupla é:","o":["90 km/h","100 km/h","110 km/h","120 km/h"],"c":2,"cat":"legislacao","ex":"CTB Art. 61: rodovias pista dupla — 110 km/h para automóveis e motos."},{"p":"A velocidade máxima em vias arteriais urbanas é:","o":["40 km/h","50 km/h","60 km/h","80 km/h"],"c":2,"cat":"legislacao","ex":"CTB Art. 61: vias arteriais urbanas — limite de 60 km/h."},{"p":"A CNH de condutor com menos de 50 anos tem validade de:","o":["5 anos","10 anos","15 anos","Vitalícia"],"c":1,"cat":"legislacao","ex":"CTB Art. 159: validade de 10 anos para condutores com menos de 50 anos."},{"p":"A CNH de condutor acima de 70 anos tem validade de:","o":["5 anos","3 anos","2 anos","1 ano"],"c":1,"cat":"legislacao","ex":"CTB Art. 159: validade de 3 anos para condutores acima de 70 anos."},{"p":"Para obter a CNH categoria B, o candidato deve ter no mínimo:","o":["16 anos","17 anos","18 anos","21 anos"],"c":2,"cat":"legislacao","ex":"CTB Art. 140: mínimo de 18 anos completos para habilitação categoria B."},{"p":"A prova teórica do DETRAN tem quantas questões?","o":["20","25","30","40"],"c":2,"cat":"legislacao","ex":"A prova teórica possui 30 questões. São necessárias 21 corretas (70%) para aprovação."},{"p":"A Permissão Para Dirigir (PPD) tem validade de:","o":["6 meses","1 ano","2 anos","3 anos"],"c":1,"cat":"legislacao","ex":"CTB Art. 148: a PPD tem validade de 1 ano."},{"p":"O CTB se aplica:","o":["Só em rodovias federais","Só em áreas urbanas","Em todo o território nacional","Só em estados que aderiram"],"c":2,"cat":"legislacao","ex":"CTB Art. 1º: normas do CTB se aplicam em todo o território nacional."},{"p":"Crianças menores de 10 anos devem sentar:","o":["Em qualquer banco com cinto","No banco traseiro obrigatoriamente","No dianteiro com cadeirinha","No colo de adulto"],"c":1,"cat":"legislacao","ex":"CTB Art. 65: crianças com menos de 10 anos só podem ocupar o banco traseiro."},{"p":"A CNH é suspensa quando o condutor acumula, em 12 meses:","o":["10 pontos","20 pontos","30 pontos","40 pontos"],"c":1,"cat":"legislacao","ex":"CTB Art. 261: suspensão ao acumular 20 pontos em 12 meses."},{"p":"O CRLV deve estar:","o":["Guardado em casa","No veículo durante a circulação","Na sede do DETRAN","Com o proprietário sempre"],"c":1,"cat":"legislacao","ex":"O CRLV deve estar no veículo durante a circulação."},{"p":"O seguro DPVAT cobre:","o":["Danos ao veículo","Danos pessoais causados por veículos","Roubo do veículo","Danos ao patrimônio"],"c":1,"cat":"legislacao","ex":"DPVAT: cobre exclusivamente danos pessoais (morte e invalidez)."},{"p":"O prazo para recurso de multa de trânsito é de:","o":["15 dias","30 dias","45 dias","60 dias"],"c":1,"cat":"legislacao","ex":"O condutor tem 30 dias após a notificação para recorrer em primeira instância."},{"p":"A velocidade máxima em rodovias de pista simples é:","o":["80 km/h","100 km/h","110 km/h","90 km/h"],"c":1,"cat":"legislacao","ex":"CTB Art. 61: rodovias pista simples — 100 km/h para automóveis."},{"p":"A velocidade máxima em vias coletoras urbanas é:","o":["30 km/h","40 km/h","50 km/h","60 km/h"],"c":1,"cat":"legislacao","ex":"CTB Art. 61: vias coletoras — limite de 40 km/h."},{"p":"A velocidade máxima em vias locais urbanas é:","o":["20 km/h","30 km/h","40 km/h","50 km/h"],"c":1,"cat":"legislacao","ex":"CTB Art. 61: vias locais — limite de 30 km/h."},{"p":"Para conduzir motocicleta (CNH A), a idade mínima é:","o":["16 anos","17 anos","18 anos","21 anos"],"c":2,"cat":"legislacao","ex":"CTB Art. 140: mínimo de 18 anos para qualquer categoria de CNH."},{"p":"O condutor primário (PPD) durante 1 ano pode transportar:","o":["Qualquer passageiro","Até 1 passageiro","Passageiros com CNH há mais de 2 anos","Qualquer passageiro com cinto"],"c":2,"cat":"legislacao","ex":"Durante a PPD, o acompanhante deve ter CNH da categoria há pelo menos 2 anos."},{"p":"A ultrapassagem deve ser feita normalmente:","o":["Pela direita","Pela esquerda","Pelo acostamento","Por qualquer lado"],"c":1,"cat":"direcao","ex":"CTB Art. 29, XI: ultrapassagem é feita pelo lado esquerdo do veículo ultrapassado."},{"p":"Ultrapassagem é proibida em:","o":["Retas longas","Pontes, túneis e curvas sem visibilidade","Rodovias de pista dupla","Vias com 3 ou mais faixas"],"c":1,"cat":"direcao","ex":"CTB Art. 35: proibido ultrapassar em pontes, viadutos, túneis, curvas e lombadas sem visibilidade."},{"p":"O farol baixo é obrigatório em rodovias:","o":["Só à noite","Só em chuva","Durante o dia e à noite","Só em túneis"],"c":2,"cat":"direcao","ex":"CTB Art. 40, I: farol baixo obrigatório em rodovias 24 horas por dia."},{"p":"Em neblina intensa, qual farol usar?","o":["Farol alto","Farol de neblina","Apenas pisca-alerta","Nenhum"],"c":1,"cat":"direcao","ex":"Em neblina: farol de neblina dianteiro. O farol alto cria reflexo e piora a visibilidade."},{"p":"O acostamento deve ser usado para:","o":["Ultrapassar em emergências","Parar em casos de emergência","Trafegar no trânsito intenso","Estacionar normalmente"],"c":1,"cat":"direcao","ex":"CTB Art. 29, IX: acostamento serve apenas para emergências."},{"p":"O farol alto NÃO deve ser usado:","o":["Em estradas escuras","Quando há veículo à frente ou em sentido contrário","Em estradas de terra","Após meia-noite"],"c":1,"cat":"direcao","ex":"CTB Art. 40: troque para baixo quando há veículo próximo em sentido contrário ou à frente."},{"p":"Veículos lentos em rodovias devem trafegar:","o":["No centro","Pela faixa da esquerda","Pela faixa da direita","Em qualquer faixa"],"c":2,"cat":"direcao","ex":"CTB Art. 29, II: manter-se na faixa da direita em rodovias, exceto para ultrapassar."},{"p":"O condutor deve sinalizar a mudança de direção com pelo menos:","o":["5 metros","10 metros","30 metros","50 metros"],"c":2,"cat":"direcao","ex":"CTB Art. 36: sinalização de mudança com mínimo de 30 metros de antecedência."},{"p":"Estacionar em aclive (subida) com guia, as rodas dianteiras ficam:","o":["Viradas para direita (guia)","Viradas para esquerda (longe da guia)","Retas","Tanto faz"],"c":1,"cat":"direcao","ex":"Em aclive com guia: rodas para a esquerda (longe da guia). Se rolar, a guia bloqueia."},{"p":"Estacionar em declive (descida) com guia, as rodas dianteiras ficam:","o":["Viradas para esquerda","Viradas para direita (contra a guia)","Retas","Tanto faz"],"c":1,"cat":"direcao","ex":"Em declive com guia: rodas para a direita (contra a guia). Se rolar, a guia bloqueia."},{"p":"Em pista molhada o condutor deve:","o":["Acelerar para atravessar rápido","Manter maior distância e reduzir velocidade","Usar apenas o freio de mão","Manter a mesma velocidade"],"c":1,"cat":"direcao","ex":"Pista molhada reduz aderência. Aumente distância e reduza velocidade."},{"p":"O pisca-alerta deve ser usado:","o":["Para indicar que vai virar","Em ultrapassagens longas","Em emergências e veículo avariado parado","Para agradecer outros motoristas"],"c":2,"cat":"direcao","ex":"Pisca-alerta: indica perigo ou veículo em emergência. Não substitui o seta ao virar."},{"p":"Ao se aproximar de passagem de nível, deve-se:","o":["Acelerar para cruzar rápido","Reduzir e verificar se vem trem","Buzinar e passar","Parar por 3 minutos"],"c":1,"cat":"direcao","ex":"CTB Art. 27: reduzir velocidade, parar se necessário, verificar em ambos os sentidos."},{"p":"A distância de segurança entre veículos serve para:","o":["Economizar combustível","Evitar colisões traseiras","Permitir ultrapassagens","Reduzir barulho"],"c":1,"cat":"direcao","ex":"Distância de segurança: espaço para reagir a freada brusca do veículo à frente."},{"p":"Ultrapassagem pela direita é permitida quando:","o":["Nunca","O veículo da frente vai virar à esquerda","Em rodovias de pista dupla","No trânsito lento"],"c":1,"cat":"direcao","ex":"CTB: permitido pela direita quando o veículo à frente sinalizou conversão à esquerda."},{"p":"Em túnel, o condutor deve usar:","o":["Farol alto","Farol baixo","Apenas as luzes de posição","Nenhum farol"],"c":1,"cat":"direcao","ex":"Em túneis: farol baixo obrigatório para aumentar visibilidade."},{"p":"Ao ser ultrapassado, o condutor ultrapassado deve:","o":["Acelerar","Manter ou reduzir a velocidade","Acionar o freio de emergência","Mudar de faixa"],"c":1,"cat":"direcao","ex":"CTB Art. 29, XI: ao ser ultrapassado, não acelerar. Facilite a manobra do outro veículo."},{"p":"A faixa da esquerda em rodovias é destinada para:","o":["Veículos rápidos somente","Ultrapassagens e veículos que seguem mais rápido","Veículos de emergência","Qualquer veículo"],"c":1,"cat":"direcao","ex":"A faixa da esquerda é para ultrapassagem e para veículos que trafegam em maior velocidade."},{"p":"Conduzir veículo na contramão é:","o":["Permitido em manobras de estacionamento","Proibido em qualquer situação","Permitido em vias de mão única","Permitido quando não há sinalização"],"c":1,"cat":"direcao","ex":"CTB Art. 186, III: proibido trafegar na contramão em qualquer situação."},{"p":"Em fila de trânsito lento, o intervalo mínimo entre veículos é:","o":["1 metro","2 metros","Suficiente para manobra de emergência","Não há regra específica"],"c":2,"cat":"direcao","ex":"Mesmo no trânsito lento, é obrigatório manter distância de segurança suficiente para frenagem."},{"p":"Usar celular ao volante é infração:","o":["Leve","Média","Grave","Gravíssima"],"c":3,"cat":"infrações","ex":"CTB Art. 252, IX: celular ao volante = gravíssima, 7 pontos, multa R$ 293,47."},{"p":"Avançar sinal vermelho é infração:","o":["Leve","Média","Grave","Gravíssima"],"c":3,"cat":"infrações","ex":"CTB Art. 208: avançar sinal vermelho = gravíssima, 7 pontos, multa R$ 293,47."},{"p":"Não usar cinto de segurança é infração:","o":["Leve","Média","Grave","Gravíssima"],"c":2,"cat":"infrações","ex":"CTB Art. 167: sem cinto = grave, 5 pontos, multa R$ 195,23."},{"p":"Dirigir sem CNH é infração:","o":["Leve","Média","Grave","Gravíssima"],"c":3,"cat":"infrações","ex":"CTB Art. 162: sem CNH = gravíssima, 7 pontos + retenção do veículo."},{"p":"Infração leve gera quantos pontos?","o":["2","3","4","5"],"c":1,"cat":"infrações","ex":"CTB Art. 259: infrações leves = 3 pontos."},{"p":"Infração gravíssima gera quantos pontos?","o":["3","4","5","7"],"c":3,"cat":"infrações","ex":"CTB Art. 259: infrações gravíssimas = 7 pontos. Ex: celular, vermelho, bêbado."},{"p":"Estacionar em vaga de idoso sem credencial é:","o":["Leve","Grave","Gravíssima","Média"],"c":2,"cat":"infrações","ex":"CTB Art. 181, XIII: gravíssima, 7 pontos. Vale também para vagas de deficientes."},{"p":"Não dar preferência ao pedestre na faixa é:","o":["Leve","Média","Grave","Gravíssima"],"c":2,"cat":"infrações","ex":"CTB Art. 214: infração grave, 5 pontos."},{"p":"Transportar criança sem cadeirinha é:","o":["Leve","Média","Grave","Gravíssima"],"c":3,"cat":"infrações","ex":"CTB Art. 168: gravíssima, 7 pontos + multa. Crianças até 7,5 anos precisam de dispositivo."},{"p":"Participar de racha é:","o":["Infração grave","Gravíssima e crime","Infração leve","Apenas advertência"],"c":1,"cat":"infrações","ex":"CTB Art. 173: gravíssima + crime + multa + suspensão + possível prisão."},{"p":"Exceder em mais de 50% a velocidade máxima é:","o":["Grave","Gravíssima com multa triplicada","Média","Grave com multa dobrada"],"c":1,"cat":"infrações","ex":"CTB Art. 218, III: acima de 50% = gravíssima com fator multiplicador 3."},{"p":"Usar fone nos dois ouvidos ao dirigir é:","o":["Permitido","Infração grave","Infração leve","Recomendado"],"c":1,"cat":"infrações","ex":"CTB Art. 252, VIII: fone em ambos os ouvidos = grave, 5 pontos."},{"p":"Infração média gera quantos pontos?","o":["3","4","5","7"],"c":1,"cat":"infrações","ex":"CTB Art. 259: infrações médias = 4 pontos. Ex: parar sobre faixa de pedestres."},{"p":"Infração grave gera quantos pontos?","o":["3","4","5","7"],"c":2,"cat":"infrações","ex":"CTB Art. 259: infrações graves = 5 pontos. Ex: sem cinto, avançar amarelo."},{"p":"Dirigir com farol queimado à noite é:","o":["Leve","Média","Grave","Permitido temporariamente"],"c":0,"cat":"infrações","ex":"CTB Art. 230, VII: farol obrigatório = infração leve (3 pontos)."},{"p":"Trafegar na faixa exclusiva de ônibus sem autorização é:","o":["Leve","Média","Grave","Gravíssima"],"c":2,"cat":"infrações","ex":"CTB Art. 198: grave (5 pontos) para veículo não autorizado na faixa exclusiva."},{"p":"Buzinar em área hospitalar é:","o":["Proibido — infração leve","Proibido — infração grave","Permitido em emergência","Sem penalidade"],"c":0,"cat":"infrações","ex":"CTB Art. 228: uso indevido de buzina = leve (3 pontos)."},{"p":"Conduzir veículo com pneus carecas é:","o":["Leve","Média","Grave","Permitido"],"c":1,"cat":"infrações","ex":"CTB Art. 230, II: pneus fora da especificação = média (4 pontos)."},{"p":"Parar o veículo sobre a faixa de pedestres é:","o":["Leve","Média","Grave","Gravíssima"],"c":1,"cat":"infrações","ex":"CTB Art. 181, IX: parar sobre faixa de pedestres = média (4 pontos)."},{"p":"Transportar pessoas na carroceria de caminhão é:","o":["Permitido","Grave","Gravíssima","Proibido apenas em rodovias"],"c":2,"cat":"infrações","ex":"CTB Art. 230, IX: transportar passageiro em carroceria = grave, exceto em casos permitidos por lei."},{"p":"Em caso de acidente com vítima, o condutor deve:","o":["Sair do local","Prestar socorro e permanecer no local","Tirar fotos e ir embora","Mover a vítima imediatamente"],"c":1,"cat":"seguranca","ex":"CTB Art. 176: prestar socorro ou acionar ajuda e permanecer até o resgate."},{"p":"Abandonar pessoa ferida em acidente é:","o":["Permitido se houver pressa","Crime de omissão de socorro","Infração leve","Aceitável se a vítima estiver consciente"],"c":1,"cat":"seguranca","ex":"CTB Art. 304: omissão de socorro = crime, pena de 6 meses a 1 ano."},{"p":"O triângulo de segurança em rodovia deve ser colocado a:","o":["10 m","20 m","30 m","50 m"],"c":2,"cat":"seguranca","ex":"O triângulo deve ser colocado a 30 metros do veículo parado em rodovias."},{"p":"A hidroplanagem ocorre quando:","o":["O motor superaquece","O veículo perde aderência na pista molhada","Os freios travam","Os pneus estouram"],"c":1,"cat":"seguranca","ex":"Hidroplanagem: o pneu desliza sobre lâmina de água perdendo contato com a pista."},{"p":"Para evitar hidroplanagem deve-se:","o":["Acelerar para atravessar rápido","Reduzir gradualmente sem frear bruscamente","Usar o freio de mão","Virar o volante rapidamente"],"c":1,"cat":"seguranca","ex":"Reduza gradualmente, não freie bruscamente, mantenha pneus calibrados com sulcos."},{"p":"O uso de álcool ao volante no Brasil tem:","o":["Tolerância de até 0,05 mg/L","Tolerância zero","Tolerância de até 0,1 mg/L","Tolerância variável por estado"],"c":1,"cat":"seguranca","ex":"CTB Art. 165: tolerância zero. Qualquer concentração detectada = infração."},{"p":"O cinto de segurança reduz o risco de morte em acidentes em aproximadamente:","o":["10%","25%","50%","80%"],"c":2,"cat":"seguranca","ex":"Estudos comprovam: o cinto reduz em até 50% o risco de morte em acidentes."},{"p":"O capacete de motociclista é obrigatório:","o":["Só em estradas","Só para o piloto","Para piloto e passageiro em qualquer via","Só acima de 60 km/h"],"c":2,"cat":"seguranca","ex":"CTB Art. 54: capacete obrigatório para piloto e passageiro em qualquer via."},{"p":"Em viagens longas, deve-se parar para descanso a cada:","o":["6 horas","4 horas no máximo","8 horas","2 horas"],"c":1,"cat":"seguranca","ex":"CTB Art. 67-C: máximo 4 horas de direção contínua — pausa mínima de 30 min obrigatória."},{"p":"Dirigir com sono é comparável a:","o":["Excesso de velocidade","Dirigir alcoolizado","Dirigir em neblina","Pneu fora de calibragem"],"c":1,"cat":"seguranca","ex":"Privação de sono tem efeito similar ao álcool: reflexos e atenção reduzidos."},{"p":"O capacete deve ter obrigatoriamente:","o":["Qualquer modelo aprovado","Certificação do INMETRO","Viseira escura","Cor clara"],"c":1,"cat":"seguranca","ex":"O capacete deve ter o selo INMETRO para garantir proteção adequada."},{"p":"Em acidente com produto perigoso, deve-se:","o":["Aproximar para ajudar","Manter distância e ligar para bombeiros (193)","Cobrir o derramamento","Abrir as janelas"],"c":1,"cat":"seguranca","ex":"Produtos perigosos podem ser inflamáveis ou tóxicos. Mantenha distância e chame bombeiros."},{"p":"Pneus sem sulcos causam risco de:","o":["Consumo elevado de combustível","Aquaplanagem e perda de aderência","Barulho excessivo","Superaquecimento do motor"],"c":1,"cat":"seguranca","ex":"Pneus sem sulco não escoam a água, aumentando risco de aquaplanagem."},{"p":"O air bag funciona melhor combinado com:","o":["O freio ABS","O cinto de segurança","A direção hidráulica","O controle de tração"],"c":1,"cat":"seguranca","ex":"Air bag é COMPLEMENTO ao cinto. Sem cinto, o air bag pode causar lesões graves."},{"p":"Vítima inconsciente mas respirando: posição correta é:","o":["Deitada de bruços","Decúbito lateral de segurança","Sentada","Em pé apoiada"],"c":1,"cat":"seguranca","ex":"Decúbito lateral de segurança evita obstrução das vias aéreas e aspiração de vômito."},{"p":"Para ligar para a Polícia Rodoviária Federal:","o":["190","193","191","192"],"c":2,"cat":"seguranca","ex":"191: Polícia Rodoviária Federal. 190: Polícia Militar. 192: SAMU. 193: Bombeiros."},{"p":"O SAMU é acionado pelo número:","o":["190","191","192","193"],"c":2,"cat":"seguranca","ex":"192: SAMU (Serviço de Atendimento Móvel de Urgência). Disponível 24h."},{"p":"Colisão traseira ocorre mais por:","o":["Velocidade excessiva","Distância de segurança insuficiente","Chuva","Pneus carecas"],"c":1,"cat":"seguranca","ex":"Distância de segurança insuficiente é a principal causa de colisões traseiras."},{"p":"Em caso de incêndio no veículo, o condutor deve:","o":["Continuar dirigindo até o acostamento","Parar, sair e afastar-se imediatamente","Tentar apagar com o extintor sem sair","Ligar o ar condicionado"],"c":1,"cat":"seguranca","ex":"Pare com segurança, desligue o motor, todos saem e se afastam imediatamente."},{"p":"O extintor de incêndio no veículo deve estar:","o":["Acessível e com prazo válido","Guardado no porta-malas trancado","Apenas em ônibus e caminhões","Qualquer local do veículo"],"c":0,"cat":"seguranca","ex":"O extintor deve estar acessível (não bloqueado), carregado e dentro do prazo de validade."},{"p":"O sistema de arrefecimento do motor serve para:","o":["Lubrificar o motor","Regular a temperatura evitando superaquecimento","Filtrar combustível","Gerar energia elétrica"],"c":1,"cat":"mecanica","ex":"Sistema de arrefecimento: radiador + bomba d'água + líquido refrigerante controlam temperatura."},{"p":"A baixa calibragem dos pneus causa:","o":["Maior aderência","Desgaste irregular e maior consumo","Menor distância de frenagem","Melhor estabilidade"],"c":1,"cat":"mecanica","ex":"Pneu sub-calibrado: desgaste nas bordas, maior consumo, risco de estouro."},{"p":"O óleo do motor deve ser verificado:","o":["Só na revisão anual","Com o motor frio, regularmente","Com o motor quente","Só quando a luz acender"],"c":1,"cat":"mecanica","ex":"Verifique o óleo com motor frio e carro em superfície plana. Faça regularmente."},{"p":"Freios em boas condições aumentam:","o":["A velocidade do veículo","A eficiência da frenagem","Apenas o conforto","O consumo de combustível"],"c":1,"cat":"mecanica","ex":"Freios revisados reduzem a distância de parada e previnem acidentes."},{"p":"O sistema de suspensão tem a função de:","o":["Aumentar a potência","Absorver impactos e manter os pneus em contato com a pista","Reduzir o consumo de combustível","Controlar a temperatura"],"c":1,"cat":"mecanica","ex":"Suspensão: absorve impactos das irregularidades da pista e mantém estabilidade."},{"p":"Sinais de que o freio pode estar com problema:","o":["Maior aderência","Barulho, vibração ou pedal mole","Menor consumo","Motor mais silencioso"],"c":1,"cat":"mecanica","ex":"Barulho metálico, vibração no pedal ou pedal mole indicam freios desgastados."},{"p":"Veículo com superaquecimento do motor (temperatura alta) deve:","o":["Acelerar para resfriar","Ser parado com segurança e aguardar resfriamento","Continuar se for pouca distância","Ligar o ar condicionado"],"c":1,"cat":"mecanica","ex":"Superaquecimento pode destruir o motor. Pare, desligue e aguarde resfriar antes de abrir o radiador."},{"p":"Luz de óleo acesa no painel indica:","o":["Nível de combustível baixo","Pressão de óleo baixa — pare imediatamente","Temperatura alta","Freio de mão acionado"],"c":1,"cat":"mecanica","ex":"Luz de óleo acesa = pressão de óleo insuficiente. Pare imediatamente para evitar dano grave ao motor."},{"p":"Veículo elétrico não tem:","o":["Freios","Motor","Sistema de transmissão com marcha","Pneus"],"c":2,"cat":"mecanica","ex":"Veículos elétricos não têm caixa de câmbio com marchas — a transmissão é direta."},{"p":"Pneu furado em alta velocidade: a atitude correta é:","o":["Frear bruscamente","Acelerar para controlar","Segurar o volante firme e reduzir gradualmente","Virar o volante para o lado do furo"],"c":2,"cat":"mecanica","ex":"Segure o volante firmemente, não freie bruscamente. Reduza gradualmente e encoste com segurança."}];
@@ -2028,19 +2153,41 @@ function renderStats(){
     :'<div style="padding:18px;text-align:center;color:var(--muted);font-size:12px;">Nenhuma prova realizada ainda.</div>';
   document.getElementById("hist-items").innerHTML=histHtml;
 }
-function limparStats(){historico=[];statsCat={};errosAnteriores=[];salvarDados();renderStats();mostrarToast("🗑️ Histórico limpo!");}
+function limparStats(){
+  if(!confirm("Apagar todo o histórico? Esta ação não pode ser desfeita."))return;
+  historico=[];statsCat={};errosAnteriores=[];
+  salvarDados();
+  renderStats();
+  // Limpar na nuvem também
+  if(supa&&currentUser){
+    Promise.all([
+      supa.from('historico_provas').delete().eq('user_id',currentUser.id),
+      supa.from('erros_revisar').delete().eq('user_id',currentUser.id),
+      supa.from('stats_categoria').delete().eq('user_id',currentUser.id)
+    ]).catch(()=>{});
+  }
+  mostrarToast("🗑️ Histórico limpo!");
+}
 
 // RANKING
 async function carregarRanking(){
   const el=document.getElementById("rank-items");
-  if(SUPABASE_URL){
+  // Try Supabase ranking_global view
+  if(supa){
     el.innerHTML='<div style="padding:18px;text-align:center;color:var(--muted);">⏳ Carregando...</div>';
-    try{
-      const r=await fetch(SUPABASE_URL+"/rest/v1/ranking?order=porc.desc&limit=20",{headers:{"apikey":SUPABASE_KEY,"Authorization":"Bearer "+SUPABASE_KEY}});
-      const data=await r.json();
-      renderRankList(data);
-    }catch(e){el.innerHTML='<div style="padding:18px;text-align:center;color:var(--muted);">Erro ao carregar ranking.</div>';}
-  }else{
+    const data = await carregarRankingSupabase();
+    if(data){
+      renderRankList(data.map(r=>({
+        nome: r.nome,
+        acertos: r.total_acertos,
+        total: r.total_questoes || '-',
+        porc: r.melhor_porc,
+        data: r.total_provas + ' provas'
+      })));
+      return;
+    }
+  }
+  {
     const demo=[
       {nome:"🏆 Felipe S.",acertos:28,total:30,porc:93,data:"hoje"},
       {nome:"Maria C.",acertos:27,total:30,porc:90,data:"hoje"},
@@ -2065,8 +2212,7 @@ function renderRankList(data){
   }).join("");
 }
 async function enviarRankingSupabase(nome,acertos,total,porc){
-  if(!SUPABASE_URL)return;
-  try{await fetch(SUPABASE_URL+"/rest/v1/ranking",{method:"POST",headers:{"apikey":SUPABASE_KEY,"Authorization":"Bearer "+SUPABASE_KEY,"Content-Type":"application/json"},body:JSON.stringify({nome,acertos,total,porc})});}catch(e){}
+  // Substituído pelo sistema de sync automático
 }
 
 // NAVEGAÇÃO
@@ -2173,6 +2319,446 @@ document.querySelector('.qtde-btn[onclick*="30"]').classList.add("on");
   }
   window.addEventListener("hashchange",navigate);
 })();
+
+
+// ============================================================
+//  AUTH.JS — Sistema de autenticação e sync com Supabase
+// ============================================================
+
+// ── ESTADO DO USUÁRIO ────────────────────────────────────
+let currentUser = null;
+let userProfile = null;
+let syncPending = false;
+
+// ── INICIALIZAÇÃO ─────────────────────────────────────────
+async function authInit() {
+  if (!supa) {
+    console.warn('Supabase não configurado — modo offline');
+    atualizarUIAuth(null);
+    return;
+  }
+
+  // Escuta mudanças de sessão
+  supa.auth.onAuthStateChange(async (event, session) => {
+    currentUser = session?.user || null;
+    if (currentUser) {
+      await carregarPerfilUsuario();
+      await sincronizarDados();
+      atualizarUIAuth(currentUser);
+      fecharModalAuth();
+    } else {
+      userProfile = null;
+      atualizarUIAuth(null);
+    }
+  });
+
+  // Verifica sessão existente
+  const { data: { session } } = await supa.auth.getSession();
+  if (session?.user) {
+    currentUser = session.user;
+    await carregarPerfilUsuario();
+    atualizarUIAuth(currentUser);
+  } else {
+    atualizarUIAuth(null);
+  }
+}
+
+// ── UI DO HEADER ──────────────────────────────────────────
+function atualizarUIAuth(user) {
+  const wrap = document.getElementById('hdr-user-wrap');
+  if (!wrap) return;
+
+  if (user && userProfile) {
+    const inicial = (userProfile.nome || user.email || 'U')[0].toUpperCase();
+    wrap.innerHTML = `
+      <div class="user-avatar" onclick="toggleUserMenu()" title="${userProfile.nome}">
+        ${inicial}
+        <div class="sync-dot" id="sync-dot"></div>
+      </div>`;
+  } else {
+    wrap.innerHTML = `
+      <button class="btn-sec" style="padding:6px 14px;font-size:12px;min-height:0;" onclick="abrirModalAuth('login')">Entrar</button>`;
+  }
+}
+
+// ── MODAL AUTH ────────────────────────────────────────────
+function abrirModalAuth(aba = 'login') {
+  document.getElementById('modal-auth').classList.remove('hidden');
+  authMudarAba(aba);
+}
+
+function fecharModalAuth() {
+  document.getElementById('modal-auth').classList.add('hidden');
+  limparErrosAuth();
+}
+
+function authMudarAba(aba) {
+  document.getElementById('auth-form-login').style.display = aba === 'login' ? '' : 'none';
+  document.getElementById('auth-form-cadastro').style.display = aba === 'cadastro' ? '' : 'none';
+  document.getElementById('tab-login').classList.toggle('on', aba === 'login');
+  document.getElementById('tab-cadastro').classList.toggle('on', aba === 'cadastro');
+  limparErrosAuth();
+}
+
+function limparErrosAuth() {
+  document.querySelectorAll('.auth-error, .auth-success').forEach(el => {
+    el.classList.remove('show');
+    el.style.display = '';
+    el.textContent = '';
+  });
+  document.querySelectorAll('.auth-input').forEach(el => el.classList.remove('error'));
+}
+
+function mostrarErroAuth(id, msg) {
+  const el = document.getElementById(id);
+  if (el) { el.textContent = msg; el.style.display = 'block'; }
+}
+
+function mostrarSucessoAuth(id, msg) {
+  const el = document.getElementById(id);
+  if (el) { el.textContent = msg; el.classList.add('show'); el.style.display = 'block'; }
+}
+
+// ── CADASTRO ──────────────────────────────────────────────
+async function authCadastrar() {
+  if (!supa) { mostrarToast('Configure o Supabase primeiro!'); return; }
+  limparErrosAuth();
+
+  const nome = document.getElementById('cad-nome').value.trim();
+  const email = document.getElementById('cad-email').value.trim();
+  const senha = document.getElementById('cad-senha').value;
+  const senha2 = document.getElementById('cad-senha2').value;
+
+  let valido = true;
+  if (!nome || nome.length < 2) {
+    mostrarErroAuth('cad-nome-err', 'Digite seu nome (mínimo 2 caracteres)');
+    document.getElementById('cad-nome').classList.add('error');
+    valido = false;
+  }
+  if (!email || !email.includes('@')) {
+    mostrarErroAuth('cad-email-err', 'Digite um e-mail válido');
+    document.getElementById('cad-email').classList.add('error');
+    valido = false;
+  }
+  if (!senha || senha.length < 6) {
+    mostrarErroAuth('cad-senha-err', 'Senha deve ter pelo menos 6 caracteres');
+    document.getElementById('cad-senha').classList.add('error');
+    valido = false;
+  }
+  if (senha !== senha2) {
+    mostrarErroAuth('cad-senha2-err', 'As senhas não coincidem');
+    document.getElementById('cad-senha2').classList.add('error');
+    valido = false;
+  }
+  if (!valido) return;
+
+  const btn = document.getElementById('btn-cadastro');
+  btn.disabled = true;
+  btn.textContent = '⏳ Criando conta...';
+
+  try {
+    const { data, error } = await supa.auth.signUp({
+      email,
+      password: senha,
+      options: { data: { nome } }
+    });
+
+    if (error) throw error;
+
+    if (data.user && !data.session) {
+      // Email confirmation required
+      mostrarSucessoAuth('cad-success', '✅ Conta criada! Verifique seu e-mail para confirmar.');
+    } else {
+      mostrarToast('✅ Conta criada com sucesso!');
+    }
+  } catch (err) {
+    const msg = traduzirErroSupabase(err.message);
+    mostrarErroAuth('cad-geral-err', msg);
+    document.getElementById('cad-geral-err').style.display = 'block';
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '✓ Criar conta';
+  }
+}
+
+// ── LOGIN ─────────────────────────────────────────────────
+async function authLogin() {
+  if (!supa) { mostrarToast('Configure o Supabase primeiro!'); return; }
+  limparErrosAuth();
+
+  const email = document.getElementById('login-email').value.trim();
+  const senha = document.getElementById('login-senha').value;
+
+  let valido = true;
+  if (!email || !email.includes('@')) {
+    mostrarErroAuth('login-email-err', 'Digite um e-mail válido');
+    document.getElementById('login-email').classList.add('error');
+    valido = false;
+  }
+  if (!senha) {
+    mostrarErroAuth('login-senha-err', 'Digite sua senha');
+    document.getElementById('login-senha').classList.add('error');
+    valido = false;
+  }
+  if (!valido) return;
+
+  const btn = document.getElementById('btn-login');
+  btn.disabled = true;
+  btn.textContent = '⏳ Entrando...';
+
+  try {
+    const { data, error } = await supa.auth.signInWithPassword({ email, password: senha });
+    if (error) throw error;
+    mostrarToast('✅ Bem-vindo de volta!');
+  } catch (err) {
+    const msg = traduzirErroSupabase(err.message);
+    document.getElementById('login-geral-err').textContent = msg;
+    document.getElementById('login-geral-err').style.display = 'block';
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '▶ Entrar';
+  }
+}
+
+// ── ESQUECI A SENHA ───────────────────────────────────────
+async function authEsqueceuSenha() {
+  const email = document.getElementById('login-email').value.trim();
+  if (!email || !email.includes('@')) {
+    mostrarErroAuth('login-email-err', 'Digite seu e-mail acima primeiro');
+    document.getElementById('login-email').classList.add('error');
+    return;
+  }
+  if (!supa) return;
+
+  try {
+    await supa.auth.resetPasswordForEmail(email, {
+      redirectTo: location.origin + location.pathname
+    });
+    mostrarSucessoAuth('login-success', '✅ Link de recuperação enviado para seu e-mail!');
+  } catch (err) {
+    mostrarErroAuth('login-geral-err', 'Erro ao enviar e-mail. Tente novamente.');
+    document.getElementById('login-geral-err').style.display = 'block';
+  }
+}
+
+// ── LOGOUT ────────────────────────────────────────────────
+async function authLogout() {
+  fecharUserMenu();
+  if (!supa) return;
+  await supa.auth.signOut();
+  currentUser = null;
+  userProfile = null;
+  mostrarToast('👋 Até logo!');
+}
+
+// ── USER MENU ─────────────────────────────────────────────
+function toggleUserMenu() {
+  const menu = document.getElementById('user-menu');
+  if (!menu) return;
+  const hidden = menu.classList.contains('hidden');
+  if (hidden) {
+    menu.classList.remove('hidden');
+    document.getElementById('um-nome').textContent = userProfile?.nome || 'Usuário';
+    document.getElementById('um-email').textContent = currentUser?.email || '';
+    setTimeout(() => document.addEventListener('click', fecharUserMenuOutside, { once: true }), 10);
+  } else {
+    fecharUserMenu();
+  }
+}
+
+function fecharUserMenu() {
+  document.getElementById('user-menu')?.classList.add('hidden');
+}
+
+function fecharUserMenuOutside(e) {
+  if (!document.getElementById('user-menu')?.contains(e.target) &&
+      !document.getElementById('hdr-user-wrap')?.contains(e.target)) {
+    fecharUserMenu();
+  }
+}
+
+// ── PERFIL DO USUÁRIO ─────────────────────────────────────
+async function carregarPerfilUsuario() {
+  if (!supa || !currentUser) return;
+  try {
+    const { data, error } = await supa
+      .from('profiles')
+      .select('*')
+      .eq('id', currentUser.id)
+      .single();
+    if (!error) userProfile = data;
+  } catch(e) {}
+}
+
+// ── SINCRONIZAÇÃO ─────────────────────────────────────────
+async function sincronizarDados() {
+  if (!supa || !currentUser) return;
+  setSyncStatus('syncing');
+
+  try {
+    // Baixar dados da nuvem
+    const [histRes, errosRes, statsRes, teoriaRes] = await Promise.all([
+      supa.from('historico_provas').select('*').eq('user_id', currentUser.id).order('data_prova', { ascending: false }).limit(50),
+      supa.from('erros_revisar').select('questao_texto').eq('user_id', currentUser.id),
+      supa.from('stats_categoria').select('*').eq('user_id', currentUser.id),
+      supa.from('progresso_teoria').select('topico_id').eq('user_id', currentUser.id)
+    ]);
+
+    // Mesclar histórico (cloud + local, sem duplicatas)
+    if (histRes.data?.length) {
+      const cloudHist = histRes.data.map(h => ({
+        acertos: h.acertos, total: h.total, porc: h.porc,
+        data: new Date(h.data_prova).toLocaleDateString('pt-BR'),
+        cat: h.cat, modo: h.modo
+      }));
+      // Merge: cloud tem prioridade
+      const merged = [...cloudHist];
+      historico.forEach(local => {
+        const exists = merged.some(c => c.data === local.data && c.acertos === local.acertos && c.total === local.total);
+        if (!exists) merged.push(local);
+      });
+      historico = merged.slice(0, 50);
+      localStorage.setItem('detran_hist', JSON.stringify(historico));
+    }
+
+    // Erros para revisar
+    if (errosRes.data?.length) {
+      const cloudErros = errosRes.data.map(e => e.questao_texto);
+      errosAnteriores = [...new Set([...cloudErros, ...errosAnteriores])];
+      localStorage.setItem('detran_erros', JSON.stringify(errosAnteriores));
+    }
+
+    // Stats por categoria
+    if (statsRes.data?.length) {
+      statsRes.data.forEach(s => {
+        if (!statsCat[s.categoria]) statsCat[s.categoria] = { ac: 0, tot: 0 };
+        statsCat[s.categoria].ac = Math.max(statsCat[s.categoria].ac, s.acertos);
+        statsCat[s.categoria].tot = Math.max(statsCat[s.categoria].tot, s.total);
+      });
+      localStorage.setItem('detran_stats_cat', JSON.stringify(statsCat));
+    }
+
+    // Progresso teoria
+    if (teoriaRes.data?.length) {
+      let localRead = [];
+      try { localRead = JSON.parse(localStorage.getItem('teoria_read') || '[]'); } catch(e) {}
+      const cloudRead = teoriaRes.data.map(t => t.topico_id);
+      const merged = [...new Set([...cloudRead, ...localRead])];
+      localStorage.setItem('teoria_read', JSON.stringify(merged));
+    }
+
+    // Fazer upload do que temos local mas não está na nuvem
+    await uploadDadosLocais();
+
+    setSyncStatus('ok');
+    if (document.getElementById('pg-stats') && !document.getElementById('pg-stats').classList.contains('hidden')) {
+      renderStats();
+    }
+  } catch(err) {
+    console.warn('Sync error:', err);
+    setSyncStatus('offline');
+  }
+}
+
+async function uploadDadosLocais() {
+  if (!supa || !currentUser) return;
+  const uid = currentUser.id;
+
+  // Upload histórico local para a nuvem (últimos 10 não sincronizados)
+  if (historico.length > 0) {
+    const rows = historico.slice(0, 20).map(h => ({
+      user_id: uid,
+      acertos: h.acertos,
+      total: h.total,
+      porc: h.porc,
+      cat: h.cat || 'todas',
+      modo: h.modo || 'simulado'
+    }));
+    await supa.from('historico_provas').upsert(rows, { onConflict: 'user_id,acertos,total,porc,cat,modo' }).then(() => {}).catch(() => {});
+  }
+
+  // Upload erros
+  if (errosAnteriores.length > 0) {
+    const rows = errosAnteriores.map(q => ({ user_id: uid, questao_texto: q }));
+    await supa.from('erros_revisar').upsert(rows, { onConflict: 'user_id,questao_texto' }).then(() => {}).catch(() => {});
+  }
+
+  // Upload stats categoria
+  const statsRows = Object.entries(statsCat).map(([cat, s]) => ({
+    user_id: uid, categoria: cat, acertos: s.ac, total: s.tot
+  }));
+  if (statsRows.length > 0) {
+    await supa.from('stats_categoria').upsert(statsRows, { onConflict: 'user_id,categoria' }).then(() => {}).catch(() => {});
+  }
+
+  // Upload teoria
+  let teoriaRead = [];
+  try { teoriaRead = JSON.parse(localStorage.getItem('teoria_read') || '[]'); } catch(e) {}
+  if (teoriaRead.length > 0) {
+    const rows = teoriaRead.map(t => ({ user_id: uid, topico_id: t }));
+    await supa.from('progresso_teoria').upsert(rows, { onConflict: 'user_id,topico_id' }).then(() => {}).catch(() => {});
+  }
+}
+
+// ── SALVAR DADOS COM SYNC ─────────────────────────────────
+// Sobrescreve salvarDados para também sincronizar com Supabase
+const _salvarDadosOriginal = salvarDados;
+salvarDados = function() {
+  _salvarDadosOriginal();
+  if (supa && currentUser) {
+    setSyncStatus('syncing');
+    uploadDadosLocais().then(() => setSyncStatus('ok')).catch(() => setSyncStatus('offline'));
+  }
+};
+
+// ── RANKING COM SUPABASE ──────────────────────────────────
+async function carregarRankingSupabase() {
+  if (!supa) return null;
+  try {
+    const { data, error } = await supa
+      .from('ranking_global')
+      .select('nome, total_provas, media_porc, melhor_porc, total_acertos')
+      .order('melhor_porc', { ascending: false })
+      .limit(20);
+    if (error) return null;
+    return data;
+  } catch(e) { return null; }
+}
+
+// ── HELPERS ───────────────────────────────────────────────
+function setSyncStatus(status) {
+  const dot = document.getElementById('sync-dot');
+  if (!dot) return;
+  dot.className = 'sync-dot ' + (status === 'syncing' ? 'syncing' : status === 'offline' ? 'offline' : '');
+}
+
+function traduzirErroSupabase(msg) {
+  if (!msg) return 'Erro desconhecido. Tente novamente.';
+  if (msg.includes('Invalid login credentials')) return 'E-mail ou senha incorretos.';
+  if (msg.includes('Email not confirmed')) return 'Confirme seu e-mail antes de entrar.';
+  if (msg.includes('User already registered')) return 'E-mail já cadastrado. Faça login.';
+  if (msg.includes('Password should be')) return 'Senha muito fraca. Use pelo menos 6 caracteres.';
+  if (msg.includes('rate limit')) return 'Muitas tentativas. Aguarde alguns minutos.';
+  if (msg.includes('network')) return 'Sem conexão. Verifique sua internet.';
+  return msg;
+}
+
+// Fechar modais com ESC
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    fecharModalAuth();
+    fecharUserMenu();
+  }
+});
+
+// Fechar user menu ao clicar no overlay
+document.getElementById('modal-auth')?.addEventListener('click', function(e) {
+  if (e.target === this) fecharModalAuth();
+});
+
+// ── INIT ──────────────────────────────────────────────────
+authInit();
+
 </script>
 <script>
 // ============================================================
